@@ -65,7 +65,55 @@ public class AdoptTreeActivity extends AppCompatActivity {
         request.add(JOR);
     }
 
+    private void logOut(String url){
+        request = Volley.newRequestQueue(this);
+
+        JOR = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(AdoptTreeActivity.this,"respuesta: "+response,Toast.LENGTH_LONG).show();
+                deletePreferences();
+                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(login);
+                finish();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse networkResponse = error.networkResponse;
+                if (networkResponse != null && networkResponse.data != null) {
+                    String jsonError = new String(networkResponse.data);
+                    Toast.makeText(AdoptTreeActivity.this,"Error: "+jsonError,Toast.LENGTH_LONG).show();
+                    Log.i("ErrorVolley",jsonError);
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
+                token = preference.getString("token","");
+                Map<String, String> headers = new HashMap<>();
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
+                headers.put("Accept", "application/vnd.api+json");
+                headers.put("Authorization", "Bearer " + token);
+                return headers;
+            }
+        };
+        request.add(JOR);
+    }
+
     public void OnclickGetUser(View view) {
         getUser("https://calm-fjord-08371.herokuapp.com/api/users/1");
+    }
+
+    public void OnclickLogOut(View view) {
+        logOut("https://calm-fjord-08371.herokuapp.com/api/logout");
+    }
+
+    private void deletePreferences(){
+        SharedPreferences preferences= getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("token","");
+        editor.commit();
     }
 }
