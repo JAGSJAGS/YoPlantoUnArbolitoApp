@@ -1,5 +1,8 @@
 package com.example.yoplantounarbolito_app;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +14,7 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -32,8 +36,7 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
         password = findViewById(R.id.editTextPasswordLogin);
     }
 
-    public void OnclickRegister(View view) {
-        Toast.makeText(LoginActivity.this,"buton apretado ",Toast.LENGTH_LONG).show();
+    public void OnclickLogin(View view) {
         validateUser("https://calm-fjord-08371.herokuapp.com/api/login");
     }
 
@@ -43,20 +46,22 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
         Map<String, String> params = new HashMap<>();
         params.put("email", email.getText().toString());
         params.put("password", password.getText().toString());
-        /*params.put("name", "amadeo2");
-        params.put("email", "amadeo2@gmail.com");
-        params.put("phone", "4564665");
-        params.put("points", "0");
-        params.put("password", "password");
-        params.put("password_confirmation", "password");*/
 
         JSONObject parameters = new JSONObject(params);
 
         JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(LoginActivity.this, "Response: "+ response, Toast.LENGTH_LONG).show();
-
+                try {
+                    String token = response.getString("access_token");
+                    savePreferences(token);
+                    //Toast.makeText(LoginActivity.this,"accesToken: "+token,Toast.LENGTH_LONG).show();
+                    Intent adoptTree = new Intent(getApplicationContext(),AdoptTreeActivity.class);
+                    startActivity(adoptTree);
+                    finish();
+                } catch (JSONException e) {
+                    Toast.makeText(LoginActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -70,5 +75,17 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
             }
         });
         request.add(JOR);
+    }
+
+    private void savePreferences(String token){
+        SharedPreferences preferences= getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("token",token);
+        editor.commit();
+    }
+
+    public void OnclickGoToRegisterActivity(View view) {
+        Intent registerUser = new Intent(getApplicationContext(),RegisterUserActivity.class);
+        startActivity(registerUser);
     }
 }

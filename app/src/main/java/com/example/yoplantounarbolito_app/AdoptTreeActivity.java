@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,40 +19,36 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class AdoptTreeActivity extends AppCompatActivity {
 
     RequestQueue request;
     JsonObjectRequest JOR;
     String token;
-    Boolean authenticated = false;
     SharedPreferences preference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        authenticated("https://calm-fjord-08371.herokuapp.com/api/islogin");
+        setContentView(R.layout.activity_adopt_tree);
     }
 
-    private void authenticated(String url){
+    private void getUser(String url){
         request = Volley.newRequestQueue(this);
 
         JOR = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Intent registerUser = new Intent(getApplicationContext(), AdoptTreeActivity.class);
-                startActivity(registerUser);
-                finish();
-                authenticated = true;
-                Toast.makeText(MainActivity.this,"auth"+ authenticated, Toast.LENGTH_LONG).show();
+                Toast.makeText(AdoptTreeActivity.this,"respuesta: "+response,Toast.LENGTH_LONG).show();
+                Log.i("neverita","neverita");
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(login);
-                finish();
-                Toast.makeText(MainActivity.this,"auth"+ authenticated, Toast.LENGTH_LONG).show();
+                NetworkResponse networkResponse = error.networkResponse;
+                if (networkResponse != null && networkResponse.data != null) {
+                    String jsonError = new String(networkResponse.data);
+                    Toast.makeText(AdoptTreeActivity.this,"Error: "+jsonError,Toast.LENGTH_LONG).show();
+                    Log.i("ErrorVolley",jsonError);
+                }
             }
         }) {
             @Override
@@ -61,11 +56,16 @@ public class MainActivity extends AppCompatActivity {
                 preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
                 token = preference.getString("token","");
                 Map<String, String> headers = new HashMap<>();
+                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
                 headers.put("Accept", "application/vnd.api+json");
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
             }
         };
         request.add(JOR);
+    }
+
+    public void OnclickGetUser(View view) {
+        getUser("https://calm-fjord-08371.herokuapp.com/api/users/1");
     }
 }

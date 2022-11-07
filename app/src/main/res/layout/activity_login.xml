@@ -18,7 +18,7 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.497" app:layout_constraintVertical_bias="0.425"/>
     <Button
-            android:onClick="OnclickRegister"
+            android:onClick="OnclickLogin"
             android:text="Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/buttonLogin"
@@ -30,10 +30,19 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
-            android:text="name@gmail.com"
+            android:text="daniela@gmail.com"
             android:id="@+id/editTextEmailLogin"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintVertical_bias="0.265"/>
+    <Button
+            android:onClick="OnclickGoToRegisterActivity"
+            android:text="Registrarse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/buttonRegisterActivity"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintVertical_bias="0.793"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
