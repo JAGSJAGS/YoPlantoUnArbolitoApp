@@ -1,5 +1,6 @@
 package com.example.yoplantounarbolito_app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
@@ -51,6 +52,9 @@ public class RegisterUserActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 Toast.makeText(RegisterUserActivity.this, "Se registro correctamente: "+response, Toast.LENGTH_LONG).show();
+                Intent registerTree = new Intent(getApplicationContext(),RegisterTreeActivity.class);
+                startActivity(registerTree);
+                finish();
             }
         }, new Response.ErrorListener() {
             @Override
