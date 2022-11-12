@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YoPlantoUnArbolito_App</string>
+    <string name="app_name">Yo Planto Un Arbolito</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="hint_latitud"/>
 </resources>

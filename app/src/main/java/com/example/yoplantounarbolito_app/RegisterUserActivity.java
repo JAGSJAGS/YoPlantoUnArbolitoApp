@@ -65,7 +65,15 @@ public class RegisterUserActivity extends AppCompatActivity {
                     Toast.makeText(RegisterUserActivity.this,"error: "+jsonError,Toast.LENGTH_LONG).show();
                 }
             }
-        });
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Accept", "application/vnd.api+json");
+                headers.put("Content-Type", "application/vnd.api+json");
+                return headers;
+            }
+        };
         request.add(JOR);
     }
 

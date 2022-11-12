@@ -24,7 +24,7 @@
                 android:resource="@xml/file_paths"/>
 
         <activity
-                android:name=".RegisterPhotoActivity"
+                android:name=".RegisterTreeActivity"
                 android:exported="false"/>
 
         <meta-data
@@ -35,7 +35,7 @@
                 android:name=".MapsActivity"
                 android:exported="false"/>
         <activity
-                android:name=".RegisterTreeActivity"
+                android:name=".MainActivity"
                 android:exported="false"/>
         <activity
                 android:name=".RegisterUserActivity"
@@ -47,7 +47,7 @@
                 android:name=".LoginActivity"
                 android:exported="false"/>
         <activity
-                android:name=".MainActivity"
+                android:name=".RegisterPhotoActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -23,10 +23,9 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {//implements Response.Listener<JSONObject>,Response.ErrorListener {
 
     EditText email, password;
-    Button btnLogin;
-
     RequestQueue request;
     JsonObjectRequest JOR;
+    String errorValidate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +36,14 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     }
 
     public void OnclickLogin(View view) {
-        validateUser("https://calm-fjord-08371.herokuapp.com/api/login");
+        loginUser("https://calm-fjord-08371.herokuapp.com/api/login");
     }
 
-    private void validateUser(String url){
+    private void loginUser(String url){
         request = Volley.newRequestQueue(this);
-
         Map<String, String> params = new HashMap<>();
         params.put("email", email.getText().toString());
         params.put("password", password.getText().toString());
-
         JSONObject parameters = new JSONObject(params);
 
         JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
@@ -55,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
                 try {
                     String token = response.getString("access_token");
                     savePreferences(token);
-                    //Toast.makeText(LoginActivity.this,"accesToken: "+token,Toast.LENGTH_LONG).show();
                     Intent adoptTree = new Intent(getApplicationContext(),AdoptTreeActivity.class);
                     startActivity(adoptTree);
                     finish();
@@ -66,14 +62,22 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
+                /*NetworkResponse networkResponse = error.networkResponse;
                 if (networkResponse != null && networkResponse.data != null) {
                     String jsonError = new String(networkResponse.data);
-                    Toast.makeText(LoginActivity.this,"error: "+jsonError,Toast.LENGTH_LONG).show();
-                    Log.i("ErrorVolley",jsonError);
-                }
+                    Toast.makeText(LoginActivity.this,"Error de Login",Toast.LENGTH_LONG).show();
+                }*/
+                Toast.makeText(LoginActivity.this,"Error de Login, verifique sus datos",Toast.LENGTH_LONG).show();
             }
-        });
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Accept", "application/vnd.api+json");
+                headers.put("Content-Type", "application/vnd.api+json");
+                return headers;
+            }
+        };
         request.add(JOR);
     }
 
@@ -85,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     }
 
     public void OnclickGoToRegisterActivity(View view) {
-        Intent registerUser = new Intent(getApplicationContext(),RegisterUserActivity.class);
-        startActivity(registerUser);
+            Intent registerUser = new Intent(getApplicationContext(),RegisterUserActivity.class);
+            startActivity(registerUser);
     }
 }

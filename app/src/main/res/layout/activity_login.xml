@@ -8,41 +8,50 @@
         tools:context=".LoginActivity">
 
     <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:text="password"
             android:ems="10"
             android:id="@+id/editTextPasswordLogin"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.497" app:layout_constraintVertical_bias="0.425"/>
+            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailLogin" android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:background="@drawable/login_edit_text_border"/>
     <Button
             android:onClick="OnclickLogin"
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/buttonLogin"
+            android:text="Ingresar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" android:id="@+id/buttonLogin"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.498" app:layout_constraintVertical_bias="0.562"/>
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLogin" android:layout_marginTop="10dp"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:background="@drawable/login_edit_text_border"/>
     <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:text="daniela@gmail.com"
             android:id="@+id/editTextEmailLogin"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.482"
-            app:layout_constraintVertical_bias="0.265"/>
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:background="@drawable/login_edit_text_border"/>
     <Button
             android:onClick="OnclickGoToRegisterActivity"
             android:text="Registrarse"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/buttonRegisterActivity"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintVertical_bias="0.793"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="16dp" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
+    <ImageView
+            android:layout_width="161dp"
+            android:layout_height="157dp" app:srcCompat="@mipmap/yo_planto_un_arbolito"
+            android:id="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="100dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
