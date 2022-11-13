@@ -39,7 +39,7 @@
             android:layout_alignEnd="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView"
-            android:layout_marginTop="32dp" android:layout_height="400dp" android:layout_marginStart="16dp"
+            android:layout_height="400dp" android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp" android:background="@drawable/login_edit_text_border"/>
     <Button
             android:onClick="OnclickSavePhoto"
