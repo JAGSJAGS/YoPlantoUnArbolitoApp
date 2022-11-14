@@ -147,6 +147,12 @@ public class RegisterPhotoActivity extends AppCompatActivity {
                 case COD_SELECCIONA:
                     Uri miPath=data.getData();
                     imagen.setImageURI(miPath);
+
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(RegisterPhotoActivity.this.getContentResolver(), miPath);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case COD_FOTO:
                     MediaScannerConnection.scanFile(RegisterPhotoActivity.this, new String[]{path}, null,
@@ -175,8 +181,8 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         JOR = new JsonObjectRequest(Request.Method.PUT, url, parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Intent registerUser = new Intent(getApplicationContext(), RegisterUserActivity.class);
-                startActivity(registerUser);
+                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainActivity);
                 finish();
                 Toast.makeText(RegisterPhotoActivity.this, "Se registro correctamente: ", Toast.LENGTH_LONG).show();
             }
@@ -211,7 +217,9 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     }
 
     public void OnclickSavePhoto(View view) {
-        //Toast.makeText(RegisterPhotoActivity.this, "Guardando", Toast.LENGTH_SHORT).show();
-        savePhoto("https://calm-fjord-08371.herokuapp.com/api/savephoto/1");
+        Bundle getDate = getIntent().getExtras();
+        String id = getDate.getString("id_tree");
+        Toast.makeText(RegisterPhotoActivity.this,"Id: "+id,Toast.LENGTH_LONG).show();
+        savePhoto("https://calm-fjord-08371.herokuapp.com/api/savephoto/"+id);
     }
 }

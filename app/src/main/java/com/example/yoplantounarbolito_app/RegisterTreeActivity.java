@@ -22,6 +22,7 @@ import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -29,7 +30,8 @@ import java.util.Map;
 
 public class RegisterTreeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    EditText name, geolocalitation, avatar, photo, state;
+    EditText name;
+    String avatar = "avatar1";
     RequestQueue request;
     JsonObjectRequest JOR;
 
@@ -47,10 +49,6 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         mapFragment.getMapAsync(this);
 
         name = findViewById(R.id.editTextNameRegisterTree);
-        geolocalitation = findViewById(R.id.editTextGeolocalitationRegisterTree);
-        avatar = findViewById(R.id.editTextAvatarRegisterTree);
-        photo = findViewById(R.id.editTextPhotoRegisterTree);
-        state = findViewById(R.id.editTextStateRegisterTree);
     }
 
     private void registerTree(String url){
@@ -58,17 +56,27 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
 
         Map<String, String> params = new HashMap<>();
         params.put("name", name.getText().toString());
-        params.put("geolocation", geolocalitation.getText().toString());
-        params.put("avatar", avatar.getText().toString());
-        params.put("photo", photo.getText().toString());
-        params.put("state", state.getText().toString());
-
+        params.put("lat", lat+"");
+        params.put("lng", lng+"");
+        params.put("avatar", avatar);
+        params.put("path_photo", "null");
+        params.put("state", "take care");
         JSONObject parameters = new JSONObject(params);
 
         JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(RegisterTreeActivity.this, "Se registro correctamente: "+response, Toast.LENGTH_LONG).show();
+                try {
+                    String id = response.getString("id");
+                    Bundle sendData = new Bundle();
+                    sendData.putString("id_tree",id);
+                    Intent photoActivity = new Intent(getApplicationContext(),RegisterPhotoActivity.class);
+                    photoActivity.putExtras(sendData);
+                    startActivity(photoActivity);
+                    finish();
+                } catch (JSONException e) {
+                    Toast.makeText(RegisterTreeActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -76,7 +84,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
                 NetworkResponse networkResponse = error.networkResponse;
                 if (networkResponse != null && networkResponse.data != null) {
                     String jsonError = new String(networkResponse.data);
-                    Toast.makeText(RegisterTreeActivity.this,"error: "+jsonError,Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterTreeActivity.this,"Error"+ jsonError,Toast.LENGTH_LONG).show();
                 }
             }
         }){
@@ -119,7 +127,6 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     private void actualizarUbicacion(Location location) {
         lat = location.getLatitude();
         lng = location.getLongitude();
-        Toast.makeText(RegisterTreeActivity.this,"lat: "+lat,Toast.LENGTH_LONG).show();
         agregarMarket(lat, lng);
     }
 
@@ -138,5 +145,15 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         actualizarUbicacion(location);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 0 , locationListener);
+    }
+
+    public void OnclickSelectAvatar1(View view) {
+        avatar = "avatar1";
+        Toast.makeText(RegisterTreeActivity.this,avatar+" Seleccionado",Toast.LENGTH_SHORT).show();
+    }
+
+    public void OnclickSelectAvatar2(View view) {
+        avatar = "avatar2";
+        Toast.makeText(RegisterTreeActivity.this,avatar+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
 }

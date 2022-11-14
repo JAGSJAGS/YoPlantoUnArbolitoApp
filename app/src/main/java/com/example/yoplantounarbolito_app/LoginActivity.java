@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.yoplantounarbolito_app.validations.Validations;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,7 +27,8 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     EditText email, password;
     RequestQueue request;
     JsonObjectRequest JOR;
-    String errorValidate = "";
+    Validations validations = new Validations();
+    TextView errors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +36,12 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
         setContentView(R.layout.activity_login);
         email = findViewById(R.id.editTextEmailLogin);
         password = findViewById(R.id.editTextPasswordLogin);
+        errors = findViewById(R.id.textViewErrorsLogin);
+        errors.setVisibility(View.GONE);
     }
 
     public void OnclickLogin(View view) {
+        errors.setVisibility(View.GONE);
         loginUser("https://calm-fjord-08371.herokuapp.com/api/login");
     }
 
@@ -62,12 +68,9 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                /*NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null && networkResponse.data != null) {
-                    String jsonError = new String(networkResponse.data);
-                    Toast.makeText(LoginActivity.this,"Error de Login",Toast.LENGTH_LONG).show();
-                }*/
-                Toast.makeText(LoginActivity.this,"Error de Login, verifique sus datos",Toast.LENGTH_LONG).show();
+                NetworkResponse networkResponse = error.networkResponse;
+                String jsonError = new String(networkResponse.data);
+                validations.validateDatas(jsonError,errors);
             }
         }){
             @Override

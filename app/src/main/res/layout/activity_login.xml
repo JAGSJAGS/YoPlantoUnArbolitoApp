@@ -38,8 +38,9 @@
             android:id="@+id/editTextEmailLogin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.482"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:background="@drawable/login_edit_text_border"/>
+            app:layout_constraintTop_toBottomOf="@+id/textViewErrorsLogin"
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+            android:background="@drawable/login_edit_text_border" android:layout_marginTop="16dp"/>
     <Button
             android:onClick="OnclickGoToRegisterActivity"
             android:text="Registrarse"
@@ -54,4 +55,11 @@
             android:id="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="100dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textViewErrorsLogin"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:textColor="#F44336"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
