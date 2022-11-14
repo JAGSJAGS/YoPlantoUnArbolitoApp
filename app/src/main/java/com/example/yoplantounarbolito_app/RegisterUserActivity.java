@@ -63,8 +63,8 @@ public class RegisterUserActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse networkResponse = error.networkResponse;
-                    String jsonError = new String(networkResponse.data);
-                    validations.validateDatas(jsonError,errors);
+                String jsonError = new String(networkResponse.data);
+                validations.validateDatas(jsonError,errors);
             }
         }){
             @Override
@@ -100,7 +100,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                     Intent registerTreeActivity = new Intent(getApplicationContext(),RegisterTreeActivity.class);
                     startActivity(registerTreeActivity);
                     Toast.makeText(RegisterUserActivity.this, "Se registro correctamente: "+response, Toast.LENGTH_SHORT).show();
-                    finish();
+                    //finish();
                 } catch (JSONException e) {
                     Toast.makeText(RegisterUserActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
                 }

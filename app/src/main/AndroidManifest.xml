@@ -35,9 +35,6 @@
                 android:value="AIzaSyDtvApkLv1Af62QfhQ7q4VRZqlxBcqnIUQ"/>
 
         <activity
-                android:name=".MapsActivity"
-                android:exported="false"/>
-        <activity
                 android:name=".RegisterPhotoActivity"
                 android:exported="false"/>
         <activity

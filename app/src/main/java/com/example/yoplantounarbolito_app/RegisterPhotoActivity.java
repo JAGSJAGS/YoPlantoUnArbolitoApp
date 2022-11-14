@@ -1,6 +1,7 @@
 package com.example.yoplantounarbolito_app;
 
 import android.util.Base64;
+import android.widget.*;
 import androidx.activity.result.contract.ActivityResultContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -25,13 +26,11 @@ import android.provider.Settings;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
 import androidx.core.content.FileProvider;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.yoplantounarbolito_app.validations.Validations;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -53,10 +52,16 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     final int COD_FOTO=200;
 
     Button botonCargar;
+    Button buttonSavePhoto;
     ImageView imagen;
+    Validations validations = new Validations();
+    TextView errors;
     String path;
     String rutaImagen;
     Bitmap bitmap;
+
+    ProgressBar loadPhoto;
+    TextView textViewLoadPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,15 @@ public class RegisterPhotoActivity extends AppCompatActivity {
 
         imagen= findViewById(R.id.imagemId);
         botonCargar= findViewById(R.id.btnCargarImg);
+        buttonSavePhoto = findViewById(R.id.buttonSavePhoto);
+        buttonSavePhoto.setVisibility(View.GONE);
+        errors = findViewById(R.id.textViewErrorsRegisterPhoto);
+        errors.setVisibility(View.GONE);
+        loadPhoto = findViewById(R.id.loadPhoto);
+        loadPhoto.setVisibility(View.GONE);
+        textViewLoadPhoto = findViewById(R.id.textViewLoadPhoto);
+        textViewLoadPhoto.setVisibility(View.GONE);
+
     }
 
     public void onclick(View view) {
@@ -132,7 +146,6 @@ public class RegisterPhotoActivity extends AppCompatActivity {
 
     private File crearImagen() throws IOException{
         String nombreImagen = "foto_";
-        //File directorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File directorio = getExternalFilesDir(path);
         File imagen = File.createTempFile(nombreImagen, ".jpg", directorio);
         rutaImagen = imagen.getAbsolutePath();
@@ -150,6 +163,11 @@ public class RegisterPhotoActivity extends AppCompatActivity {
 
                     try {
                         bitmap = MediaStore.Images.Media.getBitmap(RegisterPhotoActivity.this.getContentResolver(), miPath);
+                        if (imagen.getDrawable() != null){
+                            buttonSavePhoto.setVisibility(View.VISIBLE);
+                        }else{
+                            buttonSavePhoto.setVisibility(View.GONE);
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -163,8 +181,13 @@ public class RegisterPhotoActivity extends AppCompatActivity {
                                 }
                             });
                     bitmap= BitmapFactory.decodeFile(rutaImagen);
-                    //Toast.makeText(RegisterPhotoActivity.this,"bitmap: ",Toast.LENGTH_LONG).show();
                     imagen.setImageBitmap(bitmap);
+                    if (imagen.getDrawable() != null){
+                        buttonSavePhoto.setVisibility(View.VISIBLE);
+                    }else{
+                        buttonSavePhoto.setVisibility(View.GONE);
+                    }
+
                     break;
             }
         }
@@ -181,19 +204,19 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         JOR = new JsonObjectRequest(Request.Method.PUT, url, parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                loadPhoto.setVisibility(View.GONE);
+                textViewLoadPhoto.setVisibility(View.GONE);
+                finishAffinity ();
                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainActivity);
-                finish();
-                Toast.makeText(RegisterPhotoActivity.this, "Se registro correctamente: ", Toast.LENGTH_LONG).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null && networkResponse.data != null) {
-                    String jsonError = new String(networkResponse.data);
-                    Toast.makeText(RegisterPhotoActivity.this,"error: "+jsonError,Toast.LENGTH_LONG).show();
-                }
+                loadPhoto.setVisibility(View.GONE);
+                textViewLoadPhoto.setVisibility(View.GONE);
+                errors.setText("No se pudo registrar, seleccione otra foto o intente despues");
+                errors.setVisibility(View.VISIBLE);
             }
         }){
             @Override
@@ -217,6 +240,9 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     }
 
     public void OnclickSavePhoto(View view) {
+        errors.setVisibility(View.GONE);
+        loadPhoto.setVisibility(View.VISIBLE);
+        textViewLoadPhoto.setVisibility(View.VISIBLE);
         Bundle getDate = getIntent().getExtras();
         String id = getDate.getString("id_tree");
         Toast.makeText(RegisterPhotoActivity.this,"Id: "+id,Toast.LENGTH_LONG).show();

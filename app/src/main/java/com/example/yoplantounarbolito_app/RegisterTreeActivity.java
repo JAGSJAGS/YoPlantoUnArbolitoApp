@@ -10,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import androidx.core.app.ActivityCompat;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.yoplantounarbolito_app.validations.Validations;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -32,6 +34,8 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
 
     EditText name;
     String avatar = "avatar1";
+    Validations validations = new Validations();
+    TextView errors;
     RequestQueue request;
     JsonObjectRequest JOR;
 
@@ -49,6 +53,8 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         mapFragment.getMapAsync(this);
 
         name = findViewById(R.id.editTextNameRegisterTree);
+        errors = findViewById(R.id.textViewErrorsRegisterThree);
+        errors.setVisibility(View.GONE);
     }
 
     private void registerTree(String url){
@@ -73,7 +79,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
                     Intent photoActivity = new Intent(getApplicationContext(),RegisterPhotoActivity.class);
                     photoActivity.putExtras(sendData);
                     startActivity(photoActivity);
-                    finish();
+                    //finish();
                 } catch (JSONException e) {
                     Toast.makeText(RegisterTreeActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
                 }
@@ -82,16 +88,13 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
             @Override
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null && networkResponse.data != null) {
-                    String jsonError = new String(networkResponse.data);
-                    Toast.makeText(RegisterTreeActivity.this,"Error"+ jsonError,Toast.LENGTH_LONG).show();
-                }
+                String jsonError = new String(networkResponse.data);
+                validations.validateDatas(jsonError,errors);
             }
         }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
                 headers.put("Accept", "application/vnd.api+json");
                 headers.put("Content-Type", "application/vnd.api+json");
                 return headers;
@@ -101,6 +104,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     }
 
     public void OnclickRegisterTree(View view) {
+        errors.setVisibility(View.GONE);
         Toast.makeText(RegisterTreeActivity.this,"Registrando",Toast.LENGTH_LONG).show();
         registerTree("https://calm-fjord-08371.herokuapp.com/api/trees");
     }

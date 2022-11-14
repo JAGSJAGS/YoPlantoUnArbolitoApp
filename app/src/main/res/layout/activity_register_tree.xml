@@ -29,10 +29,10 @@
             android:ems="10"
             android:id="@+id/editTextNameRegisterTree"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
             android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            android:background="@drawable/login_edit_text_border" app:layout_constraintTop_toBottomOf="@+id/textView4"
-            android:layout_marginTop="32dp"/>
+            android:background="@drawable/login_edit_text_border"
+            app:layout_constraintTop_toBottomOf="@+id/textViewErrorsRegisterThree" android:layout_marginTop="16dp"/>
     <Button
             android:text="Registrar Arbolito"
             android:onClick="OnclickRegisterTree"
@@ -64,20 +64,28 @@
             android:textAlignment="textStart" android:textSize="16sp" map:layout_constraintStart_toStartOf="parent"
             map:layout_constraintEnd_toEndOf="parent" map:layout_constraintHorizontal_bias="0.0"
             android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNameRegisterTree" android:layout_marginTop="40dp"/>
+            app:layout_constraintTop_toBottomOf="@+id/editTextNameRegisterTree" android:layout_marginTop="16dp"/>
     <ImageButton
             android:onClick="OnclickSelectAvatar2"
-            android:layout_width="94dp"
-            android:layout_height="81dp" map:srcCompat="@mipmap/avatar_one_happy" android:id="@+id/imageButtonOne"
-            app:layout_constraintStart_toEndOf="@+id/imageButtonOne2"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp" tools:ignore="OnClick"/>
+            android:layout_width="100dp"
+            android:layout_height="100dp" map:srcCompat="@mipmap/avatar_one_happy" android:id="@+id/imageButtonOne"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            tools:ignore="OnClick"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textViewErrorsRegisterThree"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:textColor="#F44336" app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/textView4" android:layout_marginTop="16dp"/>
     <ImageButton
             android:onClick="OnclickSelectAvatar1"
-            android:layout_width="94dp"
-            android:layout_height="81dp" map:srcCompat="@mipmap/avatar_one_happy" android:id="@+id/imageButtonOne2"
+            android:layout_width="100dp"
+            android:layout_height="100dp" map:srcCompat="@mipmap/avatar_one_happy" android:id="@+id/imageButtonOne2"
             map:layout_constraintStart_toStartOf="parent" map:layout_constraintTop_toBottomOf="@+id/textView6"
-            app:layout_constraintStart_toEndOf="@+id/imageButtonOne" android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/imageButtonOne"
             android:layout_marginStart="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

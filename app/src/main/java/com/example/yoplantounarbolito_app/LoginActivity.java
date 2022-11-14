@@ -92,7 +92,8 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     }
 
     public void OnclickGoToRegisterActivity(View view) {
-            Intent registerUser = new Intent(getApplicationContext(),RegisterUserActivity.class);
-            startActivity(registerUser);
+        Intent registerUser = new Intent(getApplicationContext(),RegisterUserActivity.class);
+        startActivity(registerUser);
+        //finish();
     }
 }
