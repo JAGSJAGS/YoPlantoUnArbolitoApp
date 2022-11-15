@@ -7,11 +7,11 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/login_edit_text_border.xml" value="0.1595" />
         <entry key="app/src/main/res/layout/activity_adopt_tree.xml" value="0.15104166666666666" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="1.0" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_register_photo.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_register_tree.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register_tree.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register_user.xml" value="0.25" />
       </map>
     </option>

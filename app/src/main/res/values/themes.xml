@@ -12,5 +12,11 @@
          <!--Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
          <!--Customize your theme here.-->
+        <item name="android:textViewStyle">@style/GreenText</item>
+    </style>
+
+    <style name="GreenText" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="android:textColor">#2C752F</item>
+        <item name="android:fontFamily">@font/</item>
     </style>
 </resources>

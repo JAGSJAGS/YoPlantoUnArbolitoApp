@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,85 +7,115 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".RegisterTreeActivity">
-    <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
+        tools:context=".RegisterTreeActivity"
+        android:orientation="vertical"
+        android:layout_gravity="center_vertical">
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            map:cameraZoom="10"
-            map:uiRotateGestures="true"
-            map:uiZoomControls="true" app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="5dp"/>
-    <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="arbolName"
-            android:ems="10"
-            android:id="@+id/editTextNameRegisterTree"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            android:background="@drawable/login_edit_text_border"
-            app:layout_constraintTop_toBottomOf="@+id/textViewErrorsRegisterThree" android:layout_marginTop="16dp"/>
-    <Button
-            android:text="Registrar Arbolito"
-            android:onClick="OnclickRegisterTree"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/buttonRegisterUser"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/map"
-            android:background="@drawable/login_edit_text_border" android:layout_marginTop="16dp"/>
-    <TextView
-            android:text="Registre su arbolito"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView4"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="50dp" android:textSize="24sp"/>
-    <TextView
-            android:text="La ubicación del arbolito se registrará como la que se indica en el mapa"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/textView5"
-            android:textAlignment="center" android:textSize="16sp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/imageButtonOne" android:layout_marginTop="40dp"/>
-    <TextView
-            android:text="Seleccione un personaje:"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/textView6"
-            android:textAlignment="textStart" android:textSize="16sp" map:layout_constraintStart_toStartOf="parent"
-            map:layout_constraintEnd_toEndOf="parent" map:layout_constraintHorizontal_bias="0.0"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNameRegisterTree" android:layout_marginTop="16dp"/>
-    <ImageButton
-            android:onClick="OnclickSelectAvatar2"
-            android:layout_width="100dp"
-            android:layout_height="100dp" map:srcCompat="@mipmap/avatar_one_happy" android:id="@+id/imageButtonOne"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
-            tools:ignore="OnClick"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"/>
-    <TextView
-            android:text="TextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/textViewErrorsRegisterThree"
-            map:layout_constraintStart_toStartOf="parent"
-            map:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp" android:textColor="#F44336" app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" android:layout_marginTop="16dp"/>
-    <ImageButton
-            android:onClick="OnclickSelectAvatar1"
-            android:layout_width="100dp"
-            android:layout_height="100dp" map:srcCompat="@mipmap/avatar_one_happy" android:id="@+id/imageButtonOne2"
-            map:layout_constraintStart_toStartOf="parent" map:layout_constraintTop_toBottomOf="@+id/textView6"
-            app:layout_constraintStart_toEndOf="@+id/imageButtonOne"
-            android:layout_marginStart="16dp"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:fillViewport="true">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+            <TextView
+                    android:text="Registre su arbolito"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView4"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="50dp"
+                    android:textSize="24sp"
+                    android:layout_gravity="center" android:fontFamily="@font/quicksand_medium"/>
+            <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewErrorsRegisterThree"
+                    map:layout_constraintStart_toStartOf="parent"
+                    map:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="#F44336"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    android:layout_marginTop="8dp"/>
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:text="arbolName"
+                    android:ems="10"
+                    android:id="@+id/editTextNameRegisterTree"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/login_edit_text_border"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewErrorsRegisterThree"
+                    android:layout_marginTop="16dp"
+                    android:layout_gravity="center"/>
+            <TextView
+                    android:text="Seleccione un personaje:"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView6"
+                    android:textAlignment="textStart"
+                    android:textSize="16sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"/>
+            <LinearLayout android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center">
+            <ImageButton
+                    android:onClick="OnclickSelectAvatar2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    map:srcCompat="@mipmap/avatar_one_happy"
+                    android:id="@+id/imageButtonOne"
+                    tools:ignore="OnClick"
+                    android:layout_marginEnd="16dp"/>
+            <ImageButton
+                    android:onClick="OnclickSelectAvatar1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    map:srcCompat="@mipmap/avatar_one_happy"
+                    android:id="@+id/imageButtonOne2"
+                    android:layout_marginStart="16dp"/>
+            </LinearLayout>
+            <TextView
+                    android:text="La ubicación del arbolito se registrará como la que se ve en el mapa."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView5"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButtonOne"
+                    android:layout_marginTop="40dp"/>
+            <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    map:cameraZoom="10"
+                    map:uiRotateGestures="true"
+                    map:uiZoomControls="true"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    android:layout_marginTop="5dp"/>
+            <Button
+                    android:text="Registrar Arbolito"
+                    android:onClick="OnclickRegisterTree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonRegisterUser"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/login_edit_text_border"
+                    android:layout_marginTop="16dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -27,13 +27,14 @@
                 android:resource="@xml/file_paths"/>
 
         <activity
-                android:windowSoftInputMode="stateHidden|adjustResize"
+                android:windowSoftInputMode="adjustResize"
                 android:name=".RegisterTreeActivity"
                 android:exported="false"/>
 
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="AIzaSyDtvApkLv1Af62QfhQ7q4VRZqlxBcqnIUQ"/>
+        <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
 
         <activity
                 android:name=".RegisterPhotoActivity"
@@ -46,6 +47,7 @@
                 android:name=".AdoptTreeActivity"
                 android:exported="false"/>
         <activity
+                android:windowSoftInputMode="adjustResize"
                 android:name=".LoginActivity"
                 android:exported="false"/>
         <activity
