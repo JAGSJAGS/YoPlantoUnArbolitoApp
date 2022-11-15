@@ -23,9 +23,13 @@ public class RegisterUserActivity extends AppCompatActivity {
 
     EditText name, email, phone, password, password_confirmation;
     TextView errors;
+
     RequestQueue request;
     JsonObjectRequest JOR;
+
     Validations validations = new Validations();
+
+    Bundle sendData = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         password_confirmation = findViewById(R.id.editTextConfirmationPasswordRegisterUser);
         errors = findViewById(R.id.textError);
         errors.setVisibility(View.GONE);
+        sendData = new Bundle();
     }
 
     private void registerUser(String url){
@@ -57,7 +62,13 @@ public class RegisterUserActivity extends AppCompatActivity {
         JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                loginUser("https://calm-fjord-08371.herokuapp.com/api/login");
+                try {
+                    String id = response.getString("id");
+                    sendData.putString("user_id",id);
+                    loginUser("https://calm-fjord-08371.herokuapp.com/api/login");
+                } catch (JSONException e) {
+                    Toast.makeText(RegisterUserActivity.this, "Se produjo un error", Toast.LENGTH_LONG).show();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -98,9 +109,8 @@ public class RegisterUserActivity extends AppCompatActivity {
                     String token = response.getString("access_token");
                     savePreferences(token);
                     Intent registerTreeActivity = new Intent(getApplicationContext(),RegisterTreeActivity.class);
+                    registerTreeActivity.putExtras(sendData);
                     startActivity(registerTreeActivity);
-                    Toast.makeText(RegisterUserActivity.this, "Se registro correctamente: "+response, Toast.LENGTH_SHORT).show();
-                    //finish();
                 } catch (JSONException e) {
                     Toast.makeText(RegisterUserActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
                 }

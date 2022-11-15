@@ -244,7 +244,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         loadPhoto.setVisibility(View.VISIBLE);
         textViewLoadPhoto.setVisibility(View.VISIBLE);
         Bundle getDate = getIntent().getExtras();
-        String id = getDate.getString("id_tree");
+        String id = getDate.getString("tree_id");
         Toast.makeText(RegisterPhotoActivity.this,"Id: "+id,Toast.LENGTH_LONG).show();
         savePhoto("https://calm-fjord-08371.herokuapp.com/api/savephoto/"+id);
     }

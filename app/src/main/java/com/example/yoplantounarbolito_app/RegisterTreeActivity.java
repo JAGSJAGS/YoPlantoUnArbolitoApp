@@ -44,6 +44,8 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     double lat = 0.0;
     double lng = 0.0;
 
+    Bundle sendData = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         name = findViewById(R.id.editTextNameRegisterTree);
         errors = findViewById(R.id.textViewErrorsRegisterThree);
         errors.setVisibility(View.GONE);
+        sendData = new Bundle();
     }
 
     private void registerTree(String url){
@@ -74,15 +77,48 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
             public void onResponse(JSONObject response) {
                 try {
                     String id = response.getString("id");
-                    Bundle sendData = new Bundle();
-                    sendData.putString("id_tree",id);
-                    Intent photoActivity = new Intent(getApplicationContext(),RegisterPhotoActivity.class);
-                    photoActivity.putExtras(sendData);
-                    startActivity(photoActivity);
-                    //finish();
+                    sendData.putString("tree_id",id);
+                    registerTreeUser("https://calm-fjord-08371.herokuapp.com/api/tree_users", id);
                 } catch (JSONException e) {
                     Toast.makeText(RegisterTreeActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
                 }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse networkResponse = error.networkResponse;
+                String jsonError = new String(networkResponse.data);
+                validations.validateDatas(jsonError,errors);
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Accept", "application/vnd.api+json");
+                headers.put("Content-Type", "application/vnd.api+json");
+                return headers;
+            }
+        };
+        request.add(JOR);
+    }
+
+    private void registerTreeUser(String url, String tree_id){
+        Bundle getDate = getIntent().getExtras();
+        String id = getDate.getString("user_id");
+
+        request = Volley.newRequestQueue(this);
+
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", id);
+        params.put("tree_id", tree_id);
+        JSONObject parameters = new JSONObject(params);
+
+        JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Intent photoActivity = new Intent(getApplicationContext(),RegisterPhotoActivity.class);
+                photoActivity.putExtras(sendData);
+                startActivity(photoActivity);
             }
         }, new Response.ErrorListener() {
             @Override
