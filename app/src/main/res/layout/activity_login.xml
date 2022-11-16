@@ -28,8 +28,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textViewErrorsLogin"
                     app:layout_constraintTop_toBottomOf="@+id/imageView2" app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp" android:textColor="#F44336" android:layout_marginTop="32dp"/>
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp" android:textColor="#F44336" android:layout_marginTop="32dp"
+            />
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -40,9 +41,12 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.482"
                     app:layout_constraintTop_toBottomOf="@+id/textViewErrorsLogin"
-                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
-                    android:background="@drawable/login_edit_text_border" android:layout_marginTop="8dp"
-                    android:fontFamily="sans-serif-condensed-light"/>
+                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/be_vietnam" android:textColorHighlight="#3F51B5"
+                    android:textColorHint="#3F51B5"
+                    android:textColorLink="#FFFFFF" android:background="@drawable/edit_text_1"
+                    android:textCursorDrawable="@drawable/cursor" style="@style/text_1"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -53,31 +57,36 @@
                     app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintHorizontal_bias="0.482"
                     app:layout_constraintTop_toBottomOf="@+id/editTextEmailLogin" android:layout_marginTop="8dp"
-                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
-                    android:background="@drawable/login_edit_text_border"/>
+                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+                    android:background="@drawable/edit_text_1" android:textCursorDrawable="@drawable/cursor"
+                    style="@style/text_1"/>
             <Button
                     android:onClick="OnclickLogin"
-                    android:text="Ingresar"
+                    android:text="Iniciar sesión"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp" android:id="@+id/buttonLogin"
-                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintHorizontal_bias="0.498"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextPasswordLogin" android:layout_marginTop="8dp"
-                    android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
-                    android:background="@drawable/login_edit_text_border"
-                    android:fontFamily="@font/league_spartan_bold"/>
+                    android:layout_height="wrap_content"
+                    android:id="@+id/buttonLogin"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:includeFontPadding="false"
+                    android:background="@drawable/button_1" android:textCursorDrawable="@drawable/cursor"
+                    style="@style/text_2"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_marginStart="8dp" android:layout_marginEnd="8dp">
-                    <Button
+                    android:layout_height="match_parent" android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
+                    android:background="#FFFFFF">
+                <Button
                         android:onClick="OnclickGoToRegisterActivity"
                         android:text="Registrarse"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonRegisterActivity"
                         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginBottom="8dp" android:layout_marginStart="8dp" android:layout_marginEnd="8dp"/>
+                        android:layout_marginBottom="8dp" style="@style/Widget.AppCompat.Button.Borderless"
+                        android:fontFamily="@font/be_vietnam" android:textColor="#3F51B5"
+                        android:textAllCaps="false"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>

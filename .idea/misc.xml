@@ -4,10 +4,24 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1605" />
+        <entry key="app/src/main/res/drawable/border_blue.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/border_red.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/border_white.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/border_yellow.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/button_enfocado.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/button_enfocado1.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/button_normal1.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/button_press.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/button_press1.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/cursor.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/edit_text_1.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/edit_text_enfoque_1.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/edit_text_normal_1.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/edit_text_press_1.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/login_edit_text_border.xml" value="0.1595" />
         <entry key="app/src/main/res/layout/activity_adopt_tree.xml" value="0.15104166666666666" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="1.0" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_register_photo.xml" value="0.22" />
