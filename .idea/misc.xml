@@ -25,8 +25,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_register_photo.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_register_tree.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_register_user.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_register_tree.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_register_user.xml" value="0.128739800543971" />
       </map>
     </option>
   </component>

@@ -14,7 +14,8 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" android:background="@drawable/border_blue"
+                android:orientation="vertical"
+                android:background="@drawable/border_blue"
                 android:layout_margin="16dp">
             <TextView
                     android:text="Registrate"
@@ -32,7 +33,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="16dp"
                     android:textColor="#F44336" android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"/>
+                    android:layout_marginEnd="16dp" style="@style/text_3"/>
             <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
