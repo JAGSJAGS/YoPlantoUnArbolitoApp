@@ -27,7 +27,6 @@
                 android:resource="@xml/file_paths"/>
 
         <activity
-                android:windowSoftInputMode="adjustResize"
                 android:name=".RegisterTreeActivity"
                 android:exported="false"/>
 
@@ -43,11 +42,9 @@
                 android:name=".RegisterUserActivity"
                 android:exported="false"/>
         <activity
-                android:windowSoftInputMode="adjustResize"
                 android:name=".AdoptTreeActivity"
                 android:exported="false"/>
         <activity
-                android:windowSoftInputMode="adjustResize"
                 android:name=".LoginActivity"
                 android:exported="false"/>
         <activity

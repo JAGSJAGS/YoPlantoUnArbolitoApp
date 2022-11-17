@@ -107,7 +107,8 @@ public class RegisterUserActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     String token = response.getString("access_token");
-                    savePreferences(token);
+                    String user_id = response.getString("user_id");
+                    savePreferences(token, user_id);
                     Intent registerTreeActivity = new Intent(getApplicationContext(),RegisterTreeActivity.class);
                     registerTreeActivity.putExtras(sendData);
                     startActivity(registerTreeActivity);
@@ -134,10 +135,11 @@ public class RegisterUserActivity extends AppCompatActivity {
         request.add(JOR);
     }
 
-    private void savePreferences(String token){
+    private void savePreferences(String token, String user_id){
         SharedPreferences preferences= getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("token",token);
+        editor.putString("user_id", user_id);
         editor.commit();
     }
 

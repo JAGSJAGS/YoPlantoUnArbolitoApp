@@ -5,24 +5,163 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AdoptTreeActivity">
+        tools:context=".AdoptTreeActivity"
+        android:orientation="vertical">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/view_buttons"
+            android:background="@color/black">
+        <Button
+                android:text="Arbolito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_home"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/background_black" style="@style/text_2"/>
+        <Button
+                android:text="Ver detalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_see_tree"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:background="@drawable/background_black" style="@style/text_2" android:layout_weight="1"/>
+        <Button
+                android:text="Opciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_options"
+                app:layout_constraintStart_toEndOf="@+id/button_home" app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/background_black" style="@style/text_2"/>
+        <Button
+                android:text="Cerrar Sesión"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_log_out"
+                app:layout_constraintStart_toEndOf="@+id/button_home" app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/background_black" style="@style/text_2"/>
+    </LinearLayout>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-            android:onClick="OnclickGetUser"
-            android:text="Button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/buttonGetUser"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintVertical_bias="0.667"/>
-    <Button
-            android:onClick="OnclickLogOut"
-            android:text="Cerrar Sesión"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/buttonLogOut"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.511"
-            app:layout_constraintVertical_bias="0.833"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:id="@+id/view_home"
+                    android:background="@drawable/border_yellow">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewTitleArbolito"
+                        style="@style/title_1"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"/>
+                <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="379dp"
+                        app:srcCompat="@mipmap/avatar_one_happy"
+                        android:id="@+id/imageView4"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"/>
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewTitleArbolito2"
+                        style="@style/title_1"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="16dp"
+                        android:text="No olvides regarme y abonarme!!"
+                        android:layout_marginBottom="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/view_buttons"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:id="@+id/view_see_tree"
+                    android:background="@drawable/border_yellow">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/text_view_name_tree" style="@style/title_1"
+                        android:layout_marginLeft="16dp" android:layout_marginTop="16dp" android:layout_marginRight="16dp"
+                        android:text="name"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/text_view_state_tree" style="@style/title_1"
+                        android:layout_marginLeft="16dp" android:layout_marginTop="16dp" android:layout_marginRight="16dp"
+                        android:text="name"/>
+                <LinearLayout
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" app:layout_constraintBottom_toTopOf="@+id/view_buttons"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp" android:layout_marginEnd="16dp" android:layout_marginBottom="16dp"
+                        android:background="@drawable/border_yellow">
+                    <fragment
+                            android:id="@+id/map2"
+                            android:name="com.google.android.gms.maps.SupportMapFragment"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            android:layout_marginTop="5dp"/>
+                </LinearLayout>
+                <ImageView
+                        android:layout_width="326dp"
+                        android:id="@+id/photo_tree"
+                        android:layout_below="@+id/textView"
+                        android:layout_alignRight="@+id/textView"
+                        android:layout_alignEnd="@+id/textView"
+                        android:layout_height="255dp" android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="16dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" app:layout_constraintBottom_toTopOf="@+id/view_buttons"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp" android:layout_marginEnd="16dp" android:layout_marginBottom="16dp"
+                    android:id="@+id/view_options">
+
+                <TextView
+                        android:text="Mostrar opciones"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:id="@+id/textViewSeeOptions"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

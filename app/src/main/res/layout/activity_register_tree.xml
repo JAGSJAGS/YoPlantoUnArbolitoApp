@@ -6,20 +6,16 @@
         xmlns:map="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         tools:context=".RegisterTreeActivity"
-        android:orientation="vertical"
-        android:layout_gravity="center_vertical">
+        android:orientation="vertical">
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:fillViewport="true">
+            android:orientation="vertical">
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_gravity="center">
+                android:orientation="vertical">
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -85,7 +81,7 @@
                                 android:onClick="OnclickSelectAvatar2"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                map:srcCompat="@mipmap/avatar_one_happy"
+                                map:srcCompat="@mipmap/avatar_one_sad"
                                 android:id="@+id/imageButtonOne"
                                 tools:ignore="OnClick"
                                 android:layout_marginEnd="16dp" android:background="@drawable/edit_text_1"/>
@@ -93,7 +89,7 @@
                                 android:onClick="OnclickSelectAvatar1"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                map:srcCompat="@mipmap/avatar_one_happy"
+                                map:srcCompat="@mipmap/avatar_one_sad"
                                 android:id="@+id/imageButtonOne2"
                                 android:layout_marginStart="16dp"/>
                     </LinearLayout>
@@ -129,7 +125,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageButtonOne"
                         android:layout_marginTop="16dp" style="@style/text_3"/>
                 <fragment
-                        android:id="@+id/map"
+                        android:id="@+id/map2"
                         android:name="com.google.android.gms.maps.SupportMapFragment"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"

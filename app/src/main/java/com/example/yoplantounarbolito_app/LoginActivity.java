@@ -57,9 +57,11 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
             public void onResponse(JSONObject response) {
                 try {
                     String token = response.getString("access_token");
-                    savePreferences(token);
-                    Intent adoptTree = new Intent(getApplicationContext(),AdoptTreeActivity.class);
-                    startActivity(adoptTree);
+                    String user_id = response.getString("user_id");
+                    Toast.makeText(LoginActivity.this,"id en login:" + user_id,Toast.LENGTH_LONG).show();
+                    savePreferences(token, user_id);
+                    Intent adoptTreeActivity = new Intent(getApplicationContext(),AdoptTreeActivity.class);
+                    startActivity(adoptTreeActivity);
                     finish();
                 } catch (JSONException e) {
                     Toast.makeText(LoginActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
@@ -84,10 +86,11 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
         request.add(JOR);
     }
 
-    private void savePreferences(String token){
+    private void savePreferences(String token, String user_id){
         SharedPreferences preferences= getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("token",token);
+        editor.putString("user_id", user_id);
         editor.commit();
     }
 

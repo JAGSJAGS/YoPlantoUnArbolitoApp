@@ -2,15 +2,11 @@ package com.example.yoplantounarbolito_app;
 
 import android.util.Base64;
 import android.widget.*;
-import androidx.activity.result.contract.ActivityResultContract;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
@@ -18,12 +14,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.Settings;
 //import android.support.annotation.NonNull;
 //import android.support.v4.content.FileProvider;
 //import android.support.v7.app.AlertDialog;
 //import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import androidx.core.content.FileProvider;
@@ -36,12 +30,8 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
-
-import static android.Manifest.permission.CAMERA;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 //import static android.support.v4.content.FileProvider.getUriForFile;
 
 public class RegisterPhotoActivity extends AppCompatActivity {
@@ -68,7 +58,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_photo);
 
-        imagen= findViewById(R.id.imagemId);
+        imagen= findViewById(R.id.photo_tree);
         botonCargar= findViewById(R.id.btnCargarImg);
         buttonSavePhoto = findViewById(R.id.buttonSavePhoto);
         buttonSavePhoto.setVisibility(View.GONE);
