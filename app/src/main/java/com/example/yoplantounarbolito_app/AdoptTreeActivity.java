@@ -14,45 +14,58 @@ import android.os.Bundle;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.*;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdoptTreeActivity extends AppCompatActivity {
+public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCallback{
 
     RequestQueue request;
     JsonObjectRequest JOR;
 
-
-
-
     //mostrar arbolito
-    String name = "Tines que adoptar un arbolito" , lat, lng, avatar, path_photo, state;
+    String titleTree = "Tines que adoptar un arbolito" ,lat_tree = "0.0", ln_tree="0.0", name_tree, avatar, path_photo, state;
     TextView textViewTitle;
 
     //mostrar user
     SharedPreferences preference;
     String token;
     String user_id;
+    TextView text_view_name_tree, text_view_state_tree;
 
     //View
     LinearLayout view_home, view_tree, view_options;
     Button button_see_tree, button_see_options, button_home, button_log_out;
 
+    //Map
+    private GoogleMap mMap;
+    private Marker marcador;
+    double lat = 0.0;
+    double lng = 0.0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adopt_tree);
+
         preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         token = preference.getString("token","");
         user_id = preference.getString("user_id","");
 
         textViewTitle = findViewById(R.id.textViewTitleArbolito);
-        textViewTitle.setText(name);
-        Toast.makeText(AdoptTreeActivity.this,"id en tree:" + user_id,Toast.LENGTH_LONG).show();
-        getUsersTrees("https://calm-fjord-08371.herokuapp.com/api/tree_users/"+user_id);
+        textViewTitle.setText(titleTree);
+        text_view_name_tree = findViewById(R.id.text_view_name_tree);
+        text_view_state_tree = findViewById(R.id.text_view_state_tree);
+
+        getUser("https://calm-fjord-08371.herokuapp.com/api/users/" + user_id);
+        getUsersTrees("https://calm-fjord-08371.herokuapp.com/api/tree_users/" + user_id);
+
 
 
         //View
@@ -110,8 +123,6 @@ public class AdoptTreeActivity extends AppCompatActivity {
         JOR = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(AdoptTreeActivity.this,"respuesta: "+response,Toast.LENGTH_LONG).show();
-                Log.i("neverita","neverita");
             }
         }, new Response.ErrorListener() {
             @Override
@@ -142,7 +153,6 @@ public class AdoptTreeActivity extends AppCompatActivity {
         JOR = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(AdoptTreeActivity.this,"respuesta: "+response,Toast.LENGTH_LONG).show();
                 deletePreferences();
                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(login);
@@ -173,17 +183,12 @@ public class AdoptTreeActivity extends AppCompatActivity {
         request.add(JOR);
     }
 
-    public void OnclickGetUser(View view) {
-        getUser("https://calm-fjord-08371.herokuapp.com/api/users/1");
-    }
-
     private void deletePreferences(){
         SharedPreferences preferences= getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("token","");
         editor.commit();
     }
-
 
     private void getUsersTrees(String url){
 
@@ -193,8 +198,18 @@ public class AdoptTreeActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    name = response.getString("name");
-                    textViewTitle.setText("Hola, mi nombre es " + name + ",gracias por elegirme!!");
+                    name_tree = response.getString("name");
+                    lat_tree = response.getString("lat");
+                    ln_tree = response.getString("lng");
+                    avatar = response.getString("avatar");
+                    path_photo = response.getString("path_photo");
+                    state = response.getString("state");
+                    textViewTitle.setText("Hola, mi nombre es " + name_tree + ",gracias por elegirme!!");
+                    text_view_name_tree.setText(name_tree);
+                    text_view_state_tree.setText("Estado: " + state);
+                    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                            .findFragmentById(R.id.map2);
+                    mapFragment.getMapAsync(AdoptTreeActivity.this);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -222,5 +237,18 @@ public class AdoptTreeActivity extends AppCompatActivity {
             }
         };
         request.add(JOR);
+    }
+
+
+    //Map
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        lat = Double.parseDouble(lat_tree);
+        lng = Double.parseDouble(ln_tree);
+        mMap = googleMap;
+        LatLng mi_arbolito = new LatLng(lat, lng);
+        mMap.addMarker(new MarkerOptions().position(mi_arbolito).title("Mi Arbolito"));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom( mi_arbolito,16));
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
-          package="com.example.yoplantounarbolito_app" >
+          package="com.example.yoplantounarbolito_app">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -23,6 +23,10 @@
             android:usesCleartextTraffic="true"
             tools:targetApi="31">
         <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="YOUR_API_KEY"/>
+
+        <meta-data
                 android:name="com.google.android.actions"
                 android:resource="@xml/file_paths"/>
 
@@ -31,9 +35,8 @@
                 android:exported="false"/>
 
         <meta-data
-                android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyDtvApkLv1Af62QfhQ7q4VRZqlxBcqnIUQ"/>
-        <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
+                android:name="preloaded_fonts"
+                android:resource="@array/preloaded_fonts"/>
 
         <activity
                 android:name=".RegisterPhotoActivity"
@@ -58,13 +61,13 @@
         </activity>
 
         <provider
-                android:authorities="com.example.yoplantounarbolito_app.fileprovider"
                 android:name="androidx.core.content.FileProvider"
+                android:authorities="com.example.yoplantounarbolito_app.fileprovider"
                 android:exported="false"
                 android:grantUriPermissions="true">
             <meta-data
                     android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/file_paths"></meta-data>
+                    android:resource="@xml/file_paths"/>
         </provider>
     </application>
 
