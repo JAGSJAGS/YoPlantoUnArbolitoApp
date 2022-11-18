@@ -27,21 +27,21 @@
                         android:text="Registre su arbolito"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView4"
+                        android:id="@+id/text_view_title_register"
                         android:layout_marginTop="32dp"
                         android:layout_gravity="center" style="@style/title_1"/>
                 <TextView
                         android:text="TextView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textViewErrorsRegisterThree"
+                        android:id="@+id/text_view_errors_register_three"
                         map:layout_constraintStart_toStartOf="parent"
                         map:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:textColor="#F44336"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintTop_toBottomOf="@+id/textView4"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_title_register"
                         android:layout_marginTop="8dp"/>
                 <EditText
                         android:layout_width="match_parent"
@@ -49,11 +49,11 @@
                         android:inputType="textPersonName"
                         android:text="arbolName"
                         android:ems="10"
-                        android:id="@+id/editTextNameRegisterTree"
+                        android:id="@+id/edit_text_name_register_tree"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/edit_text_1"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewErrorsRegisterThree"
+                        app:layout_constraintTop_toBottomOf="@+id/text_view_errors_register_three"
                         android:layout_marginTop="16dp"
                         android:layout_gravity="center" style="@style/text_1"/>
                 <LinearLayout
@@ -66,7 +66,7 @@
                             android:text="Seleccione un personaje:"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView6"
+                            android:id="@+id/text_view_character_selection"
                             android:textAlignment="textStart"
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="16dp"
@@ -82,7 +82,7 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 map:srcCompat="@mipmap/avatar_one_sad"
-                                android:id="@+id/imageButtonOne"
+                                android:id="@+id/image_button_one"
                                 tools:ignore="OnClick"
                                 android:layout_marginEnd="16dp" android:background="@drawable/edit_text_1"/>
                         <ImageButton
@@ -90,7 +90,7 @@
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
                                 map:srcCompat="@mipmap/avatar_one_sad"
-                                android:id="@+id/imageButtonOne2"
+                                android:id="@+id/image_button_two"
                                 android:layout_marginStart="16dp"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -117,12 +117,12 @@
                         android:text="La ubicación del arbolito se registrará como la que se ve en el mapa."
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView5"
+                        android:id="@+id/text_view_map_advise"
                         android:textAlignment="center"
                         android:textSize="16sp"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
-                        app:layout_constraintTop_toBottomOf="@+id/imageButtonOne"
+                        app:layout_constraintTop_toBottomOf="@+id/image_button_one"
                         android:layout_marginTop="16dp" style="@style/text_3"/>
                 <fragment
                         android:id="@+id/map1"

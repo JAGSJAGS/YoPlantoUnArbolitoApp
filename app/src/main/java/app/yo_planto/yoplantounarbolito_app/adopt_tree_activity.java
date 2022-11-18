@@ -61,7 +61,7 @@ public class adopt_tree_activity extends AppCompatActivity implements OnMapReady
         token = preference.getString("token","");
         user_id = preference.getString("user_id","");
 
-        text_view_title = findViewById(R.id.textViewTitleArbolito);
+        text_view_title = findViewById(R.id.text_view_title_arbolito);
         text_view_title.setText(title_tree);
         text_view_name_tree = findViewById(R.id.text_view_name_tree);
         text_view_state_tree = findViewById(R.id.text_view_state_tree);

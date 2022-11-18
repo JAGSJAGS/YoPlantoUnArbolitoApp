@@ -67,7 +67,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textViewTitleArbolito"
+                        android:id="@+id/text_view_title_arbolito"
                         style="@style/title_1"
                         android:layout_gravity="center"
                         android:textAlignment="center"
@@ -78,13 +78,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="379dp"
                         app:srcCompat="@mipmap/avatar_one_happy"
-                        android:id="@+id/imageView4"
+                        android:id="@+id/image_view_arbolito_avatar"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"/>
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textViewTitleArbolito2"
+                        android:id="@+id/text_view_title_arbolito_recordatorio_regar"
                         style="@style/title_1"
                         android:layout_gravity="center"
                         android:textAlignment="center"
@@ -160,7 +160,7 @@
                 <TextView
                         android:text="Mostrar opciones"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/textViewSeeOptions"/>
+                        android:layout_height="wrap_content" android:id="@+id/text_view_see_options"/>
 
             </LinearLayout>
 

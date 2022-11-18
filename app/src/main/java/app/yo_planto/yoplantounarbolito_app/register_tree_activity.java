@@ -56,8 +56,8 @@ public class register_tree_activity extends AppCompatActivity implements OnMapRe
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
 
-        name = findViewById(R.id.editTextNameRegisterTree);
-        errors = findViewById(R.id.textViewErrorsRegisterThree);
+        name = findViewById(R.id.edit_text_name_register_tree);
+        errors = findViewById(R.id.text_view_errors_register_three);
         errors.setVisibility(View.GONE);
         send_data = new Bundle();
     }
