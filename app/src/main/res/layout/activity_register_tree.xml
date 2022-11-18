@@ -81,7 +81,7 @@
                                 android:onClick="OnclickSelectAvatar2"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                map:srcCompat="@mipmap/avatar_one_sad"
+                                map:srcCompat="@mipmap/avatar_one_happy"
                                 android:id="@+id/imageButtonOne"
                                 tools:ignore="OnClick"
                                 android:layout_marginEnd="16dp" android:background="@drawable/edit_text_1"/>
@@ -89,7 +89,7 @@
                                 android:onClick="OnclickSelectAvatar1"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                map:srcCompat="@mipmap/avatar_one_sad"
+                                map:srcCompat="@mipmap/avatar_one_happy"
                                 android:id="@+id/imageButtonOne2"
                                 android:layout_marginStart="16dp"/>
                     </LinearLayout>
