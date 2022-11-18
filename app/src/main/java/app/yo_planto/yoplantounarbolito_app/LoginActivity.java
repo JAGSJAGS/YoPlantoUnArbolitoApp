@@ -1,21 +1,19 @@
-package com.example.yoplantounarbolito_app;
+package app.yo_planto.yoplantounarbolito_app;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import app.yo_planto.yoplantounarbolito_app.validations.Validations;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.yoplantounarbolito_app.validations.Validations;
+import com.example.yoplantounarbolito_app.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,9 +31,9 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        email = findViewById(R.id.editTextEmailLogin);
-        password = findViewById(R.id.editTextPasswordLogin);
+        setContentView(com.example.yoplantounarbolito_app.R.layout.activity_login);
+        email = findViewById(com.example.yoplantounarbolito_app.R.id.editTextEmailLogin);
+        password = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPasswordLogin);
         errors = findViewById(R.id.textViewErrorsLogin);
         errors.setVisibility(View.GONE);
     }

@@ -1,4 +1,4 @@
-package com.example.yoplantounarbolito_app;
+package app.yo_planto.yoplantounarbolito_app;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import android.os.Bundle;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.yoplantounarbolito_app.R;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;

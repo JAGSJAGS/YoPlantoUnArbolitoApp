@@ -24,14 +24,14 @@
             tools:targetApi="31">
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
-                android:value="YOUR_API_KEY"/>
+                android:value="AIzaSyCP4ptiWx8AkEGHrUlnW5fuhCCQnwhDDOk"/>
 
         <meta-data
                 android:name="com.google.android.actions"
                 android:resource="@xml/file_paths"/>
 
         <activity
-                android:name=".RegisterTreeActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.RegisterTreeActivity"
                 android:exported="false"/>
 
         <meta-data
@@ -39,19 +39,19 @@
                 android:resource="@array/preloaded_fonts"/>
 
         <activity
-                android:name=".RegisterPhotoActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.RegisterPhotoActivity"
                 android:exported="false"/>
         <activity
-                android:name=".RegisterUserActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.RegisterUserActivity"
                 android:exported="false"/>
         <activity
-                android:name=".AdoptTreeActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.AdoptTreeActivity"
                 android:exported="false"/>
         <activity
-                android:name=".LoginActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.LoginActivity"
                 android:exported="false"/>
         <activity
-                android:name=".MainActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

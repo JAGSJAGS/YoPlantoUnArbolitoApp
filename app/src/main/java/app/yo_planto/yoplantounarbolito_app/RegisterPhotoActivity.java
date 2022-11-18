@@ -1,4 +1,4 @@
-package com.example.yoplantounarbolito_app;
+package app.yo_planto.yoplantounarbolito_app;
 
 import android.util.Base64;
 import android.widget.*;
@@ -21,10 +21,11 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import androidx.core.content.FileProvider;
+import app.yo_planto.yoplantounarbolito_app.validations.Validations;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.yoplantounarbolito_app.validations.Validations;
+import com.example.yoplantounarbolito_app.R;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -56,15 +57,15 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_photo);
+        setContentView(com.example.yoplantounarbolito_app.R.layout.activity_register_photo);
 
-        imagen= findViewById(R.id.photo_tree);
-        botonCargar= findViewById(R.id.btnCargarImg);
-        buttonSavePhoto = findViewById(R.id.buttonSavePhoto);
+        imagen= findViewById(com.example.yoplantounarbolito_app.R.id.photo_tree);
+        botonCargar= findViewById(com.example.yoplantounarbolito_app.R.id.btnCargarImg);
+        buttonSavePhoto = findViewById(com.example.yoplantounarbolito_app.R.id.buttonSavePhoto);
         buttonSavePhoto.setVisibility(View.GONE);
-        errors = findViewById(R.id.textViewErrorsRegisterPhoto);
+        errors = findViewById(com.example.yoplantounarbolito_app.R.id.textViewErrorsRegisterPhoto);
         errors.setVisibility(View.GONE);
-        loadPhoto = findViewById(R.id.loadPhoto);
+        loadPhoto = findViewById(com.example.yoplantounarbolito_app.R.id.loadPhoto);
         loadPhoto.setVisibility(View.GONE);
         textViewLoadPhoto = findViewById(R.id.textViewLoadPhoto);
         textViewLoadPhoto.setVisibility(View.GONE);

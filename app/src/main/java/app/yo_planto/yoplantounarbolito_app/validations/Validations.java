@@ -1,4 +1,4 @@
-package com.example.yoplantounarbolito_app.validations;
+package app.yo_planto.yoplantounarbolito_app.validations;
 
 import android.view.View;
 import android.widget.TextView;

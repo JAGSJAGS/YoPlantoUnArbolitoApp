@@ -1,4 +1,4 @@
-package com.example.yoplantounarbolito_app;
+package app.yo_planto.yoplantounarbolito_app;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,8 @@ import android.os.Bundle;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.yoplantounarbolito_app.validations.Validations;
+import com.example.yoplantounarbolito_app.R;
+import app.yo_planto.yoplantounarbolito_app.validations.Validations;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,13 +35,13 @@ public class RegisterUserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_user);
+        setContentView(com.example.yoplantounarbolito_app.R.layout.activity_register_user);
 
-        name = findViewById(R.id.editTextNameRegisterUser);
-        email = findViewById(R.id.editTextEmailRegisterUser);
-        phone = findViewById(R.id.editTextPhoneRegisterUser);
-        password = findViewById(R.id.editTextPasswordRegisterUser);
-        password_confirmation = findViewById(R.id.editTextConfirmationPasswordRegisterUser);
+        name = findViewById(com.example.yoplantounarbolito_app.R.id.editTextNameRegisterUser);
+        email = findViewById(com.example.yoplantounarbolito_app.R.id.editTextEmailRegisterUser);
+        phone = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPhoneRegisterUser);
+        password = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPasswordRegisterUser);
+        password_confirmation = findViewById(com.example.yoplantounarbolito_app.R.id.editTextConfirmationPasswordRegisterUser);
         errors = findViewById(R.id.textError);
         errors.setVisibility(View.GONE);
         sendData = new Bundle();

@@ -3,6 +3,6 @@
     <style name="title_1" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textSize">24dp</item>
         <item name="fontFamily">@font/league_spartan_bold</item>
-        <item name="android:textColor">#00A5A6</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 </resources>

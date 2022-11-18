@@ -4,8 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1605" />
+        <entry key="app/src/main/res/drawable/backgroun_black.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/backgroun_black_ligth.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/backgroun_black_ligth2.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/backgroun_black_ligth_red.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/backgroun_black_ligth_two.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/backgroun_black_solid.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/background_black.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/background_black_press.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/background_green_gradient.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/background_green_solid.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/border_blue.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/border_red.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/border_white.xml" value="0.1755" />
@@ -23,7 +31,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/login_edit_text_border.xml" value="0.1595" />
         <entry key="app/src/main/res/layout/activity_adopt_tree.xml" value="0.2917046490428441" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.128739800543971" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_register_photo.xml" value="0.22" />

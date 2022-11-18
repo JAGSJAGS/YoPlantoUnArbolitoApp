@@ -1,4 +1,4 @@
-package com.example.yoplantounarbolito_app;
+package app.yo_planto.yoplantounarbolito_app;
 
 import org.junit.Test;
 
