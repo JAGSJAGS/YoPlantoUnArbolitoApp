@@ -1,5 +1,7 @@
 package app.yo_planto.yoplantounarbolito_app;
 
+import static app.yo_planto.yoplantounarbolito_app.variables.*;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,14 +27,14 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class adopt_tree_activity extends AppCompatActivity implements OnMapReadyCallback{
 
     RequestQueue request;
     JsonObjectRequest JOR;
 
     //mostrar arbolito
-    String titleTree = "Tines que adoptar un arbolito" ,lat_tree = "0.0", ln_tree="0.0", name_tree, avatar, path_photo, state;
-    TextView textViewTitle;
+    String title_tree = "Tines que adoptar un arbolito" ,lat_tree = "0.0", ln_tree="0.0", name_tree, avatar, path_photo, state;
+    TextView text_view_title;
 
     //mostrar user
     SharedPreferences preference;
@@ -45,7 +47,7 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
     Button button_see_tree, button_see_options, button_home, button_log_out;
 
     //Map
-    private GoogleMap mMap;
+    private GoogleMap m_map;
     private Marker marcador;
     double lat = 0.0;
     double lng = 0.0;
@@ -59,13 +61,13 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
         token = preference.getString("token","");
         user_id = preference.getString("user_id","");
 
-        textViewTitle = findViewById(R.id.textViewTitleArbolito);
-        textViewTitle.setText(titleTree);
+        text_view_title = findViewById(R.id.textViewTitleArbolito);
+        text_view_title.setText(title_tree);
         text_view_name_tree = findViewById(R.id.text_view_name_tree);
         text_view_state_tree = findViewById(R.id.text_view_state_tree);
 
-        getUser("https://calm-fjord-08371.herokuapp.com/api/users/" + user_id);
-        getUsersTrees("https://calm-fjord-08371.herokuapp.com/api/tree_users/" + user_id);
+        getUser(url_user_register + "/" + user_id);
+        getUsersTrees(url_tree_users + "/" + user_id);
 
 
 
@@ -113,7 +115,7 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
         button_log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logOut("https://calm-fjord-08371.herokuapp.com/api/logout");
+                logOut(url_user_logout);
             }
         });
     }
@@ -128,10 +130,10 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null && networkResponse.data != null) {
-                    String jsonError = new String(networkResponse.data);
-                    Toast.makeText(AdoptTreeActivity.this,"Error: "+jsonError,Toast.LENGTH_LONG).show();
+                NetworkResponse network_response = error.networkResponse;
+                if (network_response != null && network_response.data != null) {
+                    String jsonError = new String(network_response.data);
+                    Toast.makeText(adopt_tree_activity.this,"Error: "+jsonError,Toast.LENGTH_LONG).show();
                     Log.i("ErrorVolley",jsonError);
                 }
             }
@@ -155,7 +157,7 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
             @Override
             public void onResponse(JSONObject response) {
                 deletePreferences();
-                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent login = new Intent(getApplicationContext(), login_activity.class);
                 startActivity(login);
                 finish();
             }
@@ -165,7 +167,7 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
                 NetworkResponse networkResponse = error.networkResponse;
                 if (networkResponse != null && networkResponse.data != null) {
                     String jsonError = new String(networkResponse.data);
-                    Toast.makeText(AdoptTreeActivity.this,"Error: "+jsonError,Toast.LENGTH_LONG).show();
+                    Toast.makeText(adopt_tree_activity.this,"Error: "+jsonError,Toast.LENGTH_LONG).show();
                     Log.i("ErrorVolley",jsonError);
                 }
             }
@@ -205,12 +207,12 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
                     avatar = response.getString("avatar");
                     path_photo = response.getString("path_photo");
                     state = response.getString("state");
-                    textViewTitle.setText("Hola, mi nombre es " + name_tree + ",gracias por elegirme!!");
+                    text_view_title.setText("Hola, mi nombre es " + name_tree + ",gracias por elegirme!!");
                     text_view_name_tree.setText(name_tree);
                     text_view_state_tree.setText("Estado: " + state);
-                    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    SupportMapFragment map_fragment = (SupportMapFragment) getSupportFragmentManager()
                             .findFragmentById(R.id.map2);
-                    mapFragment.getMapAsync(AdoptTreeActivity.this);
+                    map_fragment.getMapAsync(adopt_tree_activity.this);
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -218,10 +220,10 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null && networkResponse.data != null) {
-                    String jsonError = new String(networkResponse.data);
-                    Toast.makeText(AdoptTreeActivity.this,"Error: "+jsonError,Toast.LENGTH_LONG).show();
+                NetworkResponse network_response = error.networkResponse;
+                if (network_response != null && network_response.data != null) {
+                    String jsonError = new String(network_response.data);
+                    Toast.makeText(adopt_tree_activity.this,"Error: "+jsonError,Toast.LENGTH_LONG).show();
                     Log.i("ErrorVolley",jsonError);
                 }
             }
@@ -247,9 +249,9 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
 
         lat = Double.parseDouble(lat_tree);
         lng = Double.parseDouble(ln_tree);
-        mMap = googleMap;
+        m_map = googleMap;
         LatLng mi_arbolito = new LatLng(lat, lng);
-        mMap.addMarker(new MarkerOptions().position(mi_arbolito).title("Mi Arbolito"));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom( mi_arbolito,16));
+        m_map.addMarker(new MarkerOptions().position(mi_arbolito).title("Mi Arbolito"));
+        m_map.animateCamera(CameraUpdateFactory.newLatLngZoom( mi_arbolito,16));
     }
 }

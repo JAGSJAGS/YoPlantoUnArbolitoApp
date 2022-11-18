@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="app.yo_planto.yoplantounarbolito_app.RegisterUserActivity"
+        tools:context="app.yo_planto.yoplantounarbolito_app.register_user_activity"
         android:background="@drawable/backgroun_black_ligth_two">
     <ScrollView
             android:layout_width="match_parent"
@@ -18,18 +18,23 @@
                 android:orientation="vertical"
                 android:background="@drawable/backgroun_black_ligth"
                 android:layout_margin="16dp">
+
             <TextView
-                    android:text="Registrate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="24sp" app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="50dp"
-                    app:layout_constraintEnd_toEndOf="parent" style="@style/title_1"
-                    android:layout_gravity="center"/>
+                android:id="@+id/title"
+                style="@style/title_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:text="Registrate"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/textError"
+                    android:layout_height="wrap_content" android:id="@+id/text_error"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="16dp"
@@ -41,11 +46,11 @@
                     android:inputType="textPersonName"
                     android:text="neverita"
                     android:ems="10"
-                    android:id="@+id/editTextNameRegisterUser"
+                    android:id="@+id/edit_text_name_register_user"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-                    android:background="@drawable/edit_text_1" app:layout_constraintTop_toBottomOf="@+id/textError"
+                    android:background="@drawable/edit_text_1" app:layout_constraintTop_toBottomOf="@+id/text_error"
                     android:layout_marginTop="16dp" style="@style/text_1"/>
             <EditText
                     android:layout_width="match_parent"
@@ -53,11 +58,11 @@
                     android:inputType="textEmailAddress"
                     android:text="neverita@gmail.com"
                     android:ems="10"
-                    android:id="@+id/editTextEmailRegisterUser"
+                    android:id="@+id/edit_text_email_register_user"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.497"
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextNameRegisterUser" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_text_name_register_user" android:layout_marginTop="8dp"
                     android:background="@drawable/edit_text_1" style="@style/text_1"/>
             <EditText
                     android:layout_width="match_parent"
@@ -65,11 +70,11 @@
                     android:inputType="phone"
                     android:text="78946546"
                     android:ems="10"
-                    android:id="@+id/editTextPhoneRegisterUser"
+                    android:id="@+id/edit_text_phone_register_user"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextEmailRegisterUser" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_text_email_register_user" android:layout_marginTop="8dp"
                     android:background="@drawable/edit_text_1" style="@style/text_1"/>
             <EditText
                     android:layout_width="match_parent"
@@ -77,11 +82,11 @@
                     android:inputType="textPassword"
                     android:text="password"
                     android:ems="10"
-                    android:id="@+id/editTextPasswordRegisterUser"
+                    android:id="@+id/edit_text_password_register_user"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextPhoneRegisterUser"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_text_phone_register_user"
                     android:background="@drawable/edit_text_1" style="@style/text_1"/>
             <EditText
                     android:layout_width="match_parent"
@@ -89,22 +94,22 @@
                     android:inputType="textPassword"
                     android:text="password"
                     android:ems="10"
-                    android:id="@+id/editTextConfirmationPasswordRegisterUser"
+                    android:id="@+id/edit_text_confirmation_password_register_user"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.497"
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegisterUser"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_text_password_register_user"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/edit_text_1" style="@style/text_1"/>
             <Button
                     android:text="Registrar"
                     android:onClick="OnclickRegister"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/buttonRegisterUser"
+                    android:layout_height="wrap_content" android:id="@+id/button_register_user"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextConfirmationPasswordRegisterUser"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_text_confirmation_password_register_user"
                     android:layout_marginTop="16dp" android:background="@drawable/button_1" style="@style/text_2"
                     android:layout_marginBottom="50dp" android:elevation="10dp"
                     android:layout_gravity="center"/>

@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="app.yo_planto.yoplantounarbolito_app.AdoptTreeActivity"
+        tools:context="app.yo_planto.yoplantounarbolito_app.adopt_tree_activity"
         android:orientation="vertical">
     <LinearLayout
             android:layout_width="match_parent"
@@ -141,9 +141,9 @@
                 <ImageView
                         android:layout_width="326dp"
                         android:id="@+id/photo_tree"
-                        android:layout_below="@+id/textView"
-                        android:layout_alignRight="@+id/textView"
-                        android:layout_alignEnd="@+id/textView"
+                        android:layout_below="@+id/text_view_indicaciones"
+                        android:layout_alignRight="@+id/text_view_indicaciones"
+                        android:layout_alignEnd="@+id/text_view_indicaciones"
                         android:layout_height="255dp" android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginTop="16dp"/>

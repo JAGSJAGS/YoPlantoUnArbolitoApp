@@ -24,8 +24,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.Manifest.permission.*;
+import static app.yo_planto.yoplantounarbolito_app.variables.*;
 
-public class MainActivity extends AppCompatActivity {
+public class main_activity extends AppCompatActivity {
 
     RequestQueue request;
     JsonObjectRequest JOR;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if(validaPermisos()){
-            authenticated("https://calm-fjord-08371.herokuapp.com/api/islogin");
+            authenticated(url_user_authenticated);
         }
     }
 
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cargarDialogoRecomendacion() {
-        AlertDialog.Builder dialogo=new AlertDialog.Builder(MainActivity.this);
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(main_activity.this);
         dialogo.setTitle("Permisos Desactivados");
         dialogo.setMessage("Debe aceptar los permisos para el correcto funcionamiento de la App");
 
@@ -79,13 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode==100){
-            if(grantResults.length==3 && grantResults[0]==PackageManager.PERMISSION_GRANTED
-                    && grantResults[1]==PackageManager.PERMISSION_GRANTED
-                    && grantResults[2]==PackageManager.PERMISSION_GRANTED){
-                authenticated("https://calm-fjord-08371.herokuapp.com/api/islogin");
+    public void onRequestPermissionsResult(int request_code, @NonNull String[] permissions, @NonNull int[] grant_results) {
+        super.onRequestPermissionsResult(request_code, permissions, grant_results);
+        if(request_code==100){
+            if(grant_results.length==3 && grant_results[0]==PackageManager.PERMISSION_GRANTED
+                    && grant_results[1]==PackageManager.PERMISSION_GRANTED
+                    && grant_results[2]==PackageManager.PERMISSION_GRANTED){
+                authenticated(url_user_authenticated);
             }else{
                 solicitarPermisosManual();
             }
@@ -94,15 +95,15 @@ public class MainActivity extends AppCompatActivity {
 
     private void solicitarPermisosManual() {
         final CharSequence[] opciones={"Si","No"};
-        final AlertDialog.Builder alertOpciones=new AlertDialog.Builder(MainActivity.this);
-        alertOpciones.setTitle("¿Desea configurar los permisos de forma manual?");
-        alertOpciones.setItems(opciones, new DialogInterface.OnClickListener() {
+        final AlertDialog.Builder alert_opciones = new AlertDialog.Builder(main_activity.this);
+        alert_opciones.setTitle("¿Desea configurar los permisos de forma manual?");
+        alert_opciones.setItems(opciones, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (opciones[i].equals("Si")){
-                    Intent intent=new Intent();
+                    Intent intent = new Intent();
                     intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                    Uri uri=Uri.fromParts("package",getPackageName(),null);
+                    Uri uri = Uri.fromParts("package",getPackageName(),null);
                     intent.setData(uri);
                     startActivity(intent);
                 }else{
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        alertOpciones.show();
+        alert_opciones.show();
     }
     private void authenticated(String url){
         request = Volley.newRequestQueue(this);
@@ -119,14 +120,14 @@ public class MainActivity extends AppCompatActivity {
         JOR = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Intent registerUser = new Intent(getApplicationContext(), AdoptTreeActivity.class);
-                startActivity(registerUser);
+                Intent register_user = new Intent(getApplicationContext(), adopt_tree_activity.class);
+                startActivity(register_user);
                 finish();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent login = new Intent(getApplicationContext(), login_activity.class);
                 startActivity(login);
                 finish();
             }

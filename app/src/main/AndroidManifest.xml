@@ -31,7 +31,7 @@
                 android:resource="@xml/file_paths"/>
 
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.RegisterTreeActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.register_tree_activity"
                 android:exported="false"/>
 
         <meta-data
@@ -39,19 +39,19 @@
                 android:resource="@array/preloaded_fonts"/>
 
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.RegisterPhotoActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.register_photo_activity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.RegisterUserActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.register_user_activity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.AdoptTreeActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.adopt_tree_activity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.LoginActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.login_activity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.MainActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.main_activity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

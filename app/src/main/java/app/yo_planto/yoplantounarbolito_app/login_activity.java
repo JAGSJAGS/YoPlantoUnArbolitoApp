@@ -1,5 +1,7 @@
 package app.yo_planto.yoplantounarbolito_app;
 
+import static app.yo_planto.yoplantounarbolito_app.variables.*;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,7 +22,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity {//implements Response.Listener<JSONObject>,Response.ErrorListener {
+public class login_activity extends AppCompatActivity {//implements Response.Listener<JSONObject>,Response.ErrorListener {
 
     EditText email, password;
     RequestQueue request;
@@ -32,15 +34,15 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.yoplantounarbolito_app.R.layout.activity_login);
-        email = findViewById(com.example.yoplantounarbolito_app.R.id.editTextEmailLogin);
-        password = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPasswordLogin);
-        errors = findViewById(R.id.textViewErrorsLogin);
+        email = findViewById(com.example.yoplantounarbolito_app.R.id.edit_text_email_login);
+        password = findViewById(com.example.yoplantounarbolito_app.R.id.edit_text_password_login);
+        errors = findViewById(R.id.text_view_errors_login);
         errors.setVisibility(View.GONE);
     }
 
     public void OnclickLogin(View view) {
         errors.setVisibility(View.GONE);
-        loginUser("https://calm-fjord-08371.herokuapp.com/api/login");
+        loginUser(url_user_login);
     }
 
     private void loginUser(String url){
@@ -56,20 +58,20 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
                 try {
                     String token = response.getString("access_token");
                     String user_id = response.getString("user_id");
-                    Toast.makeText(LoginActivity.this,"id en login:" + user_id,Toast.LENGTH_LONG).show();
+                    Toast.makeText(login_activity.this,"id en login:" + user_id,Toast.LENGTH_LONG).show();
                     savePreferences(token, user_id);
-                    Intent adoptTreeActivity = new Intent(getApplicationContext(),AdoptTreeActivity.class);
+                    Intent adoptTreeActivity = new Intent(getApplicationContext(), adopt_tree_activity.class);
                     startActivity(adoptTreeActivity);
                     finish();
                 } catch (JSONException e) {
-                    Toast.makeText(LoginActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
+                    Toast.makeText(login_activity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                String jsonError = new String(networkResponse.data);
+                NetworkResponse network_response = error.networkResponse;
+                String jsonError = new String(network_response.data);
                 validations.validateDatas(jsonError,errors);
             }
         }){
@@ -93,8 +95,8 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     }
 
     public void OnclickGoToRegisterActivity(View view) {
-        Intent registerUser = new Intent(getApplicationContext(),RegisterUserActivity.class);
-        startActivity(registerUser);
+        Intent register_user = new Intent(getApplicationContext(), register_user_activity.class);
+        startActivity(register_user);
         //finish();
     }
 }

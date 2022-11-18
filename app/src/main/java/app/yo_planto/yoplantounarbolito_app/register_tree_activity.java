@@ -1,5 +1,7 @@
 package app.yo_planto.yoplantounarbolito_app;
 
+import static app.yo_planto.yoplantounarbolito_app.variables.*;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -30,7 +32,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterTreeActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class register_tree_activity extends AppCompatActivity implements OnMapReadyCallback {
 
     EditText name;
     String avatar = "avatar1";
@@ -39,12 +41,12 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     RequestQueue request;
     JsonObjectRequest JOR;
 
-    private GoogleMap mMap;
+    private GoogleMap m_map;
     private Marker marcador;
     double lat = 0.0;
     double lng = 0.0;
 
-    Bundle sendData = null;
+    Bundle send_data = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         name = findViewById(R.id.editTextNameRegisterTree);
         errors = findViewById(R.id.textViewErrorsRegisterThree);
         errors.setVisibility(View.GONE);
-        sendData = new Bundle();
+        send_data = new Bundle();
     }
 
     private void registerTree(String url){
@@ -77,18 +79,18 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
             public void onResponse(JSONObject response) {
                 try {
                     String id = response.getString("id");
-                    sendData.putString("tree_id",id);
-                    registerTreeUser("https://calm-fjord-08371.herokuapp.com/api/tree_users", id);
+                    send_data.putString("tree_id",id);
+                    registerTreeUser(url_tree_users, id);
                 } catch (JSONException e) {
-                    Toast.makeText(RegisterTreeActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
+                    Toast.makeText(register_tree_activity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                String jsonError = new String(networkResponse.data);
-                validations.validateDatas(jsonError,errors);
+                NetworkResponse network_response = error.networkResponse;
+                String json_error = new String(network_response.data);
+                validations.validateDatas(json_error,errors);
             }
         }){
             @Override
@@ -103,8 +105,8 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     }
 
     private void registerTreeUser(String url, String tree_id){
-        Bundle getDate = getIntent().getExtras();
-        String id = getDate.getString("user_id");
+        Bundle get_date = getIntent().getExtras();
+        String id = get_date.getString("user_id");
 
         request = Volley.newRequestQueue(this);
 
@@ -116,16 +118,16 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Intent photoActivity = new Intent(getApplicationContext(),RegisterPhotoActivity.class);
-                photoActivity.putExtras(sendData);
-                startActivity(photoActivity);
+                Intent photo_activity = new Intent(getApplicationContext(), register_photo_activity.class);
+                photo_activity.putExtras(send_data);
+                startActivity(photo_activity);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                String jsonError = new String(networkResponse.data);
-                validations.validateDatas(jsonError,errors);
+                NetworkResponse network_response = error.networkResponse;
+                String json_error = new String(network_response.data);
+                validations.validateDatas(json_error,errors);
             }
         }){
             @Override
@@ -141,27 +143,27 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
 
     public void OnclickRegisterTree(View view) {
         errors.setVisibility(View.GONE);
-        Toast.makeText(RegisterTreeActivity.this,"Registrando",Toast.LENGTH_LONG).show();
-        registerTree("https://calm-fjord-08371.herokuapp.com/api/trees");
+        Toast.makeText(register_tree_activity.this,"Registrando",Toast.LENGTH_LONG).show();
+        registerTree(url_tree_register);
     }
 
     //MAP LOGIC
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+    public void onMapReady(GoogleMap google_map) {
+        m_map = google_map;
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        mMap.setMyLocationEnabled(true);
+        m_map.setMyLocationEnabled(true);
         miUbicacion();
     }
 
     private void agregarMarket(double lat, double lng) {
         LatLng coordenadas = new LatLng(lat, lng);
-        CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
+        CameraUpdate mi_ubicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
         if (marcador != null) marcador.remove();
-        marcador = mMap.addMarker(new MarkerOptions().position(coordenadas));
-        mMap.animateCamera(miUbicacion);
+        marcador = m_map.addMarker(new MarkerOptions().position(coordenadas));
+        m_map.animateCamera(mi_ubicacion);
     }
 
     private void actualizarUbicacion(Location location) {
@@ -170,7 +172,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         agregarMarket(lat, lng);
     }
 
-    LocationListener locationListener = new LocationListener() {
+    LocationListener location_listener = new LocationListener() {
         @Override
         public void onLocationChanged(@NonNull Location location) {
             actualizarUbicacion(location);
@@ -178,22 +180,22 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     };
 
     private void miUbicacion() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        LocationManager location_manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        Location location = location_manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         actualizarUbicacion(location);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 0 , locationListener);
+        location_manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 0 , location_listener);
     }
 
     public void OnclickSelectAvatar1(View view) {
         avatar = "avatar1";
-        Toast.makeText(RegisterTreeActivity.this,avatar+" Seleccionado",Toast.LENGTH_SHORT).show();
+        Toast.makeText(register_tree_activity.this,avatar+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
 
     public void OnclickSelectAvatar2(View view) {
         avatar = "avatar2";
-        Toast.makeText(RegisterTreeActivity.this,avatar+" Seleccionado",Toast.LENGTH_SHORT).show();
+        Toast.makeText(register_tree_activity.this,avatar+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
 }
