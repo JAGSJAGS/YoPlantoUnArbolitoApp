@@ -22,7 +22,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class AdoptTreeActivity extends AppCompatActivity {
 
     RequestQueue request;
     JsonObjectRequest JOR;
@@ -41,11 +41,7 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
     LinearLayout view_home, view_tree, view_options;
     ImageButton imagen_tree_button, button_see_options, button_home, button_log_out;
 
-    //Map
-    private GoogleMap mMap;
-    private Marker marcador;
-    double lat = 0.0;
-    double lng = 0.0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,9 +88,12 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
         imagen_tree_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view_home.setVisibility(View.GONE);
+                /*view_home.setVisibility(View.GONE);
                 view_tree.setVisibility(View.VISIBLE);
-                view_options.setVisibility(View.GONE);
+                view_options.setVisibility(View.GONE);*/
+
+                Intent seeTree = new Intent(getApplicationContext(),SeeTreeActivity.class);
+                startActivity(seeTree);
             }
         });
 
@@ -200,14 +199,13 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
                     lat_tree = response.getString("lat");
                     ln_tree = response.getString("lng");
                     avatar = response.getString("avatar");
-                    path_photo = response.getString("path_photo");
+                    path_photo = response.getString("photo");
                     state = response.getString("state");
                     textViewTitle.setText("Hola, mi nombre es " + name_tree + ",gracias por elegirme!!");
                     text_view_name_tree.setText(name_tree);
                     text_view_state_tree.setText("Estado: " + state);
-                    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                            .findFragmentById(R.id.map2);
-                    mapFragment.getMapAsync(AdoptTreeActivity.this);
+
+
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -238,15 +236,5 @@ public class AdoptTreeActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
 
-    //Map
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
 
-        lat = Double.parseDouble(lat_tree);
-        lng = Double.parseDouble(ln_tree);
-        mMap = googleMap;
-        LatLng mi_arbolito = new LatLng(lat, lng);
-        mMap.addMarker(new MarkerOptions().position(mi_arbolito).title("Mi Arbolito"));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom( mi_arbolito,16));
-    }
 }
