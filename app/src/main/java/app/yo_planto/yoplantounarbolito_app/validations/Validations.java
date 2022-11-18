@@ -14,4 +14,7 @@ public class Validations {
         error.setVisibility(View.VISIBLE);
         return res;
     }
+    public void prueba() {
+
+    }
 }
