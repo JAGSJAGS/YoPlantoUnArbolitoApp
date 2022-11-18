@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context="app.yo_planto.yoplantounarbolito_app.LoginActivity"
         android:orientation="vertical"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical" android:background="@drawable/backgroun_black_ligth_two">
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -63,20 +63,20 @@
             <Button
                     android:onClick="OnclickLogin"
                     android:text="Iniciar sesión"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/buttonLogin"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:includeFontPadding="false"
                     android:background="@drawable/button_1" android:textCursorDrawable="@drawable/cursor"
-                    style="@style/text_2"/>
+                    style="@style/text_2" android:layout_gravity="center"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
-                    android:background="#FFFFFF">
+            >
                 <Button
                         android:onClick="OnclickGoToRegisterActivity"
                         android:text="Registrarse"
@@ -85,7 +85,7 @@
                         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         android:layout_marginBottom="8dp" style="@style/Widget.AppCompat.Button.Borderless"
-                        android:fontFamily="@font/be_vietnam" android:textColor="#3F51B5"
+                        android:fontFamily="@font/be_vietnam" android:textColor="#FFFFFF"
                         android:textAllCaps="false"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

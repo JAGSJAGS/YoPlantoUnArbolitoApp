@@ -3,16 +3,15 @@
 
     <item android:bottom="4dp">
         <shape android:shape="rectangle">
-            <stroke android:width="2dp"
-                    android:color="#182259"/>
             <padding android:left="10dp"
                      android:top="10dp"
                      android:right="10dp"
-                     android:bottom="15dp"/>
+                     android:bottom="10dp"/>
             <corners android:radius="10dp" />
-            <gradient android:angle="90"
-                      android:endColor="#016600"
-                      android:startColor="#026161"/>
+            <gradient android:angle="2"
+                      android:endColor="#124912"
+                      android:startColor="#1FA31F"
+                      android:centerColor="#124912"/>
         </shape>
     </item>
 </layer-list>
