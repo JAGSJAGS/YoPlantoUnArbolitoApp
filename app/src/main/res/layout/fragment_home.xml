@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="app.yo_planto.yoplantounarbolito_app.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:id="@+id/view_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/backgroun_black_ligth"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewTitleArbolito"
+            style="@style/title_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:textAlignment="center" />
+
+        <ImageButton
+            android:id="@+id/image_tree_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_3"
+            android:padding="32dp"
+            android:src="@mipmap/avatar_one_happy_1000" />
+
+        <TextView
+            android:id="@+id/textViewTitleArbolito2"
+            style="@style/title_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="No olvides regarme y abonarme!!"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+</FrameLayout>

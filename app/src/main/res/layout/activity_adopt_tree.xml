@@ -1,169 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="app.yo_planto.yoplantounarbolito_app.adopt_tree_activity"
-        android:orientation="vertical">
+        tools:context="app.yo_planto.yoplantounarbolito_app.AdoptTreeActivity"
+        android:orientation="vertical" android:background="@drawable/backgroun_black_ligth_two">
+
     <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/backgroun_black_ligth_two"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/view_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/fragments_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/view_buttons"
-            android:background="@color/black">
-        <Button
-                android:text="Arbolito"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button_home"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:background="@drawable/background_black" style="@style/text_2"/>
-        <Button
-                android:text="Ver detalle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button_see_tree"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:background="@drawable/background_black" style="@style/text_2" android:layout_weight="1"/>
-        <Button
-                android:text="Opciones"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button_options"
-                app:layout_constraintStart_toEndOf="@+id/button_home" app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/background_black" style="@style/text_2"/>
-        <Button
-                android:text="Cerrar Sesión"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button_log_out"
-                app:layout_constraintStart_toEndOf="@+id/button_home" app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/background_black" style="@style/text_2"/>
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
+
+        </FrameLayout>
+
     </LinearLayout>
-    <ScrollView
+    <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/view_buttons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:background="#141732">
 
         <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:id="@+id/view_home"
-                    android:background="@drawable/border_yellow">
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/text_view_title_arbolito"
-                        style="@style/title_1"
-                        android:layout_gravity="center"
-                        android:textAlignment="center"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"/>
-                <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="379dp"
-                        app:srcCompat="@mipmap/avatar_one_happy"
-                        android:id="@+id/image_view_arbolito_avatar"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"/>
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/text_view_title_arbolito_recordatorio_regar"
-                        style="@style/title_1"
-                        android:layout_gravity="center"
-                        android:textAlignment="center"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
-                        android:text="No olvides regarme y abonarme!!"
-                        android:layout_marginBottom="16dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@+id/view_buttons"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:id="@+id/view_see_tree"
-                    android:background="@drawable/border_yellow">
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/text_view_name_tree" style="@style/title_1"
-                        android:layout_marginLeft="16dp" android:layout_marginTop="16dp" android:layout_marginRight="16dp"
-                        android:text="name"/>
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/text_view_state_tree"
-                        style="@style/title_1"
-                        android:layout_marginLeft="16dp" android:layout_marginTop="16dp"
-                        android:layout_marginRight="16dp"
-                        android:text="state"/>
-                <LinearLayout
-                        android:layout_width="match_parent" android:layout_height="wrap_content"
-                        android:orientation="vertical" app:layout_constraintBottom_toTopOf="@+id/view_buttons"
-                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp" android:layout_marginEnd="16dp" android:layout_marginBottom="16dp"
-                        android:background="@drawable/border_yellow">
-                    <fragment
-                            android:id="@+id/map2"
-                            android:name="com.google.android.gms.maps.SupportMapFragment"
-                            android:layout_width="match_parent"
-                            android:layout_height="200dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="16dp"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            android:layout_marginTop="5dp"/>
-                </LinearLayout>
-                <ImageView
-                        android:layout_width="326dp"
-                        android:id="@+id/photo_tree"
-                        android:layout_below="@+id/text_view_indicaciones"
-                        android:layout_alignRight="@+id/text_view_indicaciones"
-                        android:layout_alignEnd="@+id/text_view_indicaciones"
-                        android:layout_height="255dp" android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginTop="16dp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:orientation="vertical" app:layout_constraintBottom_toTopOf="@+id/view_buttons"
-                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp" android:layout_marginEnd="16dp" android:layout_marginBottom="16dp"
-                    android:id="@+id/view_options">
-
-                <TextView
-                        android:text="Mostrar opciones"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/text_view_see_options"/>
-
-            </LinearLayout>
-
+                android:orientation="horizontal"
+                android:paddingTop="12dp"
+                android:paddingBottom="8dp" android:layout_gravity="center">
+            <ImageButton
+                    android:src="?android:attr/listChoiceIndicatorMultiple"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" android:id="@+id/button_home"
+                    android:background="@drawable/button_2"
+                    android:layout_marginRight="32dp"/>
+            <ImageButton
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" android:id="@+id/button_log_out"
+                    android:background="@drawable/button_2"
+            />
+            <ImageButton
+                    android:src="@android:drawable/ic_menu_preferences"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp" android:id="@+id/button_options"
+                    android:background="@drawable/button_2"
+                    android:layout_marginLeft="32dp"/>
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
