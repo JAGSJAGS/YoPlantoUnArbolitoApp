@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="app.yo_planto.yoplantounarbolito_app.register_photo_activity">
+=======
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context="app.yo_planto.yoplantounarbolito_app.RegisterPhotoActivity"
+              android:background="@drawable/backgroun_black_ligth_two">
+>>>>>>> master
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/border_blue"
             android:layout_margin="16dp">
 
 
@@ -19,11 +27,16 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:layout_centerHorizontal="true"
+<<<<<<< HEAD
                 android:id="@+id/text_view_indicaciones" app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" android:layout_marginTop="50dp"
+=======
+                android:id="@+id/textView" app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" android:layout_marginTop="32dp"
+>>>>>>> master
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
                 android:textAlignment="center" android:layout_marginStart="30dp" android:layout_marginEnd="30dp"
-                style="@style/title_1"/>
+                style="@style/text_2"/>
         <TextView
                 android:text="TextView"
                 android:layout_width="match_parent"
@@ -62,8 +75,13 @@
         <Button
                 android:onClick="on_click_save_photo"
                 android:text="Guardar Photo"
+<<<<<<< HEAD
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" android:id="@+id/button_save_photo"
+=======
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/buttonSavePhoto"
+>>>>>>> master
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497" app:layout_constraintTop_toBottomOf="@+id/photo_tree"
@@ -82,7 +100,11 @@
                 android:layout_height="wrap_content" android:id="@+id/text_view_load_photo"
                 app:layout_constraintTop_toBottomOf="@+id/load_photo" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" android:textSize="20sp"
+<<<<<<< HEAD
                 android:textStyle="bold" style="@style/text_2"/>
 
+=======
+                android:textStyle="bold" style="@style/text_3"/>
+>>>>>>> master
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

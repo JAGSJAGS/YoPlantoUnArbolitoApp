@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_margin="16dp"
-                        android:background="@drawable/backgroun_black_ligth_two">
+                        android:background="@drawable/background_green_gradient">
                     <TextView
                             android:text="Seleccione un personaje:"
                             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                             android:textAlignment="textStart"
                             android:layout_marginStart="16dp"
                             android:layout_marginEnd="16dp"
-                            android:layout_marginTop="8dp" style="@style/text_2"/>
+                            android:layout_marginTop="8dp" style="@style/text_2" android:textColor="#FFFFFF"/>
                     <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -81,30 +81,34 @@
                                 android:onClick="OnclickSelectAvatar2"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
-                                map:srcCompat="@mipmap/avatar_one_sad"
-                                android:id="@+id/image_button_one"
+>>>>>>> master
                                 tools:ignore="OnClick"
                                 android:layout_marginEnd="16dp" android:background="@drawable/edit_text_1"/>
                         <ImageButton
                                 android:onClick="OnclickSelectAvatar1"
                                 android:layout_width="100dp"
                                 android:layout_height="100dp"
+<<<<<<< HEAD
                                 map:srcCompat="@mipmap/avatar_one_sad"
                                 android:id="@+id/image_button_two"
+=======
+                                map:srcCompat="@mipmap/avatar_one_happy"
+                                android:id="@+id/imageButtonOne2"
+>>>>>>> master
                                 android:layout_marginStart="16dp"/>
                     </LinearLayout>
                 </LinearLayout>
                 <Button
                         android:text="Registrar Arbolito"
                         android:onClick="OnclickRegisterTree"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/button_register_user"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/button_1"
                         android:layout_marginTop="16dp" style="@style/text_2"
-                        android:layout_marginBottom="16dp"/>
+                        android:layout_marginBottom="16dp" android:layout_gravity="center"/>
 
             </LinearLayout>
             <LinearLayout
@@ -112,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_margin="16dp"
-                    android:background="@drawable/backgroun_red" android:paddingBottom="16dp">
+                    android:background="@drawable/backgroun_red_gradient" android:paddingBottom="16dp">
                 <TextView
                         android:text="La ubicación del arbolito se registrará como la que se ve en el mapa."
                         android:layout_width="match_parent"

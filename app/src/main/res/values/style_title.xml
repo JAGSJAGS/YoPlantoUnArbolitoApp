@@ -2,7 +2,8 @@
 <resources>
     <style name="title_1" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textSize">24dp</item>
-        <item name="fontFamily">@font/league_spartan_bold</item>
+        <item name="fontFamily">@font/bungee_inline</item>
         <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

@@ -7,10 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.android.volley.*;
@@ -27,7 +24,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+<<<<<<< HEAD:app/src/main/java/app/yo_planto/yoplantounarbolito_app/adopt_tree_activity.java
 public class adopt_tree_activity extends AppCompatActivity implements OnMapReadyCallback{
+=======
+public class AdoptTreeActivity extends AppCompatActivity {
+>>>>>>> master:app/src/main/java/app/yo_planto/yoplantounarbolito_app/AdoptTreeActivity.java
 
     RequestQueue request;
     JsonObjectRequest JOR;
@@ -44,13 +45,17 @@ public class adopt_tree_activity extends AppCompatActivity implements OnMapReady
 
     //View
     LinearLayout view_home, view_tree, view_options;
-    Button button_see_tree, button_see_options, button_home, button_log_out;
+    ImageButton imagen_tree_button, button_see_options, button_home, button_log_out;
 
+
+<<<<<<< HEAD:app/src/main/java/app/yo_planto/yoplantounarbolito_app/adopt_tree_activity.java
     //Map
     private GoogleMap m_map;
     private Marker marcador;
     double lat = 0.0;
     double lng = 0.0;
+=======
+>>>>>>> master:app/src/main/java/app/yo_planto/yoplantounarbolito_app/AdoptTreeActivity.java
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +86,7 @@ public class adopt_tree_activity extends AppCompatActivity implements OnMapReady
 
         //buttons
         button_home = findViewById(R.id.button_home);
-        button_see_tree = findViewById(R.id.button_see_tree);
+        imagen_tree_button = findViewById(R.id.image_tree_button);
         button_see_options = findViewById(R.id.button_options);
         button_log_out = findViewById(R.id.button_log_out);
 
@@ -94,12 +99,15 @@ public class adopt_tree_activity extends AppCompatActivity implements OnMapReady
             }
         });
 
-        button_see_tree.setOnClickListener(new View.OnClickListener() {
+        imagen_tree_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view_home.setVisibility(View.GONE);
+                /*view_home.setVisibility(View.GONE);
                 view_tree.setVisibility(View.VISIBLE);
-                view_options.setVisibility(View.GONE);
+                view_options.setVisibility(View.GONE);*/
+
+                Intent seeTree = new Intent(getApplicationContext(),SeeTreeActivity.class);
+                startActivity(seeTree);
             }
         });
 
@@ -205,14 +213,19 @@ public class adopt_tree_activity extends AppCompatActivity implements OnMapReady
                     lat_tree = response.getString("lat");
                     ln_tree = response.getString("lng");
                     avatar = response.getString("avatar");
-                    path_photo = response.getString("path_photo");
+                    path_photo = response.getString("photo");
                     state = response.getString("state");
                     text_view_title.setText("Hola, mi nombre es " + name_tree + ",gracias por elegirme!!");
                     text_view_name_tree.setText(name_tree);
                     text_view_state_tree.setText("Estado: " + state);
+<<<<<<< HEAD:app/src/main/java/app/yo_planto/yoplantounarbolito_app/adopt_tree_activity.java
                     SupportMapFragment map_fragment = (SupportMapFragment) getSupportFragmentManager()
                             .findFragmentById(R.id.map2);
                     map_fragment.getMapAsync(adopt_tree_activity.this);
+=======
+
+
+>>>>>>> master:app/src/main/java/app/yo_planto/yoplantounarbolito_app/AdoptTreeActivity.java
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -243,6 +256,7 @@ public class adopt_tree_activity extends AppCompatActivity implements OnMapReady
     }
 
 
+<<<<<<< HEAD:app/src/main/java/app/yo_planto/yoplantounarbolito_app/adopt_tree_activity.java
     //Map
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -254,4 +268,7 @@ public class adopt_tree_activity extends AppCompatActivity implements OnMapReady
         m_map.addMarker(new MarkerOptions().position(mi_arbolito).title("Mi Arbolito"));
         m_map.animateCamera(CameraUpdateFactory.newLatLngZoom( mi_arbolito,16));
     }
+=======
+
+>>>>>>> master:app/src/main/java/app/yo_planto/yoplantounarbolito_app/AdoptTreeActivity.java
 }
