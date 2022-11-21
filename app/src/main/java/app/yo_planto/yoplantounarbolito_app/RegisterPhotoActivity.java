@@ -1,5 +1,7 @@
 package app.yo_planto.yoplantounarbolito_app;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Base64;
 import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
@@ -21,7 +23,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import androidx.core.content.FileProvider;
-import app.yo_planto.yoplantounarbolito_app.validations.Validations;
+import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
+import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -42,6 +45,9 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     final int COD_SELECCIONA=10;
     final int COD_FOTO=200;
 
+    Variables variables = new Variables();
+    String url;
+
     Button botonCargar;
     Button buttonSavePhoto;
     ImageView imagen;
@@ -51,6 +57,9 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     String rutaImagen;
     Bitmap bitmap;
 
+    //Bundle getDate = getIntent().getExtras();
+    //String id;
+
     ProgressBar loadPhoto;
     TextView textViewLoadPhoto;
 
@@ -59,6 +68,8 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(com.example.yoplantounarbolito_app.R.layout.activity_register_photo);
 
+        //id = getDate.getString("tree_id");
+        url = variables.getUrl();
         imagen= findViewById(com.example.yoplantounarbolito_app.R.id.photo_tree);
         botonCargar= findViewById(com.example.yoplantounarbolito_app.R.id.btnCargarImg);
         buttonSavePhoto = findViewById(com.example.yoplantounarbolito_app.R.id.buttonSavePhoto);
@@ -184,7 +195,9 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         }
     }
 
-    private void savePhoto(String url){
+    private void savePhoto(){
+        SharedPreferences preference = getSharedPreferences("preferenceTree", Context.MODE_PRIVATE);
+        String id = preference.getString("tree_id","");
         RequestQueue request;
         JsonObjectRequest JOR;
         request = Volley.newRequestQueue(this);
@@ -192,7 +205,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         Map<String, String> params = new HashMap<>();
         params.put("photo",img);
         JSONObject parameters = new JSONObject(params);
-        JOR = new JsonObjectRequest(Request.Method.PUT, url, parameters,new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.PUT, url + "/savephoto/" +id, parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 loadPhoto.setVisibility(View.GONE);
@@ -234,9 +247,6 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         errors.setVisibility(View.GONE);
         loadPhoto.setVisibility(View.VISIBLE);
         textViewLoadPhoto.setVisibility(View.VISIBLE);
-        Bundle getDate = getIntent().getExtras();
-        String id = getDate.getString("tree_id");
-        Toast.makeText(RegisterPhotoActivity.this,"Id: "+id,Toast.LENGTH_LONG).show();
-        savePhoto("https://calm-fjord-08371.herokuapp.com/api/savephoto/"+id);
+        savePhoto();
     }
 }

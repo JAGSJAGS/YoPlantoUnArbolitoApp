@@ -23,6 +23,9 @@
             android:usesCleartextTraffic="true"
             tools:targetApi="31">
         <activity
+                android:name="app.yo_planto.yoplantounarbolito_app.Edit_Tree_Activity"
+                android:exported="false"/>
+        <activity
                 android:name="app.yo_planto.yoplantounarbolito_app.SeeTreeActivity"
                 android:exported="false"/>
 

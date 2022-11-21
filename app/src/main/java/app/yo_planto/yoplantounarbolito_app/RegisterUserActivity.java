@@ -9,11 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yoplantounarbolito_app.R;
-import app.yo_planto.yoplantounarbolito_app.validations.Validations;
+import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,15 +28,18 @@ public class RegisterUserActivity extends AppCompatActivity {
 
     RequestQueue request;
     JsonObjectRequest JOR;
+    Variables variables = new Variables();
+    String url;
 
     Validations validations = new Validations();
 
-    Bundle sendData = null;
+    //Bundle sendData = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.yoplantounarbolito_app.R.layout.activity_register_user);
+        url = variables.getUrl();
 
         name = findViewById(com.example.yoplantounarbolito_app.R.id.editTextNameRegisterUser);
         email = findViewById(com.example.yoplantounarbolito_app.R.id.editTextEmailRegisterUser);
@@ -44,10 +48,10 @@ public class RegisterUserActivity extends AppCompatActivity {
         password_confirmation = findViewById(com.example.yoplantounarbolito_app.R.id.editTextConfirmationPasswordRegisterUser);
         errors = findViewById(R.id.textError);
         errors.setVisibility(View.GONE);
-        sendData = new Bundle();
+        //sendData = new Bundle();
     }
 
-    private void registerUser(String url){
+    private void registerUser(){
         request = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap<>();
@@ -60,13 +64,13 @@ public class RegisterUserActivity extends AppCompatActivity {
 
         JSONObject parameters = new JSONObject(params);
 
-        JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.POST, url + "/users", parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     String id = response.getString("id");
-                    sendData.putString("user_id",id);
-                    loginUser("https://calm-fjord-08371.herokuapp.com/api/login");
+                    //sendData.putString("user_id",id);
+                    loginUser();
                 } catch (JSONException e) {
                     Toast.makeText(RegisterUserActivity.this, "Se produjo un error", Toast.LENGTH_LONG).show();
                 }
@@ -92,18 +96,18 @@ public class RegisterUserActivity extends AppCompatActivity {
 
     public void OnclickRegister(View view) {
         errors.setVisibility(View.GONE);
-        registerUser("https://calm-fjord-08371.herokuapp.com/api/users");
+        registerUser();
     }
 
     //Login
-    private void loginUser(String url){
+    private void loginUser(){
         request = Volley.newRequestQueue(this);
         Map<String, String> params = new HashMap<>();
         params.put("email", email.getText().toString());
         params.put("password", password.getText().toString());
         JSONObject parameters = new JSONObject(params);
 
-        JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.POST, url+"/login", parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -111,7 +115,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                     String user_id = response.getString("user_id");
                     savePreferences(token, user_id);
                     Intent registerTreeActivity = new Intent(getApplicationContext(),RegisterTreeActivity.class);
-                    registerTreeActivity.putExtras(sendData);
+                    //registerTreeActivity.putExtras(sendData);
                     startActivity(registerTreeActivity);
                 } catch (JSONException e) {
                     Toast.makeText(RegisterUserActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
@@ -123,6 +127,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                 NetworkResponse networkResponse = error.networkResponse;
                 String jsonError = new String(networkResponse.data);
                 validations.validateDatas(jsonError,errors);
+                Toast.makeText(RegisterUserActivity.this,"son errores"+jsonError,Toast.LENGTH_LONG).show();
             }
         }){
             @Override
@@ -143,5 +148,4 @@ public class RegisterUserActivity extends AppCompatActivity {
         editor.putString("user_id", user_id);
         editor.commit();
     }
-
 }

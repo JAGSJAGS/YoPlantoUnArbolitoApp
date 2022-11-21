@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -26,6 +27,8 @@ public class AdoptTreeActivity extends AppCompatActivity {
 
     RequestQueue request;
     JsonObjectRequest JOR;
+    Variables variables = new Variables();
+    String url;
 
     //mostrar arbolito
     String titleTree = "Tines que adoptar un arbolito" ,lat_tree = "0.0", ln_tree="0.0", name_tree, avatar, path_photo, state;
@@ -40,7 +43,7 @@ public class AdoptTreeActivity extends AppCompatActivity {
     //View
     LinearLayout view_home, view_tree, view_options;
     ImageButton imagen_tree_button, button_see_options, button_home, button_log_out;
-
+    Button button_edit_tree;
 
 
     @Override
@@ -51,14 +54,15 @@ public class AdoptTreeActivity extends AppCompatActivity {
         preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         token = preference.getString("token","");
         user_id = preference.getString("user_id","");
+        url  = variables.getUrl();
 
         textViewTitle = findViewById(R.id.textViewTitleArbolito);
         textViewTitle.setText(titleTree);
         text_view_name_tree = findViewById(R.id.text_view_name_tree);
         text_view_state_tree = findViewById(R.id.text_view_state_tree);
 
-        getUser("https://calm-fjord-08371.herokuapp.com/api/users/" + user_id);
-        getUsersTrees("https://calm-fjord-08371.herokuapp.com/api/tree_users/" + user_id);
+        getUser();
+        getUsersTrees();
 
 
 
@@ -75,6 +79,7 @@ public class AdoptTreeActivity extends AppCompatActivity {
         imagen_tree_button = findViewById(R.id.image_tree_button);
         button_see_options = findViewById(R.id.button_options);
         button_log_out = findViewById(R.id.button_log_out);
+        button_edit_tree = findViewById(R.id.button_edit_tree);
 
         button_home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,10 +93,6 @@ public class AdoptTreeActivity extends AppCompatActivity {
         imagen_tree_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*view_home.setVisibility(View.GONE);
-                view_tree.setVisibility(View.VISIBLE);
-                view_options.setVisibility(View.GONE);*/
-
                 Intent seeTree = new Intent(getApplicationContext(),SeeTreeActivity.class);
                 startActivity(seeTree);
             }
@@ -109,15 +110,23 @@ public class AdoptTreeActivity extends AppCompatActivity {
         button_log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logOut("https://calm-fjord-08371.herokuapp.com/api/logout");
+                logOut(url + "/logout");
+            }
+        });
+
+        button_edit_tree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent edit_Tree = new Intent( AdoptTreeActivity.this, Edit_Tree_Activity.class);
+                startActivity(edit_Tree);
             }
         });
     }
 
-    private void getUser(String url){
+    private void getUser(){
         request = Volley.newRequestQueue(this);
 
-        JOR = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.GET, url + "/users/" + user_id, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
             }
@@ -151,6 +160,7 @@ public class AdoptTreeActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 deletePreferences();
+                Toast.makeText(AdoptTreeActivity.this,response+"",Toast.LENGTH_LONG).show();
                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(login);
                 finish();
@@ -161,7 +171,7 @@ public class AdoptTreeActivity extends AppCompatActivity {
                 NetworkResponse networkResponse = error.networkResponse;
                 if (networkResponse != null && networkResponse.data != null) {
                     String jsonError = new String(networkResponse.data);
-                    Toast.makeText(AdoptTreeActivity.this,"Error: "+jsonError,Toast.LENGTH_LONG).show();
+                    Toast.makeText(AdoptTreeActivity.this,"Erroraso: "+jsonError,Toast.LENGTH_LONG).show();
                     Log.i("ErrorVolley",jsonError);
                 }
             }
@@ -187,11 +197,11 @@ public class AdoptTreeActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    private void getUsersTrees(String url){
+    private void getUsersTrees(){
 
         request = Volley.newRequestQueue(this);
 
-        JOR = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.GET, url + "/tree_users/" + user_id, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {

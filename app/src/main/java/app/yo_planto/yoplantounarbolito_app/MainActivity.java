@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     RequestQueue request;
     JsonObjectRequest JOR;
+    Variables variables = new Variables();
+    String url;
+
     String token;
     SharedPreferences preference;
 
@@ -37,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        url = variables.getUrl();
         if(validaPermisos()){
-            authenticated("https://calm-fjord-08371.herokuapp.com/api/islogin");
+            authenticated();
         }
     }
 
@@ -77,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         dialogo.show();
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -85,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             if(grantResults.length==3 && grantResults[0]==PackageManager.PERMISSION_GRANTED
                     && grantResults[1]==PackageManager.PERMISSION_GRANTED
                     && grantResults[2]==PackageManager.PERMISSION_GRANTED){
-                authenticated("https://calm-fjord-08371.herokuapp.com/api/islogin");
+                authenticated();
             }else{
                 solicitarPermisosManual();
             }
@@ -113,10 +117,10 @@ public class MainActivity extends AppCompatActivity {
         });
         alertOpciones.show();
     }
-    private void authenticated(String url){
+    private void authenticated(){
         request = Volley.newRequestQueue(this);
 
-        JOR = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.GET, url + "/islogin", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Intent registerUser = new Intent(getApplicationContext(), AdoptTreeActivity.class);

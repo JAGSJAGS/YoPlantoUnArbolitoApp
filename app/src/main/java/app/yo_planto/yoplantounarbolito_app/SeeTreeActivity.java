@@ -3,8 +3,6 @@ package app.yo_planto.yoplantounarbolito_app;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,7 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import app.yo_planto.yoplantounarbolito_app.validations.Validations;
+import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
+import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -40,6 +39,8 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
     String titleTree = "Tines que adoptar un arbolito", lat_tree = "0.0", ln_tree = "0.0", name_tree, avatar = "avatar", photo, state;
 
     ImageView see_tree_imagen_avatar, see_tree_photo_trees;
+    Variables variables = new Variables();
+    String url;
 
     //mostrar user
     SharedPreferences preference;
@@ -62,6 +63,7 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.yoplantounarbolito_app.R.layout.activity_see_tree);
+        url = variables.getUrl();
 
         preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         token = preference.getString("token", "");
@@ -74,18 +76,18 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
         load_bar = findViewById(R.id.progressBar3);
         load_text = findViewById(R.id.msg_load_3);
 
-        getUsersTrees("https://calm-fjord-08371.herokuapp.com/api/tree_users/" + user_id);
+        getUsersTrees();
 
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map3);
 
     }
 
-    private void getUsersTrees(String url) {
+    private void getUsersTrees() {
 
         request = Volley.newRequestQueue(this);
 
-        JOR = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.GET, url +"/tree_users/" + user_id, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {

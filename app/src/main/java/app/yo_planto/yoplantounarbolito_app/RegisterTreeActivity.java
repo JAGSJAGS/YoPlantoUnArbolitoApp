@@ -3,10 +3,12 @@ package app.yo_planto.yoplantounarbolito_app;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.preference.Preference;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,11 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
+import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yoplantounarbolito_app.R;
-import app.yo_planto.yoplantounarbolito_app.validations.Validations;
+import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -35,6 +38,8 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     EditText name;
     String avatar = "avatar1";
     Validations validations = new Validations();
+    Variables variables = new Variables();
+    String url;
     TextView errors;
     RequestQueue request;
     JsonObjectRequest JOR;
@@ -44,12 +49,14 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     double lat = 0.0;
     double lng = 0.0;
 
-    Bundle sendData = null;
+    //Bundle sendData = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_tree);
+
+        url = variables.getUrl();
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map1);
         mapFragment.getMapAsync(this);
@@ -57,10 +64,10 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         name = findViewById(R.id.editTextNameRegisterTree);
         errors = findViewById(R.id.textViewErrorsRegisterThree);
         errors.setVisibility(View.GONE);
-        sendData = new Bundle();
+        //sendData = new Bundle();
     }
 
-    private void registerTree(String url){
+    private void registerTree(){
         request = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap<>();
@@ -72,13 +79,14 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         params.put("state", "take care");
         JSONObject parameters = new JSONObject(params);
 
-        JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.POST, url + "/trees", parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     String id = response.getString("id");
-                    sendData.putString("tree_id",id);
-                    registerTreeUser("https://calm-fjord-08371.herokuapp.com/api/tree_users", id);
+                    //sendData.putString("tree_id",id);
+                    savePreferencesTree(id);
+                    registerTreeUser(id);
                 } catch (JSONException e) {
                     Toast.makeText(RegisterTreeActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
                 }
@@ -89,6 +97,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
                 NetworkResponse networkResponse = error.networkResponse;
                 String jsonError = new String(networkResponse.data);
                 validations.validateDatas(jsonError,errors);
+                Toast.makeText(RegisterTreeActivity.this,"errores"+ jsonError,Toast.LENGTH_LONG).show();
             }
         }){
             @Override
@@ -102,9 +111,9 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         request.add(JOR);
     }
 
-    private void registerTreeUser(String url, String tree_id){
-        Bundle getDate = getIntent().getExtras();
-        String id = getDate.getString("user_id");
+    private void registerTreeUser( String tree_id){
+        SharedPreferences preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
+        String id = preference.getString("user_id","");
 
         request = Volley.newRequestQueue(this);
 
@@ -113,11 +122,12 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         params.put("tree_id", tree_id);
         JSONObject parameters = new JSONObject(params);
 
-        JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.POST, url + "/tree_users", parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Toast.makeText(RegisterTreeActivity.this,"pasa",Toast.LENGTH_LONG).show();
                 Intent photoActivity = new Intent(getApplicationContext(),RegisterPhotoActivity.class);
-                photoActivity.putExtras(sendData);
+                //photoActivity.putExtras(sendData);
                 startActivity(photoActivity);
             }
         }, new Response.ErrorListener() {
@@ -142,7 +152,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     public void OnclickRegisterTree(View view) {
         errors.setVisibility(View.GONE);
         Toast.makeText(RegisterTreeActivity.this,"Registrando",Toast.LENGTH_LONG).show();
-        registerTree("https://calm-fjord-08371.herokuapp.com/api/trees");
+        registerTree();
     }
 
     //MAP LOGIC
@@ -195,5 +205,12 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     public void OnclickSelectAvatar2(View view) {
         avatar = "avatar2";
         Toast.makeText(RegisterTreeActivity.this,avatar+" Seleccionado",Toast.LENGTH_SHORT).show();
+    }
+
+    private void savePreferencesTree(String tree_id){
+        SharedPreferences preferences= getSharedPreferences("preferenceTree", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("tree_id",tree_id);
+        editor.commit();
     }
 }

@@ -9,7 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import app.yo_planto.yoplantounarbolito_app.validations.Validations;
+import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
+import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -22,6 +23,8 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {//implements Response.Listener<JSONObject>,Response.ErrorListener {
 
+    Variables variables = new Variables();
+    String url;
     EditText email, password;
     RequestQueue request;
     JsonObjectRequest JOR;
@@ -32,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.yoplantounarbolito_app.R.layout.activity_login);
+        url = variables.getUrl();
         email = findViewById(com.example.yoplantounarbolito_app.R.id.editTextEmailLogin);
         password = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPasswordLogin);
         errors = findViewById(R.id.textViewErrorsLogin);
@@ -40,19 +44,20 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
 
     public void OnclickLogin(View view) {
         errors.setVisibility(View.GONE);
-        loginUser("https://calm-fjord-08371.herokuapp.com/api/login");
+        loginUser();
     }
 
-    private void loginUser(String url){
+    private void loginUser(){
         request = Volley.newRequestQueue(this);
         Map<String, String> params = new HashMap<>();
         params.put("email", email.getText().toString());
         params.put("password", password.getText().toString());
         JSONObject parameters = new JSONObject(params);
 
-        JOR = new JsonObjectRequest(Request.Method.POST, url, parameters,new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.POST, url + "/login", parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Toast.makeText(LoginActivity.this,"id en login:" + response,Toast.LENGTH_LONG).show();
                 try {
                     String token = response.getString("access_token");
                     String user_id = response.getString("user_id");
@@ -62,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
                     startActivity(adoptTreeActivity);
                     finish();
                 } catch (JSONException e) {
-                    Toast.makeText(LoginActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this,"Se produjo un errorsss",Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
