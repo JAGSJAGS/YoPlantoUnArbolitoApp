@@ -23,6 +23,18 @@
             android:usesCleartextTraffic="true"
             tools:targetApi="31">
         <activity
+                android:name="app.yo_planto.yoplantounarbolito_app.UserProfileActivity"
+                android:exported="false"/>
+        <activity
+                android:name="app.yo_planto.yoplantounarbolito_app.GamesActivity"
+                android:exported="false"/>
+        <activity
+                android:name="app.yo_planto.yoplantounarbolito_app.RankingActivity"
+                android:exported="false"/>
+        <activity
+                android:name="app.yo_planto.yoplantounarbolito_app.OrphanageActivity"
+                android:exported="false"/>
+        <activity
                 android:name="app.yo_planto.yoplantounarbolito_app.HomeActivity"
                 android:exported="false"/>
         <activity

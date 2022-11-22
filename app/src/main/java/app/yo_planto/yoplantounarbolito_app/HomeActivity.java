@@ -4,11 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import android.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
@@ -32,7 +30,8 @@ public class HomeActivity extends AppCompatActivity {
     String token;
     String user_id;
 
-    Button button_log_out;
+    //buttons
+    Button button_log_out, button_your_tree, button_orphanage, button_ranking, button_games, button_profile, button_register_tree ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +42,68 @@ public class HomeActivity extends AppCompatActivity {
         user_id = preference.getString("user_id","");
         url  = variables.getUrl();
 
-        button_log_out = findViewById(R.id.button_log_out);
+        //buttons
+        button_your_tree = findViewById(R.id.button_home_your_tree);
+        button_orphanage = findViewById(R.id.button_home_orphanage);
+        button_ranking = findViewById(R.id.button_home_ranking);
+        button_games = findViewById(R.id.button_home_games);
+        button_profile = findViewById(R.id.button_home_profile);
+        button_register_tree = findViewById(R.id.button_home_register_tree);
+        //button_log_out = findViewById(R.id.button_log_out);
 
-        button_log_out.setOnClickListener(new View.OnClickListener() {
+        button_your_tree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                logOut(url + "/logout");
+                if( ifHaveTree() ){
+                    Intent seeTree = new Intent(getApplicationContext(), SeeTreeActivity.class);
+                    startActivity(seeTree);
+                }
+                else{
+                    Intent registerTree = new Intent(getApplicationContext(), RegisterTreeActivity.class);
+                    startActivity(registerTree);
+                }
+            }
+        });
+        button_orphanage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent orphanageTree = new Intent(getApplicationContext(), OrphanageActivity.class);
+                startActivity(orphanageTree);
+            }
+        });
+
+        button_ranking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent rankingUser = new Intent(getApplicationContext(), RankingActivity.class);
+                startActivity(rankingUser);
+            }
+        });
+        button_games.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent gamesTree = new Intent(getApplicationContext(), GamesActivity.class);
+                startActivity(gamesTree);
+            }
+        });
+        button_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent profileUser = new Intent(getApplicationContext(), UserProfileActivity.class);
+                startActivity(profileUser);
+            }
+        });
+        button_register_tree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent registerTree = new Intent(getApplicationContext(), RegisterTreeActivity.class);
+                startActivity(registerTree);
             }
         });
     }
 
+
+    //cerrar sesion
     private void logOut(String url){
         request = Volley.newRequestQueue(this);
 
@@ -89,7 +140,6 @@ public class HomeActivity extends AppCompatActivity {
         };
         request.add(JOR);
     }
-
     private void deletePreferences(){
         SharedPreferences preferences= getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -97,8 +147,9 @@ public class HomeActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    public void OnclickLogOut(){
-            logOut(url + "/logout");
+    //si tiene un arbol registrado
+    private boolean ifHaveTree(){
+        return true;
     }
 
 }

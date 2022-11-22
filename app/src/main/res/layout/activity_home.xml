@@ -32,6 +32,56 @@ android:layout_height="wrap_content">
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
                         <com.google.android.material.button.MaterialButton
+                                android:text="Tu arbol"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/button_home_your_tree"
+                                android:layout_marginBottom="8dp"
+                                app:backgroundTint="@null"
+                                android:background="@drawable/button_1"/>
+                        <com.google.android.material.button.MaterialButton
+                                android:text="Orfanato"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/button_home_orphanage"
+                                android:layout_marginBottom="8dp"
+                                app:backgroundTint="@null"
+                                android:background="@drawable/button_1"/>
+                        <com.google.android.material.button.MaterialButton
+                                android:text="Ranking"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/button_home_ranking"
+                                android:layout_marginBottom="8dp"
+                                app:backgroundTint="@null"
+                                android:background="@drawable/button_1"/>
+                        <com.google.android.material.button.MaterialButton
+                                android:text="games"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/button_home_games"
+                                android:layout_marginBottom="8dp"
+                                app:backgroundTint="@null"
+                                android:background="@drawable/button_1"/>
+                        <com.google.android.material.button.MaterialButton
+                                android:text="Perfil"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/button_home_profile"
+                                android:layout_marginBottom="8dp"
+                                app:backgroundTint="@null"
+                                android:background="@drawable/button_1"/>
+                        <com.google.android.material.button.MaterialButton
+                                android:text="Registrar Arbol"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/button_home_register_tree"
+                                android:layout_marginBottom="8dp"
+                                app:backgroundTint="@null"
+                                android:background="@drawable/button_1"/>
+
+                </LinearLayout>
+
+
+                <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <com.google.android.material.button.MaterialButton
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" android:id="@+id/button_log_out"
                                 android:textColor="#FFFFFF"/>
@@ -43,71 +93,6 @@ android:layout_height="wrap_content">
                                 android:textAppearance="?attr/textAppearanceHeadline6"
                                 android:layout_marginTop="32dp" android:layout_marginBottom="16dp"
                                 android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
-                        <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/card_tree"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp" app:cardElevation="20dp">
-
-                                <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <!-- Media -->
-
-                                        <LinearLayout
-                                                android:layout_width="match_parent"
-                                                android:layout_height="wrap_content"
-                                                android:orientation="vertical"
-                                                android:padding="16dp">
-
-                                                <!-- Title, secondary and supporting text -->
-                                                <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginTop="8dp"
-                                                        android:text="Nombre"
-                                                />
-                                                <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:text="Daniela Gutierrez"
-                                                        android:textAppearance="?attr/textAppearanceHeadline6"
-                                                />
-                                                <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginTop="8dp"
-                                                        android:text="Puntaje:"
-                                                />
-                                                <TextView
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:text="150 Pts"
-                                                        android:textAppearance="?attr/textAppearanceHeadline6"
-                                                />
-
-                                        </LinearLayout>
-
-                                        <!-- Buttons -->
-                                        <LinearLayout
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:layout_margin="8dp"
-                                                android:orientation="horizontal">
-                                                <com.google.android.material.button.MaterialButton
-                                                        android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"
-                                                        android:layout_marginEnd="8dp"
-                                                        android:text="Ver Perfil"
-                                                        style="?attr/borderlessButtonStyle"
-                                                />
-                                        </LinearLayout>
-
-                                </LinearLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
 
                         <TextView
                                 android:layout_width="wrap_content"
@@ -137,7 +122,7 @@ android:layout_height="wrap_content">
                                                         android:orientation="vertical"
                                                         android:padding="16dp">
 
-                                                        <!-- Title, secondary and supporting text -->
+                                                        &lt;!&ndash; Title, secondary and supporting text &ndash;&gt;
                                                         <TextView
                                                                 android:layout_width="wrap_content"
                                                                 android:layout_height="wrap_content"
@@ -154,10 +139,10 @@ android:layout_height="wrap_content">
                                                 </LinearLayout>
                                         </LinearLayout>
 
-                                        <!-- Media -->
+                                        &lt;!&ndash; Media &ndash;&gt;
 
 
-                                        <!-- Buttons -->
+                                        &lt;!&ndash; Buttons &ndash;&gt;
                                         <LinearLayout
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
@@ -196,7 +181,7 @@ android:layout_height="wrap_content">
                                                         android:orientation="vertical"
                                                         android:padding="16dp">
 
-                                                        <!-- Title, secondary and supporting text -->
+                                                        &lt;!&ndash; Title, secondary and supporting text &ndash;&gt;
                                                         <TextView
                                                                 android:layout_width="wrap_content"
                                                                 android:layout_height="wrap_content"
@@ -213,10 +198,10 @@ android:layout_height="wrap_content">
                                                 </LinearLayout>
                                         </LinearLayout>
 
-                                        <!-- Media -->
+                                        &lt;!&ndash; Media &ndash;&gt;
 
 
-                                        <!-- Buttons -->
+                                        &lt;!&ndash; Buttons &ndash;&gt;
                                         <LinearLayout
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
@@ -234,7 +219,7 @@ android:layout_height="wrap_content">
                                 </LinearLayout>
 
                         </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
+                </LinearLayout>-->
 
         </androidx.core.widget.NestedScrollView>
 
