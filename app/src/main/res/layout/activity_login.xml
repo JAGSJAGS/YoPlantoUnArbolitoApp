@@ -46,7 +46,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editTextEmailLogin"/>
+                        android:id="@+id/editTextEmailLogin" android:textColorHint="#606060"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/editTextPasswordLogin"
                         android:inputType="textPassword"
-                />
+                        android:textColorHint="#606060"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.button.MaterialButton
                     android:onClick="OnclickLogin"

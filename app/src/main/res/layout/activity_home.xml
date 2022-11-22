@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="app.yo_planto.yoplantounarbolito_app.HomeActivity">
+
+<com.google.android.material.appbar.AppBarLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/home_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/top_app_bar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+        />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- Note: A RecyclerView can also be used -->
+        <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <com.google.android.material.button.MaterialButton
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/button_log_out"
+                                android:textColor="#FFFFFF"/>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Usuario"
+                                android:textAppearance="?attr/textAppearanceHeadline6"
+                                android:layout_marginTop="32dp" android:layout_marginBottom="16dp"
+                                android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+                        <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/card_tree"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp" app:cardElevation="20dp">
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                        <!-- Media -->
+
+                                        <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:padding="16dp">
+
+                                                <!-- Title, secondary and supporting text -->
+                                                <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="8dp"
+                                                        android:text="Nombre"
+                                                />
+                                                <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="Daniela Gutierrez"
+                                                        android:textAppearance="?attr/textAppearanceHeadline6"
+                                                />
+                                                <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginTop="8dp"
+                                                        android:text="Puntaje:"
+                                                />
+                                                <TextView
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:text="150 Pts"
+                                                        android:textAppearance="?attr/textAppearanceHeadline6"
+                                                />
+
+                                        </LinearLayout>
+
+                                        <!-- Buttons -->
+                                        <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_margin="8dp"
+                                                android:orientation="horizontal">
+                                                <com.google.android.material.button.MaterialButton
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginEnd="8dp"
+                                                        android:text="Ver Perfil"
+                                                        style="?attr/borderlessButtonStyle"
+                                                />
+                                        </LinearLayout>
+
+                                </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Arbolitos"
+                                android:textAppearance="?attr/textAppearanceHeadline6"
+                                android:layout_marginTop="32dp" android:layout_marginBottom="16dp"
+                                android:layout_marginLeft="16dp" android:layout_marginRight="16dp"/>
+                        <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/card_user2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                app:strokeColor="@color/orange_secondary" app:cardElevation="20dp">
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+
+                                                <LinearLayout
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:padding="16dp">
+
+                                                        <!-- Title, secondary and supporting text -->
+                                                        <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="8dp"
+                                                                android:text="Nombre"
+                                                        />
+                                                        <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="Arbolito numero1"
+                                                                android:textAppearance="?attr/textAppearanceHeadline6"
+                                                        />
+
+                                                </LinearLayout>
+                                        </LinearLayout>
+
+                                        <!-- Media -->
+
+
+                                        <!-- Buttons -->
+                                        <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_margin="8dp"
+                                                android:orientation="horizontal">
+                                                <com.google.android.material.button.MaterialButton
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginEnd="8dp"
+                                                        android:text="Ver Arbolito"
+                                                        style="?attr/borderlessButtonStyle"
+                                                />
+                                        </LinearLayout>
+
+                                </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+                        <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/card_user3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                app:strokeColor="@color/orange_secondary" app:cardElevation="20dp">
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+                                        <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="horizontal">
+
+                                                <LinearLayout
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:orientation="vertical"
+                                                        android:padding="16dp">
+
+                                                        <!-- Title, secondary and supporting text -->
+                                                        <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:layout_marginTop="8dp"
+                                                                android:text="Nombre"
+                                                        />
+                                                        <TextView
+                                                                android:layout_width="wrap_content"
+                                                                android:layout_height="wrap_content"
+                                                                android:text="Arbolito numero1"
+                                                                android:textAppearance="?attr/textAppearanceHeadline6"
+                                                        />
+
+                                                </LinearLayout>
+                                        </LinearLayout>
+
+                                        <!-- Media -->
+
+
+                                        <!-- Buttons -->
+                                        <LinearLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_margin="8dp"
+                                                android:orientation="horizontal">
+                                                <com.google.android.material.button.MaterialButton
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_marginEnd="8dp"
+                                                        android:text="Ver Arbolito"
+                                                        style="?attr/borderlessButtonStyle"
+                                                />
+                                        </LinearLayout>
+
+                                </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

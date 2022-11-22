@@ -24,7 +24,7 @@
                     android:textSize="24sp" app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="50dp"
                     app:layout_constraintEnd_toEndOf="parent" style="@style/title_1"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center" android:textColor="#009688"/>
             <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"

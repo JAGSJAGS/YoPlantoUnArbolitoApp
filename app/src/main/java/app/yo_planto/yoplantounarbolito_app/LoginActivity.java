@@ -63,9 +63,9 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
                     String user_id = response.getString("user_id");
                     Toast.makeText(LoginActivity.this,"id en login:" + user_id,Toast.LENGTH_LONG).show();
                     savePreferences(token, user_id);
-                    Intent adoptTreeActivity = new Intent(getApplicationContext(),AdoptTreeActivity.class);
-                    startActivity(adoptTreeActivity);
-                    finish();
+                    Intent homeTreeActivity = new Intent(getApplicationContext(),HomeActivity.class);
+                    startActivity(homeTreeActivity);
+                    finishAffinity();
                 } catch (JSONException e) {
                     Toast.makeText(LoginActivity.this,"Se produjo un errorsss",Toast.LENGTH_LONG).show();
                 }

@@ -38,7 +38,8 @@
         <entry key="app/src/main/res/drawable/login_edit_text_border.xml" value="0.1595" />
         <entry key="app/src/main/res/layout/activity_adopt_tree.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_edit_tree.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_register_photo.xml" value="0.22" />
@@ -50,6 +51,7 @@
         <entry key="app/src/main/res/layout/fragment_option.xml" value="0.128739800543971" />
         <entry key="app/src/main/res/layout/fragment_see_tree.xml" value="0.12441214194100043" />
         <entry key="app/src/main/res/layout/fragment_tree.xml" value="0.128739800543971" />
+        <entry key="app/src/main/res/menu/top_app_bar.xml" value="0.33" />
       </map>
     </option>
   </component>

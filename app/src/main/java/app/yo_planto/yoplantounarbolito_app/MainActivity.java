@@ -123,8 +123,8 @@ public class MainActivity extends AppCompatActivity {
         JOR = new JsonObjectRequest(Request.Method.GET, url + "/islogin", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Intent registerUser = new Intent(getApplicationContext(), AdoptTreeActivity.class);
-                startActivity(registerUser);
+                Intent homeActivity = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(homeActivity);
                 finish();
             }
         }, new Response.ErrorListener() {
