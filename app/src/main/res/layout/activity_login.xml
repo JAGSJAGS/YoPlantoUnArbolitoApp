@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         tools:context="app.yo_planto.yoplantounarbolito_app.LoginActivity"
         android:orientation="vertical"
-        android:layout_gravity="center_vertical" android:background="@drawable/backgroun_black_ligth_two">
+        android:layout_gravity="center_vertical">
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,77 +16,81 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical" android:paddingLeft="24dp" android:paddingEnd="24dp"
+        >
             <ImageView
-                    android:layout_width="161dp"
-                    android:layout_height="157dp" app:srcCompat="@mipmap/yo_planto_un_arbolito"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp" app:srcCompat="@mipmap/logo"
                     android:id="@+id/imageView2"
                     android:layout_gravity="center"
-                    android:layout_marginTop="100dp"/>
+                    android:layout_marginTop="80dp" android:layout_marginBottom="32dp"/>
             <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/textViewErrorsLogin"
                     app:layout_constraintTop_toBottomOf="@+id/imageView2" app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp" android:textColor="#F44336" android:layout_marginTop="32dp"
-                    style="@style/text_3"/>
-            <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:ems="10"
-                    android:text="daniela@gmail.com"
-                    android:id="@+id/editTextEmailLogin"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.482"
-                    app:layout_constraintTop_toBottomOf="@+id/textViewErrorsLogin"
-                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/be_vietnam" android:textColorHighlight="#3F51B5"
-                    android:textColorHint="#3F51B5"
-                    android:textColorLink="#FFFFFF" android:background="@drawable/edit_text_1"
-                    android:textCursorDrawable="@drawable/cursor" style="@style/text_1"/>
-            <EditText
+                    android:textColor="#F44336"
+                    style="@style/text_3"/>
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
-                    android:text="password"
-                    android:ems="10"
-                    android:id="@+id/editTextPasswordLogin"
-                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintHorizontal_bias="0.482"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextEmailLogin" android:layout_marginTop="8dp"
-                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-                    android:background="@drawable/edit_text_1" android:textCursorDrawable="@drawable/cursor"
-                    style="@style/text_1"/>
-            <Button
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    android:hint="Ingrese nombre"
+                    app:counterEnabled="true"
+                    app:boxBackgroundColor="@color/white"
+                    app:counterMaxLength="50">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextEmailLogin"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textField2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    android:hint="Ingrese contraseña"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:boxBackgroundColor="@color/white"
+                    app:endIconMode="password_toggle">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextPasswordLogin"
+                        android:inputType="textPassword"
+                />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton
                     android:onClick="OnclickLogin"
                     android:text="Iniciar sesión"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/buttonLogin"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:includeFontPadding="false"
-                    android:background="@drawable/button_1" android:textCursorDrawable="@drawable/cursor"
-                    style="@style/text_2" android:layout_gravity="center"/>
+                    android:background="@drawable/button_1"
+                    app:backgroundTint="@null"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_marginStart="8dp" android:layout_marginEnd="8dp"
-            >
-                <Button
+                    android:layout_height="match_parent" android:layout_marginStart="8dp" android:layout_marginEnd="8dp">
+                <com.google.android.material.button.MaterialButton
                         android:onClick="OnclickGoToRegisterActivity"
                         android:text="Registrarse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/buttonRegisterActivity"
                         app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginBottom="8dp" style="@style/Widget.AppCompat.Button.Borderless"
-                        android:fontFamily="@font/be_vietnam" android:textColor="#FFFFFF"
-                        android:textAllCaps="false"/>
+                        android:layout_marginBottom="8dp"
+                        app:backgroundTint="@null"
+                        android:background="@drawable/button_1"/>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>

@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.YoPlantoUnArbolito_App" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.YoPlantoUnArbolito_App" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/orange_primary</item>
+        <item name="colorPrimaryVariant">#020305</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -12,13 +12,13 @@
          <!--Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
          <!--Customize your theme here.-->
-        <item name="android:textViewStyle">@style/textView</item>
+        <!--<item name="android:textViewStyle">@style/textView</item>-->
     </style>
 
-    <style name="textView" parent="Theme.AppCompat.Light.NoActionBar">
+   <!-- <style name="textView" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:textColor">#2C752F</item>
         <item name="android:textSize">16dp</item>
         <item name="android:fontFamily">@font/be_vietnam</item>
-    </style>
+    </style>-->
 
 </resources>

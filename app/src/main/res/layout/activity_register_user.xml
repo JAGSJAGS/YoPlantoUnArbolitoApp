@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="app.yo_planto.yoplantounarbolito_app.RegisterUserActivity"
-        android:background="@drawable/backgroun_black_ligth_two">
+>
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -16,7 +16,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/backgroun_black_ligth"
                 android:layout_margin="16dp">
             <TextView
                     android:text="Registrate"
@@ -32,46 +31,103 @@
                     android:layout_height="wrap_content" android:id="@+id/textError"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="16dp"
-                    android:textColor="#F44336" android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp" style="@style/text_3"/>
-            <EditText
+                    android:textColor="#F44336"
+                    style="@style/text_3"/>
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    android:hint="Ingrese nombre de usuario"
+                    app:counterEnabled="true"
+                    app:boxBackgroundColor="@color/white"
+                    app:counterMaxLength="50">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextNameRegisterUser"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <!--<EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
                     android:text="neverita"
                     android:ems="10"
-                    android:id="@+id/editTextNameRegisterUser"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
-                    android:background="@drawable/edit_text_1" app:layout_constraintTop_toBottomOf="@+id/textError"
-                    android:layout_marginTop="16dp" style="@style/text_1"/>
-            <EditText
+                    app:layout_constraintTop_toBottomOf="@+id/textError"
+                    android:layout_marginTop="16dp" style="@style/text_1"/>-->
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    android:hint="Ingrese correo electrónico"
+                    app:counterEnabled="true"
+                    app:boxBackgroundColor="@color/white"
+                    app:counterMaxLength="50">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextEmailRegisterUser"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <!--<EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:text="neverita@gmail.com"
                     android:ems="10"
-                    android:id="@+id/editTextEmailRegisterUser"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.497"
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/editTextNameRegisterUser" android:layout_marginTop="8dp"
-                    android:background="@drawable/edit_text_1" style="@style/text_1"/>
-            <EditText
+                    android:background="@drawable/edit_text_1" style="@style/text_1"/>-->
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    android:hint="Ingrese numero de teléfono"
+                    app:counterEnabled="true"
+                    app:boxBackgroundColor="@color/white"
+                    app:counterMaxLength="50">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextPhoneRegisterUser"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <!--<EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
                     android:text="78946546"
                     android:ems="10"
-                    android:id="@+id/editTextPhoneRegisterUser"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/editTextEmailRegisterUser" android:layout_marginTop="8dp"
-                    android:background="@drawable/edit_text_1" style="@style/text_1"/>
-            <EditText
+                    android:background="@drawable/edit_text_1" style="@style/text_1"/>-->
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    android:hint="Ingrese contraseña"
+                    app:counterEnabled="true"
+                    app:boxBackgroundColor="@color/white"
+                    app:counterMaxLength="50">
+            <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editTextPasswordRegisterUser"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <!--<EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -82,8 +138,23 @@
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="8dp"
                     app:layout_constraintTop_toBottomOf="@+id/editTextPhoneRegisterUser"
-                    android:background="@drawable/edit_text_1" style="@style/text_1"/>
-            <EditText
+                    android:background="@drawable/edit_text_1" style="@style/text_1"/>-->
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    android:hint="Confirme la contraseña"
+                    app:counterEnabled="true"
+                    app:boxBackgroundColor="@color/white"
+                    app:counterMaxLength="50">
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editTextConfirmationPasswordRegisterUser"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <!--<EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
@@ -95,19 +166,19 @@
                     android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/editTextPasswordRegisterUser"
                     android:layout_marginTop="8dp"
-                    android:background="@drawable/edit_text_1" style="@style/text_1"/>
-            <Button
+                    android:background="@drawable/edit_text_1" style="@style/text_1"/>-->
+            <com.google.android.material.button.MaterialButton
                     android:text="Registrar"
                     android:onClick="OnclickRegister"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" android:id="@+id/buttonRegisterUser"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.0"
-                    android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
                     app:layout_constraintTop_toBottomOf="@+id/editTextConfirmationPasswordRegisterUser"
-                    android:layout_marginTop="16dp" android:background="@drawable/button_1" style="@style/text_2"
-                    android:layout_marginBottom="50dp" android:elevation="10dp"
-                    android:layout_gravity="center"/>
+                    android:background="@drawable/button_1"
+                    android:elevation="10dp"
+                    android:layout_gravity="center"
+                    app:backgroundTint="@null"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

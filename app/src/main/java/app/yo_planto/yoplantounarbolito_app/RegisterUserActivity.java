@@ -114,9 +114,10 @@ public class RegisterUserActivity extends AppCompatActivity {
                     String token = response.getString("access_token");
                     String user_id = response.getString("user_id");
                     savePreferences(token, user_id);
-                    Intent registerTreeActivity = new Intent(getApplicationContext(),RegisterTreeActivity.class);
+                    finishAffinity ();
+                    Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
                     //registerTreeActivity.putExtras(sendData);
-                    startActivity(registerTreeActivity);
+                    startActivity(mainActivity);
                 } catch (JSONException e) {
                     Toast.makeText(RegisterUserActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
                 }
@@ -127,7 +128,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                 NetworkResponse networkResponse = error.networkResponse;
                 String jsonError = new String(networkResponse.data);
                 validations.validateDatas(jsonError,errors);
-                Toast.makeText(RegisterUserActivity.this,"son errores"+jsonError,Toast.LENGTH_LONG).show();
+                //Toast.makeText(RegisterUserActivity.this,"son errores"+jsonError,Toast.LENGTH_LONG).show();
             }
         }){
             @Override
