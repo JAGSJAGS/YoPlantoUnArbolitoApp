@@ -25,7 +25,7 @@ public class Preferences {
         editor.commit();
     }
 
-    public void deletePreferences(String tree_id){
+    public void deletePreferences(){
         SharedPreferences preferences= context.getSharedPreferences("preferenceLogin", context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("token","");

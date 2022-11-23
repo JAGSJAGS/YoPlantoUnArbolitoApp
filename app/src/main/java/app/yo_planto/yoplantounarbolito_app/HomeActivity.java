@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import app.yo_planto.yoplantounarbolito_app.classes.User;
 import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.UserDatabase;
+import app.yo_planto.yoplantounarbolito_app.java_class.Preferences;
 import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
 import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
@@ -37,9 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     String url;
 
     //preferencias
-    SharedPreferences preference;
-    String token;
-    String user_id;
+    Preferences preferences;
 
     //buttons
     Button button_log_out, button_your_tree, button_orphanage, button_ranking, button_games, button_profile, button_register_tree ;
@@ -54,9 +53,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         user = new User();
         user_database = new UserDatabase();
-        preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
-        token = preference.getString("token","");
-        user_id = preference.getString("user_id","");
+        //preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
+        preferences = new Preferences(HomeActivity.this);
         url  = variables.getUrl();
 
         //metodos
@@ -139,7 +137,7 @@ public class HomeActivity extends AppCompatActivity {
         JOR = new JsonObjectRequest(Request.Method.POST, url + "/logout", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                deletePreferences();
+                preferences.deletePreferences();
                 Toast.makeText(HomeActivity.this,response+"",Toast.LENGTH_LONG).show();
                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(login);
@@ -158,28 +156,13 @@ public class HomeActivity extends AppCompatActivity {
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
-                token = preference.getString("token","");
                 Map<String, String> headers = new HashMap<>();
-                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
                 headers.put("Accept", "application/vnd.api+json");
-                headers.put("Authorization", "Bearer " + token);
+                headers.put("Authorization", "Bearer " + preferences.getToken());
                 return headers;
             }
         };
         request.add(JOR);
-    }
-    private void deletePreferences(){
-        SharedPreferences preferences= getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("token","");
-        editor.putString("user_id","");
-        editor.commit();
-
-        SharedPreferences preferencesTree= getSharedPreferences("preferenceTree", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editorTree = preferencesTree.edit();
-        editor.putString("tree_id","");
-        editorTree.commit();
     }
 
     //si tiene un arbol registrado
@@ -188,7 +171,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
    //cargar usuario
-
     private void showUser() {
         String message = "\n" + user.getName() + "\n" + "\n" + user.getEmail() + "\n" + "\n" + user.getPhone() + "\n";
         new MaterialAlertDialogBuilder(this)
@@ -212,7 +194,7 @@ public class HomeActivity extends AppCompatActivity {
 
         request = Volley.newRequestQueue(this);
 
-        JOR = new JsonObjectRequest(Request.Method.GET, url +"/users/" + user_id, null, new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.GET, url +"/users/" + preferences.getUserId(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -234,14 +216,12 @@ public class HomeActivity extends AppCompatActivity {
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                token = preference.getString("token", "");
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Accept", "application/vnd.api+json");
-                headers.put("Authorization", "Bearer " + token);
+                headers.put("Authorization", "Bearer " + preferences.getToken());
                 return headers;
             }
         };
         request.add(JOR);
     }
-
 }
