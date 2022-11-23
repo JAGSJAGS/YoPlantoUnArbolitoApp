@@ -1,8 +1,6 @@
 package app.yo_planto.yoplantounarbolito_app;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import app.yo_planto.yoplantounarbolito_app.classes.User;
 import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.UserDatabase;
+import app.yo_planto.yoplantounarbolito_app.java_class.Preferences;
 import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -41,6 +40,9 @@ public class RegisterUserActivity extends AppCompatActivity {
     User user;
     UserDatabase user_database;
 
+    //preferencias
+    Preferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         url = variables.getUrl();
         user = new User();
         user_database = new UserDatabase();
+        preferences = new Preferences(RegisterUserActivity.this);
 
         name = findViewById(com.example.yoplantounarbolito_app.R.id.editTextNameRegisterUser);
         email = findViewById(com.example.yoplantounarbolito_app.R.id.editTextEmailRegisterUser);
@@ -115,7 +118,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                 try {
                     String token = response.getString("access_token");
                     String user_id = response.getString("user_id");
-                    savePreferences(token, user_id);
+                    preferences.savePreferencesUser(token, user_id);
                     finishAffinity ();
                     Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(mainActivity);
@@ -141,13 +144,5 @@ public class RegisterUserActivity extends AppCompatActivity {
             }
         };
         request.add(JOR);
-    }
-
-    private void savePreferences(String token, String user_id){
-        SharedPreferences preferences= getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("token",token);
-        editor.putString("user_id", user_id);
-        editor.commit();
     }
 }

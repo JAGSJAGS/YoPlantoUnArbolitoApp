@@ -94,8 +94,8 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
                 try {
                     tree.setAvatar(response.getString(tree_database.getAvatar()));
                     tree.setName(response.getString(tree_database.getAvatar()));
-                    tree.setLat(response.getString(tree_database.getLat()));
-                    tree.setLng(response.getString(tree_database.getLng()));
+                    tree.setLat(Double.parseDouble(response.getString(tree_database.getLat())));
+                    tree.setLng(Double.parseDouble(response.getString(tree_database.getLng())));
                     tree.setPath_photo(response.getString(tree_database.getPath_photo()));
                     tree.setState(response.getString(tree_database.getState()));
                     text_view_name_tree.setText("Nombre Arbol");
@@ -146,10 +146,8 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
     //Map
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        double lat = Double.parseDouble(tree.getLat());
-        double lng = Double.parseDouble(tree.getLng());
         mMap = googleMap;
-        LatLng mi_arbolito = new LatLng(lat, lng);
+        LatLng mi_arbolito = new LatLng(tree.getLat(), tree.getLng());
         mMap.addMarker(new MarkerOptions().position(mi_arbolito).title("Mi Arbolito"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom( mi_arbolito,16));
     }

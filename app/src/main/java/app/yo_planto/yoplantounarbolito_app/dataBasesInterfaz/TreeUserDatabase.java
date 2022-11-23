@@ -5,8 +5,8 @@ public class TreeUserDatabase {
     private  String user_id;
 
     public TreeUserDatabase(){
-        tree_id = "0";
-        user_id = "0";
+        tree_id = "tree_id";
+        user_id = "user_id";
     }
 
     public String getTree_id() {

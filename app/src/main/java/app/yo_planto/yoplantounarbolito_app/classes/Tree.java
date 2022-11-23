@@ -4,8 +4,8 @@ public class Tree {
 
     private String id;
     private String name;
-    private String lat;
-    private String lng;
+    private double lat;
+    private double lng;
     private String avatar;
     private String path_photo;
     private String state;
@@ -13,8 +13,8 @@ public class Tree {
     public Tree(){
         id = "id";
         name = "name";
-        lat = "0.0";
-        lng = "0.0";
+        lat = 0.0;
+        lng = 0.0;
         avatar = "avatar1";
         path_photo = "path_photo";
         state = "state";
@@ -36,19 +36,19 @@ public class Tree {
         this.name = name;
     }
 
-    public String getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public void setLat(String lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public String getLng() {
+    public double getLng() {
         return lng;
     }
 
-    public void setLng(String lng) {
+    public void setLng(double lng) {
         this.lng = lng;
     }
 

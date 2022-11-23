@@ -21,6 +21,7 @@ import app.yo_planto.yoplantounarbolito_app.classes.Tree;
 import app.yo_planto.yoplantounarbolito_app.classes.TreeUser;
 import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.TreeDatabase;
 import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.TreeUserDatabase;
+import app.yo_planto.yoplantounarbolito_app.java_class.Preferences;
 import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -41,10 +42,6 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
 
     //Components
     EditText name;
-    TextView errors;
-
-
-    String avatar = "avatar1";
     Validations validations = new Validations();
 
 
@@ -57,13 +54,15 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     //tree
     Tree tree;
     TreeDatabase tree_database;
-    TreeUser treeUser;
+    TreeUser tree_user;
     TreeUserDatabase tree_user_database;
 
+    //Preferencias
+    Preferences preferences;
+
+    //Map
     private GoogleMap mMap;
     private Marker marcador;
-    double lat = 0.0;
-    double lng = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +70,9 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         setContentView(R.layout.activity_register_tree);
         tree = new Tree();
         tree_database = new TreeDatabase();
-        treeUser = new TreeUser();
+        tree_user = new TreeUser();
         tree_user_database = new TreeUserDatabase();
+        preferences = new Preferences(RegisterTreeActivity.this);
 
         url = variables.getUrl();
 
@@ -80,9 +80,6 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         mapFragment.getMapAsync(this);
 
         name = findViewById(R.id.editTextNameRegisterTree);
-        errors = findViewById(R.id.textViewErrorsRegisterThree);
-        errors.setVisibility(View.GONE);
-        //sendData = new Bundle();
     }
 
     private void registerTree(){
@@ -90,8 +87,8 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
 
         Map<String, String> params = new HashMap<>();
         params.put(tree_database.getName(), name.getText().toString());
-        params.put(tree_database.getLat(), tree.getLat());
-        params.put(tree_database.getLng(), tree.getLng());
+        params.put(tree_database.getLat(), tree.getLat() + "");
+        params.put(tree_database.getLng(), tree.getLng() + "");
         params.put(tree_database.getAvatar(), tree.getAvatar());
         params.put(tree_database.getPath_photo(), tree.getPath_photo());
         params.put(tree_database.getState(), tree.getState());
@@ -101,11 +98,11 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    String id = response.getString("id");
-                    savePreferencesTree(id);
-                    registerTreeUser(id);
+                    String id_tree = response.getString("id");
+                    preferences.savePreferencesTree(id_tree);
+                    registerTreeUser();
                 } catch (JSONException e) {
-                    Toast.makeText(RegisterTreeActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterTreeActivity.this,"Se produjo un error",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -128,15 +125,13 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         request.add(JOR);
     }
 
-    private void registerTreeUser( String tree_id){
-        SharedPreferences preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
-        String id = preference.getString("user_id","");
+    private void registerTreeUser(){
 
         request = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap<>();
-        params.put(tree_user_database.getUser_id(), id);
-        params.put(tree_user_database.getTree_id(), tree_id);
+        params.put(tree_user_database.getUser_id(), preferences.getUserId());
+        params.put(tree_user_database.getTree_id(), preferences.getTreeId());
         JSONObject parameters = new JSONObject(params);
 
         JOR = new JsonObjectRequest(Request.Method.POST, url + "/tree_users", parameters,new Response.Listener<JSONObject>() {
@@ -167,7 +162,6 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     }
 
     public void OnclickRegisterTree(View view) {
-        errors.setVisibility(View.GONE);
         Toast.makeText(RegisterTreeActivity.this,"Registrando",Toast.LENGTH_LONG).show();
         registerTree();
     }
@@ -192,9 +186,9 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     }
 
     private void actualizarUbicacion(Location location) {
-        lat = location.getLatitude();
-        lng = location.getLongitude();
-        agregarMarket(lat, lng);
+        tree.setLat(location.getLatitude());
+        tree.setLng(location.getLongitude());
+        agregarMarket(tree.getLat(), tree.getLng());
     }
 
     LocationListener locationListener = new LocationListener() {
@@ -215,19 +209,12 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     }
 
     public void OnclickSelectAvatar1(View view) {
-        avatar = "avatar1";
-        Toast.makeText(RegisterTreeActivity.this,avatar+" Seleccionado",Toast.LENGTH_SHORT).show();
+        tree.setAvatar("avatar1");
+        Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
 
     public void OnclickSelectAvatar2(View view) {
-        avatar = "avatar2";
-        Toast.makeText(RegisterTreeActivity.this,avatar+" Seleccionado",Toast.LENGTH_SHORT).show();
-    }
-
-    private void savePreferencesTree(String tree_id){
-        SharedPreferences preferences= getSharedPreferences("preferenceTree", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("tree_id",tree_id);
-        editor.commit();
+        tree.setAvatar("avatar2");
+        Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
 }
