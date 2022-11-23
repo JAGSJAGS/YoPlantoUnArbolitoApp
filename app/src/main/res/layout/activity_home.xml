@@ -73,6 +73,13 @@ android:layout_height="wrap_content">
                                 android:layout_marginBottom="8dp"
                                 app:backgroundTint="@null"
                                 android:background="@drawable/button_1"/>
+                        <com.google.android.material.button.MaterialButton
+                                android:text="Registrar Arbol"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/button_home_log_out"
+                                android:layout_marginBottom="8dp"
+                                app:backgroundTint="@null"
+                                android:background="@drawable/button_1"/>
 
                 </LinearLayout>
 

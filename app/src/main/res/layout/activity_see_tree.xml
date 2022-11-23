@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="app.yo_planto.yoplantounarbolito_app.SeeTreeActivity"
-        android:orientation="vertical" android:background="@drawable/backgroun_black_ligth_two">
+        android:orientation="vertical">
 
     <ScrollView
             android:layout_width="match_parent"
@@ -16,61 +16,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_margin="16dp" android:paddingLeft="16dp" android:paddingRight="16dp">
+                android:paddingLeft="16dp" android:paddingRight="16dp">
             <TextView
-                    android:text="Esperando nombre"
+                    android:text="Nombre"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/see_tree_name_tree_" style="@style/title_1"
-                    android:gravity="center" android:layout_marginTop="32dp"/>
-            <TextView
-                    android:text="Esperando estado"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/see_tree_estate_tree" style="@style/text_2"
+                    android:layout_height="wrap_content" android:id="@+id/text_view_see_tree_name_tree_"
                     android:gravity="center"/>
-
             <TextView
-                    android:text="Avatar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView7" android:layout_gravity="center"
-                    style="@style/text_2" android:layout_marginTop="32dp"/>
+                    android:text="Estado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/text_view_see_tree_estate_tree"
+                    android:gravity="center"/>
             <ImageView
-                    android:id="@+id/see_tree_imagen_avatar"
+                    android:id="@+id/imagen_view_see_tree_imagen_avatar"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/avatar_one_happy_600" android:layout_gravity="center"
-                    android:layout_width="match_parent" android:background="@drawable/backgroun_black_ligth"
+                    android:layout_width="match_parent"
                     android:paddingTop="16dp" android:paddingBottom="16dp"/>
-
-            <ProgressBar
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:id="@+id/progressBar3"/>
-            <TextView
-                    android:text="Cargando ,espere ..."
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/msg_load_3" style="@style/title_1"
-                    android:gravity="center" android:layout_marginTop="32dp"/>
-            <TextView
-                    android:text="Fotografía"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView8" android:layout_gravity="center"
-                    style="@style/text_2" android:layout_marginTop="32dp"/>
             <ImageView
                     android:layout_width="wrap_content"
-                    android:id="@+id/see_tree_photo_tree"
+                    android:id="@+id/imagen_view_see_tree_photo_tree"
                     android:layout_height="300dp"
                     android:src="@mipmap/yo_planto_un_arbolito" android:layout_gravity="center"/>
-            <TextView
-                    android:text="Ubicación"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textView9" android:layout_gravity="center"
-                    style="@style/text_2" android:layout_marginTop="32dp"/>
             <fragment
                     android:id="@+id/map3"
                     android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
                     android:layout_height="400dp"
-                    android:layout_marginBottom="32dp"/>
+            />
         </LinearLayout>
     </ScrollView>
 

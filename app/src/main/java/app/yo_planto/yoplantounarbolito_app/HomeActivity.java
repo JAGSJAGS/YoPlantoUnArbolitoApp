@@ -49,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
         button_games = findViewById(R.id.button_home_games);
         button_profile = findViewById(R.id.button_home_profile);
         button_register_tree = findViewById(R.id.button_home_register_tree);
-        //button_log_out = findViewById(R.id.button_log_out);
+        button_log_out = findViewById(R.id.button_home_log_out);
 
         button_your_tree.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,14 +100,21 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(registerTree);
             }
         });
+
+        button_log_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logOut();
+            }
+        });
     }
 
 
     //cerrar sesion
-    private void logOut(String url){
+    private void logOut(){
         request = Volley.newRequestQueue(this);
 
-        JOR = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.POST, url + "/logout", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 deletePreferences();
@@ -144,12 +151,20 @@ public class HomeActivity extends AppCompatActivity {
         SharedPreferences preferences= getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("token","");
+        editor.putString("user_id","");
         editor.commit();
+
+        SharedPreferences preferencesTree= getSharedPreferences("preferenceTree", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editorTree = preferencesTree.edit();
+        editor.putString("tree_id","");
+        editorTree.commit();
     }
 
     //si tiene un arbol registrado
     private boolean ifHaveTree(){
         return true;
     }
+
+
 
 }

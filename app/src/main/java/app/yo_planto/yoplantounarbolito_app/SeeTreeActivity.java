@@ -32,20 +32,22 @@ import java.util.Map;
 
 public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    //request
     RequestQueue request;
     JsonObjectRequest JOR;
 
-    //mostrearArbolito
-    String titleTree = "Tines que adoptar un arbolito", lat_tree = "0.0", ln_tree = "0.0", name_tree, avatar = "avatar", photo, state;
-
-    ImageView see_tree_imagen_avatar, see_tree_photo_trees;
+    //url
     Variables variables = new Variables();
     String url;
 
-    //mostrar user
+    //preferencias
     SharedPreferences preference;
     String token;
     String user_id;
+
+    //mostrarArbolito
+    String titleTree = "", lat_tree = "0.0", ln_tree = "0.0", name_tree, avatar = "avatar", photo, state;
+    ImageView imagen_view_imagen_avatar, imagen_view_photo_trees;
     TextView text_view_name_tree, text_view_state_tree;
 
     //Map
@@ -55,26 +57,21 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
     double lng = 0.0;
     SupportMapFragment mapFragment;
 
-    //Load
-    ProgressBar load_bar;
-    TextView load_text;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.yoplantounarbolito_app.R.layout.activity_see_tree);
+
         url = variables.getUrl();
 
         preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         token = preference.getString("token", "");
         user_id = preference.getString("user_id", "");
 
-        text_view_name_tree = findViewById(R.id.see_tree_name_tree_);
-        text_view_state_tree = findViewById(R.id.see_tree_estate_tree);
-        see_tree_imagen_avatar = findViewById(R.id.see_tree_imagen_avatar);
-        see_tree_photo_trees = findViewById(R.id.see_tree_photo_tree);
-        load_bar = findViewById(R.id.progressBar3);
-        load_text = findViewById(R.id.msg_load_3);
+        text_view_name_tree = findViewById(R.id.text_view_see_tree_name_tree_);
+        text_view_state_tree = findViewById(R.id.text_view_see_tree_estate_tree);
+        imagen_view_imagen_avatar = findViewById(R.id.imagen_view_see_tree_imagen_avatar);
+        imagen_view_photo_trees = findViewById(R.id.imagen_view_see_tree_photo_tree);
 
         getUsersTrees();
 
@@ -101,15 +98,12 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
                     text_view_state_tree.setText("Estado: " + state);
                     System.out.println("photos:" + photo);
 
+                    //guarda la foto en un bitmap
                     Bitmap bitmap = Validations.convert(photo);
+                    //see_tree_photo_trees.setImageBitmap(bitmap);
 
-                    see_tree_photo_trees.setImageBitmap(bitmap);
-
+                    //carga las variables al mapa
                     mapFragment.getMapAsync(SeeTreeActivity.this);
-
-                    load_bar.setVisibility(View.GONE);
-                    load_text.setVisibility(View.GONE);
-
 
                     showAvatar(avatar);
                 } catch (JSONException e) {
@@ -120,19 +114,15 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null && networkResponse.data != null) {
-                    String jsonError = new String(networkResponse.data);
-                    Toast.makeText(SeeTreeActivity.this, "Error: " + jsonError, Toast.LENGTH_SHORT).show();
-                    Log.i("ErrorVolley", jsonError);
-                }
+                String jsonError = new String(networkResponse.data);
+                Toast.makeText(SeeTreeActivity.this, "Error en la consulta", Toast.LENGTH_SHORT).show();
+                Log.e("ErrorVolley", jsonError);
             }
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
                 token = preference.getString("token", "");
                 Map<String, String> headers = new HashMap<>();
-                //String auth = "Basic " + Base64.encodeToString(CONSUMER_KEY_AND_SECRET.getBytes(), Base64.NO_WRAP);
                 headers.put("Accept", "application/vnd.api+json");
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
@@ -143,17 +133,16 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
 
     private void showAvatar(String avatar) {
         if(avatar.equals("avatar1")) {
-            see_tree_imagen_avatar.setImageResource(R.mipmap.avatar_one_happy_600);
+            imagen_view_imagen_avatar.setImageResource(R.mipmap.avatar_one_happy_600);
         }
         else  {
-            see_tree_imagen_avatar.setImageResource(R.mipmap.yo_planto_un_arbolito);
+            imagen_view_photo_trees.setImageResource(R.mipmap.yo_planto_un_arbolito);
         }
     }
 
     //Map
     @Override
     public void onMapReady(GoogleMap googleMap) {
-
         lat = Double.parseDouble(lat_tree);
         lng = Double.parseDouble(ln_tree);
         mMap = googleMap;
