@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               tools:context="app.yo_planto.yoplantounarbolito_app.RegisterPhotoActivity"
-              android:background="@drawable/backgroun_black_ligth_two">
+>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,7 +23,7 @@
                 tools:ignore="MissingConstraints" android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
                 android:textAlignment="center" android:layout_marginStart="30dp" android:layout_marginEnd="30dp"
-                style="@style/text_2"/>
+        />
         <TextView
                 android:text="TextView"
                 android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView"
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="16dp"
-                style="@style/text_3"/>
+        />
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                 android:onClick="onclick"
                 android:id="@+id/btnCargarImg"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/button_1" style="@style/text_2"/>
+        />
         <ImageView
                 android:layout_width="wrap_content"
                 android:id="@+id/photo_tree"
@@ -63,8 +63,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497" app:layout_constraintTop_toBottomOf="@+id/photo_tree"
-                android:layout_marginStart="16dp" android:layout_marginEnd="16dp" style="@style/text_2"
-                android:background="@drawable/button_1"/>
+                android:layout_marginStart="16dp" android:layout_marginEnd="16dp"
+        />
         <ProgressBar
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
@@ -78,6 +78,6 @@
                 android:layout_height="wrap_content" android:id="@+id/textViewLoadPhoto"
                 app:layout_constraintTop_toBottomOf="@+id/loadPhoto" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" android:textSize="20sp"
-                android:textStyle="bold" style="@style/text_3"/>
+                android:textStyle="bold"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

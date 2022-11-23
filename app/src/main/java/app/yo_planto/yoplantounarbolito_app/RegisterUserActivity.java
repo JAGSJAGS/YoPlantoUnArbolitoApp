@@ -82,7 +82,7 @@ public class RegisterUserActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse networkResponse = error.networkResponse;
                 String jsonError = new String(networkResponse.data);
-                validations.validateDatas(jsonError,errors);
+                validations.validateDatas(jsonError,RegisterUserActivity.this);
             }
         }){
             @Override
@@ -128,7 +128,7 @@ public class RegisterUserActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse networkResponse = error.networkResponse;
                 String jsonError = new String(networkResponse.data);
-                validations.validateDatas(jsonError,errors);
+                validations.validateDatas(jsonError, RegisterUserActivity.this);
                 //Toast.makeText(RegisterUserActivity.this,"son errores"+jsonError,Toast.LENGTH_LONG).show();
             }
         }){

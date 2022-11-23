@@ -1,10 +1,14 @@
 package app.yo_planto.yoplantounarbolito_app.java_class;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,7 +16,7 @@ import java.io.ByteArrayOutputStream;
 
 public class Validations {
 
-    public String validateDatas(String json_erros, TextView error){
+    public String validateDatas(String json_erros, Context context){
         String obs = "";
         try {
             JSONObject root = new JSONObject(json_erros);
@@ -29,9 +33,7 @@ public class Validations {
                 replaceAll(",", "\n").
                 replaceAll("\"", "").
                 replaceAll("errors:", "");
-
-        error.setText(res);
-        error.setVisibility(View.VISIBLE);
+        showDialog(context, res);
         return res;
     }
     public static Bitmap convert(String base64Str) throws IllegalArgumentException
@@ -50,5 +52,17 @@ public class Validations {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
 
         return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
+    }
+
+    public void showDialog(Context context, String errors){
+        new MaterialAlertDialogBuilder(context)
+                .setTitle("Error")
+                .setMessage(errors)
+                .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("MainActivity", "Aborting mission...");
+                    }
+                }).show();
     }
 }

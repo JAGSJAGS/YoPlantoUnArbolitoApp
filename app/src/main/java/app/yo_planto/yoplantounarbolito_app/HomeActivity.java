@@ -190,9 +190,6 @@ public class HomeActivity extends AppCompatActivity {
    //cargar usuario
 
     private void showUser() {
-       /* name = "nombre de usuario";
-        email = "daniela@gmail.com";
-        phone = "nombre de usuario";*/
         String message = "\n" + user.getName() + "\n" + "\n" + user.getEmail() + "\n" + "\n" + user.getPhone() + "\n";
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Mis Datos")

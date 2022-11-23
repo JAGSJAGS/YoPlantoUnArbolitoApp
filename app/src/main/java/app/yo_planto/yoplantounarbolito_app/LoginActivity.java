@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import app.yo_planto.yoplantounarbolito_app.classes.User;
 import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.UserDatabase;
+import app.yo_planto.yoplantounarbolito_app.java_class.Preferences;
 import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
 import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
@@ -38,6 +39,9 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     TextView errors;
     EditText email, password;
 
+    //Preferences
+    Preferences preferences;
+
 
 
     Variables variables = new Variables();
@@ -49,13 +53,11 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
         url = variables.getUrl();
         email = findViewById(com.example.yoplantounarbolito_app.R.id.editTextEmailLogin);
         password = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPasswordLogin);
-        errors = findViewById(R.id.textViewErrorsLogin);
-        errors.setVisibility(View.GONE);
         user_database = new UserDatabase();
+        preferences = new Preferences(LoginActivity.this);
     }
 
     public void OnclickLogin(View view) {
-        errors.setVisibility(View.GONE);
         loginUser();
     }
 
@@ -73,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
                 try {
                     String token = response.getString("access_token");
                     String user_id = response.getString("user_id");
-                    savePreferences(token, user_id);
+                    preferences.savePreferencesUser(token, user_id);
                     Intent homeTreeActivity = new Intent(getApplicationContext(),HomeActivity.class);
                     startActivity(homeTreeActivity);
                     finishAffinity();
@@ -86,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse networkResponse = error.networkResponse;
                 String jsonError = new String(networkResponse.data);
-                validations.validateDatas(jsonError,errors);
+                validations.validateDatas(jsonError, LoginActivity.this);
             }
         }){
             @Override
@@ -98,14 +100,6 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
             }
         };
         request.add(JOR);
-    }
-
-    private void savePreferences(String token, String user_id){
-        SharedPreferences preferences= getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("token",token);
-        editor.putString("user_id", user_id);
-        editor.commit();
     }
 
     public void OnclickGoToRegisterActivity(View view) {
