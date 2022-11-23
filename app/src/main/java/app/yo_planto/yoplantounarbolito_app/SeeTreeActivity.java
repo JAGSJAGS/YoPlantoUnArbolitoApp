@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import app.yo_planto.yoplantounarbolito_app.classes.Tree;
+import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.TreeDatabase;
 import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
 import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
@@ -46,21 +48,23 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
     String user_id;
 
     //mostrarArbolito
-    String titleTree = "", lat_tree = "0.0", ln_tree = "0.0", name_tree, avatar = "avatar", photo, state;
+    TreeDatabase tree_database;
+    Tree tree;
     ImageView imagen_view_imagen_avatar, imagen_view_photo_trees;
     TextView text_view_name_tree, text_view_state_tree;
 
     //Map
     private GoogleMap mMap;
     private Marker marcador;
-    double lat = 0.0;
-    double lng = 0.0;
     SupportMapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.yoplantounarbolito_app.R.layout.activity_see_tree);
+
+        tree_database = new TreeDatabase();
+        tree = new Tree();
 
         url = variables.getUrl();
 
@@ -88,24 +92,23 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    avatar = response.getString("avatar");
-                    name_tree = response.getString("name");
-                    lat_tree = response.getString("lat");
-                    ln_tree = response.getString("lng");
-                    photo = response.getString("photo");
-                    state = response.getString("state");
-                    text_view_name_tree.setText(name_tree);
-                    text_view_state_tree.setText("Estado: " + state);
-                    System.out.println("photos:" + photo);
+                    tree.setAvatar(response.getString(tree_database.getAvatar()));
+                    tree.setName(response.getString(tree_database.getAvatar()));
+                    tree.setLat(response.getString(tree_database.getLat()));
+                    tree.setLng(response.getString(tree_database.getLng()));
+                    tree.setPath_photo(response.getString(tree_database.getPath_photo()));
+                    tree.setState(response.getString(tree_database.getState()));
+                    text_view_name_tree.setText("Nombre Arbol");
+                    text_view_state_tree.setText("Estado del arbol");
 
                     //guarda la foto en un bitmap
-                    Bitmap bitmap = Validations.convert(photo);
+                    //Bitmap bitmap = Validations.convert(photo);
                     //see_tree_photo_trees.setImageBitmap(bitmap);
 
                     //carga las variables al mapa
                     mapFragment.getMapAsync(SeeTreeActivity.this);
 
-                    showAvatar(avatar);
+                    showAvatar(tree.getAvatar());
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -143,8 +146,8 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
     //Map
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        lat = Double.parseDouble(lat_tree);
-        lng = Double.parseDouble(ln_tree);
+        double lat = Double.parseDouble(tree.getLat());
+        double lng = Double.parseDouble(tree.getLng());
         mMap = googleMap;
         LatLng mi_arbolito = new LatLng(lat, lng);
         mMap.addMarker(new MarkerOptions().position(mi_arbolito).title("Mi Arbolito"));
