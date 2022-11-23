@@ -13,9 +13,9 @@ public class Tree {
     public Tree(){
         id = "id";
         name = "name";
-        lat = "lat";
-        lng = "lng";
-        avatar = "avatar";
+        lat = "0.0";
+        lng = "0.0";
+        avatar = "avatar1";
         path_photo = "path_photo";
         state = "state";
     }

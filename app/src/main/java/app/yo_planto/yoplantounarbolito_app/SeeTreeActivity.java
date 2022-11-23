@@ -102,11 +102,11 @@ public class SeeTreeActivity extends AppCompatActivity implements OnMapReadyCall
                     text_view_state_tree.setText("Estado del arbol");
 
                     //guarda la foto en un bitmap
-                    //Bitmap bitmap = Validations.convert(photo);
+                    //Bitmap bitmap = Validations.convert(tree.getPath_photo());
                     //see_tree_photo_trees.setImageBitmap(bitmap);
 
                     //carga las variables al mapa
-                    mapFragment.getMapAsync(SeeTreeActivity.this);
+                    //mapFragment.getMapAsync(SeeTreeActivity.this);
 
                     showAvatar(tree.getAvatar());
                 } catch (JSONException e) {

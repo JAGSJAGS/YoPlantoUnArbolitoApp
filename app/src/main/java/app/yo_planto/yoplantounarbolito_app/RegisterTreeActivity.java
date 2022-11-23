@@ -17,6 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
+import app.yo_planto.yoplantounarbolito_app.classes.Tree;
+import app.yo_planto.yoplantounarbolito_app.classes.TreeUser;
+import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.TreeDatabase;
+import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.TreeUserDatabase;
 import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -35,30 +39,44 @@ import java.util.Map;
 
 public class RegisterTreeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    //Components
     EditText name;
+    TextView errors;
+
+
     String avatar = "avatar1";
     Validations validations = new Validations();
-    Variables variables = new Variables();
-    String url;
-    TextView errors;
+
+
+    //requests
     RequestQueue request;
     JsonObjectRequest JOR;
+    Variables variables = new Variables();
+    String url;
+
+    //tree
+    Tree tree;
+    TreeDatabase tree_database;
+    TreeUser treeUser;
+    TreeUserDatabase tree_user_database;
 
     private GoogleMap mMap;
     private Marker marcador;
     double lat = 0.0;
     double lng = 0.0;
 
-    //Bundle sendData = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_tree);
+        tree = new Tree();
+        tree_database = new TreeDatabase();
+        treeUser = new TreeUser();
+        tree_user_database = new TreeUserDatabase();
 
         url = variables.getUrl();
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map1);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_register_tree);
         mapFragment.getMapAsync(this);
 
         name = findViewById(R.id.editTextNameRegisterTree);
@@ -71,12 +89,12 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         request = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap<>();
-        params.put("name", name.getText().toString());
-        params.put("lat", lat+"");
-        params.put("lng", lng+"");
-        params.put("avatar", avatar);
-        params.put("path_photo", "null");
-        params.put("state", "take care");
+        params.put(tree_database.getName(), name.getText().toString());
+        params.put(tree_database.getLat(), tree.getLat());
+        params.put(tree_database.getLng(), tree.getLng());
+        params.put(tree_database.getAvatar(), tree.getAvatar());
+        params.put(tree_database.getPath_photo(), tree.getPath_photo());
+        params.put(tree_database.getState(), tree.getState());
         JSONObject parameters = new JSONObject(params);
 
         JOR = new JsonObjectRequest(Request.Method.POST, url + "/trees", parameters,new Response.Listener<JSONObject>() {
@@ -84,7 +102,6 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
             public void onResponse(JSONObject response) {
                 try {
                     String id = response.getString("id");
-                    //sendData.putString("tree_id",id);
                     savePreferencesTree(id);
                     registerTreeUser(id);
                 } catch (JSONException e) {
@@ -118,8 +135,8 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         request = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap<>();
-        params.put("user_id", id);
-        params.put("tree_id", tree_id);
+        params.put(tree_user_database.getUser_id(), id);
+        params.put(tree_user_database.getTree_id(), tree_id);
         JSONObject parameters = new JSONObject(params);
 
         JOR = new JsonObjectRequest(Request.Method.POST, url + "/tree_users", parameters,new Response.Listener<JSONObject>() {
