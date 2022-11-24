@@ -23,25 +23,28 @@
             android:usesCleartextTraffic="true"
             tools:targetApi="31">
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.UserProfileActivity"
+                android:name=".TreeCareActivity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.GamesActivity"
+                android:name=".UserProfileActivity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.RankingActivity"
+                android:name=".GamesActivity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.OrphanageActivity"
+                android:name=".RankingActivity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.HomeActivity"
+                android:name=".OrphanageActivity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.Edit_Tree_Activity"
+                android:name=".HomeActivity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.SeeTreeActivity"
+                android:name=".Edit_Tree_Activity"
+                android:exported="false"/>
+        <activity
+                android:name=".SeeTreeActivity"
                 android:exported="false"/>
 
         <meta-data
@@ -52,7 +55,7 @@
                 android:resource="@xml/file_paths"/>
 
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.AdoptTreeActivity"
+                android:name=".AdoptTreeActivity"
                 android:exported="false"/>
 
         <meta-data
@@ -60,19 +63,19 @@
                 android:resource="@array/preloaded_fonts"/>
 
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.RegisterTreeActivity"
+                android:name=".RegisterTreeActivity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.RegisterUserActivity"
+                android:name=".RegisterUserActivity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.RegisterPhotoActivity"
+                android:name=".RegisterPhotoActivity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.LoginActivity"
+                android:name=".LoginActivity"
                 android:exported="false"/>
         <activity
-                android:name="app.yo_planto.yoplantounarbolito_app.MainActivity"
+                android:name=".MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
