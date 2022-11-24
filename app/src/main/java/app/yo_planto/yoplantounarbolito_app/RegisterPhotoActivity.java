@@ -29,6 +29,7 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yoplantounarbolito_app.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -42,7 +43,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     private final String CARPETA_RAIZ="misImagenesPrueba/";
     private final String RUTA_IMAGEN=CARPETA_RAIZ+"misFotos";
 
-    final int COD_SELECCIONA=10;
+    final int COD_SELECCIONA=100;
     final int COD_FOTO=200;
 
     Variables variables = new Variables();
@@ -51,15 +52,10 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     Button botonCargar;
     Button buttonSavePhoto;
     ImageView imagen;
-    Validations validations = new Validations();
-    TextView errors;
+    Validations validations;
     String path;
     String rutaImagen;
     Bitmap bitmap;
-
-    //Bundle getDate = getIntent().getExtras();
-    //String id;
-
     ProgressBar loadPhoto;
     TextView textViewLoadPhoto;
 
@@ -71,11 +67,10 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         //id = getDate.getString("tree_id");
         url = variables.getUrl();
         imagen= findViewById(com.example.yoplantounarbolito_app.R.id.photo_tree);
+        validations = new Validations();
         botonCargar= findViewById(com.example.yoplantounarbolito_app.R.id.btnCargarImg);
         buttonSavePhoto = findViewById(com.example.yoplantounarbolito_app.R.id.buttonSavePhoto);
         buttonSavePhoto.setVisibility(View.GONE);
-        errors = findViewById(com.example.yoplantounarbolito_app.R.id.textViewErrorsRegisterPhoto);
-        errors.setVisibility(View.GONE);
         loadPhoto = findViewById(com.example.yoplantounarbolito_app.R.id.loadPhoto);
         loadPhoto.setVisibility(View.GONE);
         textViewLoadPhoto = findViewById(R.id.textViewLoadPhoto);
@@ -84,12 +79,12 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     }
 
     public void onclick(View view) {
-        cargarImagen();
+        tomarFotografia();
     }
 
-    private void cargarImagen() {
+    private void dialogImagen() {
 
-        final CharSequence[] opciones={"Tomar Foto","Cargar Imagen","Cancelar"};
+        /*final CharSequence[] opciones={"Tomar Foto"*//*"Cargar Imagen"*//*,"Cancelar"};
         final AlertDialog.Builder alertOpciones=new AlertDialog.Builder(RegisterPhotoActivity.this);
         alertOpciones.setTitle("Seleccione una Opción");
         alertOpciones.setItems(opciones, new DialogInterface.OnClickListener() {
@@ -108,24 +103,34 @@ public class RegisterPhotoActivity extends AppCompatActivity {
                 }
             }
         });
-        alertOpciones.show();
+        alertOpciones.show();*/
+        new MaterialAlertDialogBuilder(RegisterPhotoActivity.this)
+            .setTitle("Error")
+            .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.d("MainActivity", "Aborting mission...");
+                }
+            })
+            .setPositiveButton("Tomar una foto", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    tomarFotografia();;
+                }
+            }).show();
     }
 
     private void tomarFotografia() {
-        File fileImagen=new File(getFilesDir(),RUTA_IMAGEN);
+        /*File fileImagen=new File(getFilesDir(),RUTA_IMAGEN);
         boolean isCreada=fileImagen.exists();
         String nombreImagen="";
         if(isCreada==false){
             isCreada=fileImagen.mkdirs();
-        }
-        if(isCreada==true){
-            nombreImagen=(System.currentTimeMillis()/1000)+".jpg";
-            path=Environment.getExternalStorageDirectory()+
-                    File.separator+RUTA_IMAGEN+File.separator+nombreImagen;
+        }*/
+        if(true){
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if(intent.resolveActivity(getPackageManager()) != null){
                 File imagenArchivo = null;
-
                 try {
                     imagenArchivo = crearImagen();
                 }catch (IOException e){
@@ -147,7 +152,8 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     }
 
     private File crearImagen() throws IOException{
-        String nombreImagen = "foto_";
+        String nombreImagen = (System.currentTimeMillis()/1000) + ".jpg";
+        path=Environment.getExternalStorageDirectory()+File.separator+RUTA_IMAGEN+File.separator+nombreImagen;
         File directorio = getExternalFilesDir(path);
         File imagen = File.createTempFile(nombreImagen, ".jpg", directorio);
         rutaImagen = imagen.getAbsolutePath();
@@ -219,8 +225,8 @@ public class RegisterPhotoActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 loadPhoto.setVisibility(View.GONE);
                 textViewLoadPhoto.setVisibility(View.GONE);
-                errors.setText("No se pudo registrar, seleccione otra foto o intente despues");
-                errors.setVisibility(View.VISIBLE);
+                validations.validateDatas("No se pudo registrar la fotografía, tome otra fotografía o intente despues.",
+                                            RegisterPhotoActivity.this);
             }
         }){
             @Override
@@ -242,9 +248,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         Log.i("imagen:", imagenString);
         return imagenString;
     }
-
     public void OnclickSavePhoto(View view) {
-        errors.setVisibility(View.GONE);
         loadPhoto.setVisibility(View.VISIBLE);
         textViewLoadPhoto.setVisibility(View.VISIBLE);
         savePhoto();

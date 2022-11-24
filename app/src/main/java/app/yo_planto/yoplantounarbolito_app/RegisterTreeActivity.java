@@ -139,7 +139,6 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
             public void onResponse(JSONObject response) {
                 Toast.makeText(RegisterTreeActivity.this,"pasa",Toast.LENGTH_LONG).show();
                 Intent photoActivity = new Intent(getApplicationContext(),RegisterPhotoActivity.class);
-                //photoActivity.putExtras(sendData);
                 startActivity(photoActivity);
             }
         }, new Response.ErrorListener() {
