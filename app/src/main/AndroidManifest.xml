@@ -23,28 +23,28 @@
             android:usesCleartextTraffic="true"
             tools:targetApi="31">
         <activity
-                android:name=".TreeCareActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.TreeCareActivity"
                 android:exported="false"/>
         <activity
-                android:name=".UserProfileActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.UserProfileActivity"
                 android:exported="false"/>
         <activity
-                android:name=".GamesActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.GamesActivity"
                 android:exported="false"/>
         <activity
-                android:name=".RankingActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.RankingActivity"
                 android:exported="false"/>
         <activity
-                android:name=".OrphanageActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.OrphanageActivity"
                 android:exported="false"/>
         <activity
-                android:name=".HomeActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.HomeActivity"
                 android:exported="false"/>
         <activity
-                android:name=".Edit_Tree_Activity"
+                android:name="app.yo_planto.yoplantounarbolito_app.Edit_Tree_Activity"
                 android:exported="false"/>
         <activity
-                android:name=".SeeTreeActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.SeeTreeActivity"
                 android:exported="false"/>
 
         <meta-data
@@ -55,7 +55,7 @@
                 android:resource="@xml/file_paths"/>
 
         <activity
-                android:name=".AdoptTreeActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.AdoptTreeActivity"
                 android:exported="false"/>
 
         <meta-data
@@ -63,19 +63,19 @@
                 android:resource="@array/preloaded_fonts"/>
 
         <activity
-                android:name=".RegisterTreeActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.RegisterTreeActivity"
                 android:exported="false"/>
         <activity
-                android:name=".RegisterUserActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.RegisterUserActivity"
                 android:exported="false"/>
         <activity
-                android:name=".RegisterPhotoActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.RegisterPhotoActivity"
                 android:exported="false"/>
         <activity
-                android:name=".LoginActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.LoginActivity"
                 android:exported="false"/>
         <activity
-                android:name=".MainActivity"
+                android:name="app.yo_planto.yoplantounarbolito_app.MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

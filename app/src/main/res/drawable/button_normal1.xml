@@ -7,8 +7,8 @@
                     android:color="#000000"/>
             <corners android:radius="250dp" />
             <gradient android:angle="0"
-                      android:endColor="@color/orange_primary"
-                      android:startColor="@color/orange_secondary"/>
+                      android:endColor="#00A846"
+                      android:startColor="#00A846"/>
         </shape>
     </item>
 </layer-list>
