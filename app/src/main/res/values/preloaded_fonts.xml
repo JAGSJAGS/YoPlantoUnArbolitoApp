@@ -6,6 +6,8 @@
         <item>@font/bungee_inline</item>
         <item>@font/chau_philomene_one</item>
         <item>@font/libre_barcode_128</item>
+        <item>@font/poppins_bold</item>
+        <item>@font/poppins_light</item>
         <item>@font/quicksand_light</item>
         <item>@font/quicksand_medium</item>
     </array>
