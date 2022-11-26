@@ -76,11 +76,7 @@ public class Edit_Tree_Activity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                String jsonError = new String(networkResponse.data);
-                validations.validateDatas(jsonError, Edit_Tree_Activity.this);
-                Toast.makeText(Edit_Tree_Activity.this, "errors"+jsonError, Toast.LENGTH_SHORT).show();
-                Log.e("erroName", jsonError);
+                validations.errors(error, Edit_Tree_Activity.this);
             }
         }){
             @Override

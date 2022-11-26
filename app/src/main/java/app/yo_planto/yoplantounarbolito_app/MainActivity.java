@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     private void authenticated(){
         request = Volley.newRequestQueue(this);
 
-        JOR = new JsonObjectRequest(Request.Method.GET, url + "/islogin", null, new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.GET, url + "/auth/me", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Intent homeActivity = new Intent(getApplicationContext(), HomeActivity.class);
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
                 token = preference.getString("token","");
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/vnd.api+json");
+                headers.put("Accept", "application/json");
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
             }

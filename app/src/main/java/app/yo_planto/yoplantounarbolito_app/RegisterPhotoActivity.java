@@ -225,7 +225,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 loadPhoto.setVisibility(View.GONE);
                 textViewLoadPhoto.setVisibility(View.GONE);
-                validations.validateDatas("No se pudo registrar la fotografía, tome otra fotografía o intente despues.",
+                validations.showDialog("No se pudo registrar la fotografía, tome otra fotografía o intente despues.",
                                             RegisterPhotoActivity.this);
             }
         }){

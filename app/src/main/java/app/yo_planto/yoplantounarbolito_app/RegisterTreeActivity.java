@@ -108,10 +108,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                String jsonError = new String(networkResponse.data);
-                validations.validateDatas(jsonError, RegisterTreeActivity.this);
-                Toast.makeText(RegisterTreeActivity.this,"errores"+ jsonError,Toast.LENGTH_LONG).show();
+                validations.errors(error, RegisterTreeActivity.this);
             }
         }){
             @Override
@@ -144,9 +141,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                String jsonError = new String(networkResponse.data);
-                validations.validateDatas(jsonError, RegisterTreeActivity.this);
+                validations.errors(error, RegisterTreeActivity.this);
             }
         }){
             @Override

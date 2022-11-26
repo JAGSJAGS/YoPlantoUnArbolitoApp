@@ -8,6 +8,8 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,26 +18,6 @@ import java.io.ByteArrayOutputStream;
 
 public class Validations {
 
-    public String validateDatas(String json_erros, Context context){
-        String obs = "";
-        try {
-            JSONObject root = new JSONObject(json_erros);
-            obs = obs + root.getString("errors");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        String res = obs.
-                replaceAll("\\]", "").
-                replaceAll("\\}\\}", " ").
-                replaceAll("\\[", "").
-                replaceAll("\\{", "\n").
-                replaceAll("\\}", "\n").
-                replaceAll(",", "\n").
-                replaceAll("\"", "").
-                replaceAll("errors:", "");
-        showDialog(context, res);
-        return res;
-    }
     public static Bitmap convert(String base64Str) throws IllegalArgumentException
     {
         byte[] decodedBytes = Base64.decode(
@@ -54,7 +36,7 @@ public class Validations {
         return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
 
-    public void showDialog(Context context, String errors){
+    public void showDialog(String errors, Context context){
         new MaterialAlertDialogBuilder(context)
                 .setTitle("Error")
                 .setMessage(errors)
@@ -64,5 +46,43 @@ public class Validations {
                         Log.d("MainActivity", "Aborting mission...");
                     }
                 }).show();
+    }
+
+    public void errors(VolleyError error, Context context){
+        String res = "";
+        NetworkResponse networkResponse = error.networkResponse;
+        String json_error = new String(networkResponse.data);
+        Log.e("Error;", json_error);
+        int code_error = networkResponse.statusCode;
+
+        switch (code_error){
+            case 422 :
+                res = json_error.
+                        replaceAll("\\]", "").
+                        replaceAll("\\}\\}", " ").
+                        replaceAll("\\[", "").
+                        replaceAll("\\{", "\n").
+                        replaceAll("\\}", "\n").
+                        replaceAll(",", "\n").
+                        replaceAll("\"", "").
+                        replaceAll("errors:", "");;
+                break;
+            case 401:
+                res = "No autenticado";
+                break;
+            case 400:
+                res= "Mala solicitud";
+                break;
+            case 403:
+                res = "No autorizado";
+                break;
+            case 404:
+                res = "No se encuentra la pagina";
+                break;
+            default:
+                res= "Error en el servidor, vuelva a intentar despues";
+                break;
+        }
+        showDialog( res, context);
     }
 }

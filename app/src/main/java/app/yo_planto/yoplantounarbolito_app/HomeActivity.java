@@ -63,6 +63,9 @@ public class HomeActivity extends AppCompatActivity {
     LinearLayout linear_layout_create_tree;
     LinearLayout linear_layout_care_tree;
 
+    //validaciones
+    Validations validations;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
         user_database = new UserDatabase();
         tree = new Tree();
         tree_database = new TreeDatabase();
+        validations = new Validations();
 
         //preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         preferences = new Preferences(HomeActivity.this);
@@ -93,7 +97,7 @@ public class HomeActivity extends AppCompatActivity {
         linear_layout_care_tree = findViewById(R.id.linear_layout_cuida_tu_arbol);
         linear_layout_create_tree = findViewById(R.id.linear_layout_crea_tu_arbol);
         linear_layout_care_tree.setVisibility(View.GONE);
-        linear_layout_create_tree.setVisibility(View.VISIBLE);
+        linear_layout_create_tree.setVisibility(View.GONE);
 
 
         button_your_tree.setOnClickListener(new View.OnClickListener() {
@@ -163,22 +167,29 @@ public class HomeActivity extends AppCompatActivity {
     private void logOut(){
         request = Volley.newRequestQueue(this);
 
-        JOR = new JsonObjectRequest(Request.Method.POST, url + "/logout", null, new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.POST, url + "/auth/logout", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                preferences.deletePreferences();
-                Toast.makeText(HomeActivity.this,response+"",Toast.LENGTH_LONG).show();
+                /*preferences.deletePreferences();
+                Toast.makeText(HomeActivity.this,"Gracias",Toast.LENGTH_LONG).show();
                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(login);
-                finish();
+                finish();*/
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse networkResponse = error.networkResponse;
-                if (networkResponse != null && networkResponse.data != null) {
+                if (networkResponse == null) {
+                    preferences.deletePreferences();
+                    Toast.makeText(HomeActivity.this,"Gracias",Toast.LENGTH_LONG).show();
+                    Intent login = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(login);
+                    finish();
+                }
+                else{
                     String jsonError = new String(networkResponse.data);
-                    Toast.makeText(HomeActivity.this,"Erroraso: "+jsonError,Toast.LENGTH_LONG).show();
+                    validations.errors(error, HomeActivity.this);
                     Log.i("ErrorVolley",jsonError);
                 }
             }
@@ -275,12 +286,14 @@ public class HomeActivity extends AppCompatActivity {
                     tree.setPath_photo(response.getString(tree_database.getPath_photo()));
                     tree.setState(response.getString(tree_database.getState()));
 
-                    linear_layout_care_tree.setVisibility(View.VISIBLE);
-                    linear_layout_care_tree.setVisibility(View.GONE);
+
 
                 } catch (JSONException e) {
-                    throw new RuntimeException(e);
+                    Log.e("error", e + "");
                 }
+                linear_layout_care_tree.setVisibility(View.VISIBLE);
+                linear_layout_create_tree.setVisibility(View.GONE);
+                Toast.makeText(HomeActivity.this, "entro:"+preferences.getUserId(), Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override

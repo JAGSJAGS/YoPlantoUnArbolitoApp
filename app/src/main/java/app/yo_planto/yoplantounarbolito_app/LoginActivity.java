@@ -42,8 +42,6 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     //Preferences
     Preferences preferences;
 
-
-
     Variables variables = new Variables();
 
     @Override
@@ -68,27 +66,29 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
         params.put(user_database.getPassword(), password.getText().toString());
         JSONObject parameters = new JSONObject(params);
 
-        JOR = new JsonObjectRequest(Request.Method.POST, url + "/login", parameters,new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.POST, url + "/auth/login", parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(LoginActivity.this,"id en login:" + response,Toast.LENGTH_LONG).show();
                 try {
-                    String token = response.getString("access_token");
-                    String user_id = response.getString("user_id");
+                    String token = response.getString("accessToken");
+                    JSONObject user = response.getJSONObject("user");
+                    String user_id = user.getString("id");
                     preferences.savePreferencesUser(token, user_id);
+                    Toast.makeText(LoginActivity.this,"id:" + user_id,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"token:" + token,Toast.LENGTH_SHORT).show();
                     Intent homeTreeActivity = new Intent(getApplicationContext(),HomeActivity.class);
                     startActivity(homeTreeActivity);
                     finishAffinity();
+
                 } catch (JSONException e) {
-                    Toast.makeText(LoginActivity.this,"Se produjo un errorsss",Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this,"Se produjo un errorsss",Toast.LENGTH_SHORT).show();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                String jsonError = new String(networkResponse.data);
-                validations.validateDatas(jsonError, LoginActivity.this);
+                validations.errors(error, LoginActivity.this);
             }
         }){
             @Override
