@@ -2,6 +2,7 @@ package app.yo_planto.yoplantounarbolito_app;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.yoplantounarbolito_app.R;
@@ -23,22 +24,25 @@ public class TreeCareActivity extends AppCompatActivity {
         button_regar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
             }
         });
         button_limpiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
             }
         });
         button_abonar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
             }
         });
         button_establecido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
             }
         });
     }

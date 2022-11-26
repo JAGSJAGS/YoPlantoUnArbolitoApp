@@ -7,201 +7,197 @@
         android:layout_height="match_parent"
         tools:context="app.yo_planto.yoplantounarbolito_app.HomeActivity">
 
-        <!-- Note: A RecyclerView can also be used -->
-        <LinearLayout
+        <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" android:id="@+id/d" android:background="#FFFFFF">
-                <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                                      android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                              android:orientation="vertical">
 
 
-                                <ImageView
-                                        android:layout_width="141dp"
-                                        android:layout_height="166dp" app:srcCompat="@mipmap/logo"
+                        <ImageView
+                                android:layout_width="135dp"
+                                android:layout_height="155dp" app:srcCompat="@mipmap/logo"
+                                android:layout_gravity="center"
+                                android:id="@+id/imageView9" android:layout_marginBottom="16dp"
+                                android:layout_marginTop="16dp"/>
+                        <TextView
+                                android:text="hola lilian"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView8"
+                                android:textColor="@color/blue_secondary" android:layout_marginLeft="32dp"
+                                android:fontFamily="@font/poppins_light" android:textSize="16dp"
+                        />
+                        <TextView
+                                android:text="empecemos a"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" android:id="@+id/textView9"
+                                android:textColor="@color/green_tertiary" android:layout_marginLeft="32dp"
+                                android:fontFamily="@font/poppins_light" android:textSize="20dp"
+                        />
+                        <TextView
+                                android:text="sembrar vidas"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" android:id="@+id/textView10"
+                                android:textColor="@color/green_secondary"
+                                android:fontFamily="@font/poppins_bold" android:layout_marginStart="32dp"
+                                android:textSize="20dp"/>
+                        <LinearLayout
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="32dp" android:layout_marginRight="32dp"
+                                android:background="@drawable/backgroun_black_ligth">
+                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                        android:id="@+id/floating_action_button"
+                                        android:layout_width="132dp"
+                                        android:layout_height="135dp"
                                         android:layout_gravity="center"
-                                        android:id="@+id/imageView9" android:layout_marginBottom="32dp"/>
+                                        android:layout_margin="16dp"
+                                        app:srcCompat="@mipmap/plus"
+                                        app:backgroundTint="@color/green_primary"
+                                        app:tint="@color/white"/>
                                 <TextView
-                                        android:text="hola lilian"
+                                        android:text="Crea tu árbol"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" android:id="@+id/textView8"
-                                        android:textColor="@color/blue_secondary" android:layout_marginLeft="32dp"
-                                        android:fontFamily="@font/poppins_light" android:textSize="20dp"
-                                />
-                                <TextView
-                                        android:text="empecemos a"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content" android:id="@+id/textView9"
-                                        android:textColor="@color/green_tertiary" android:layout_marginLeft="32dp"
-                                        android:fontFamily="@font/poppins_light" android:textSize="24dp"
-                                />
-                                <TextView
-                                        android:text="sembrar vidas"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content" android:id="@+id/textView10"
-                                        android:textColor="@color/green_secondary"
-                                        android:fontFamily="@font/poppins_bold" android:layout_marginStart="32dp"
-                                        android:textSize="24dp"/>
-                                <LinearLayout
-                                        android:orientation="vertical"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:layout_marginLeft="32dp" android:layout_marginRight="32dp"
-                                        android:background="@drawable/backgroun_black_ligth">
-                                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                                android:id="@+id/floating_action_button"
-                                                android:layout_width="132dp"
-                                                android:layout_height="135dp"
-                                                android:layout_gravity="center"
-                                                android:layout_margin="16dp"
-                                                app:srcCompat="@mipmap/plus"
-                                                app:backgroundTint="@color/green_primary"
-                                                app:tint="@color/white"/>
-                                        <TextView
-                                                android:text="Crea tu árbol"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" android:id="@+id/textView11"
-                                                android:textColor="@color/green_primary" android:layout_gravity="center"
-                                                android:layout_marginBottom="32dp" android:fontFamily="@font/poppins_bold"
-                                                android:textSize="16dp"/>
-                                </LinearLayout>
-
-                                <TextView
-                                        android:text="Gana más puntos"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" android:id="@+id/textView13"
-                                        android:textColor="@color/green_tertiary" android:layout_gravity="center"
-                                        android:layout_marginTop="32dp" android:fontFamily="@font/poppins_light"
+                                        android:layout_height="wrap_content" android:id="@+id/textView11"
+                                        android:textColor="@color/green_primary" android:layout_gravity="center"
+                                        android:layout_marginBottom="32dp" android:fontFamily="@font/poppins_bold"
                                         android:textSize="16dp"/>
-                                <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" android:id="@+id/textView12"
-                                        android:text="jugando:" android:textColor="@color/blue_secondary"
-                                        android:layout_gravity="center" android:fontFamily="@font/poppins_bold"
-                                        android:textSize="16dp"/>
-                                <LinearLayout
-                                        android:orientation="horizontal"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginLeft="32dp" android:layout_marginRight="32dp"
-                                        android:layout_marginTop="16dp">
-                                        <Button
-                                                android:text="Button"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="match_parent" android:id="@+id/button"
-                                                android:layout_weight="1" android:background="@color/blue_primary"
-                                                app:backgroundTint="@null" android:padding="12dp"/>
-                                        <ImageButton
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" app:srcCompat="@mipmap/arbolito_feliz"
-                                                android:id="@+id/imageButton3" android:layout_weight="1"
-                                                app:backgroundTint="@null" android:background="@color/blue_primary"
-                                                android:padding="12dp"/>
-                                </LinearLayout>
-                                <LinearLayout
-                                        android:orientation="horizontal"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_marginLeft="32dp" android:layout_marginRight="32dp"
-                                        android:layout_marginTop="16dp">
-                                        <Button
-                                                android:text="Button"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="match_parent" android:id="@+id/button2"
-                                                android:layout_weight="1" android:backgroundTint="@null"
-                                                android:background="@color/green_primary" android:padding="12dp"/>
-                                        <ImageButton
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" app:srcCompat="@mipmap/brote_feliz"
-                                                android:id="@+id/imageButton4" android:layout_weight="1"
-                                                android:backgroundTint="@null" android:background="@color/green_primary"
-                                                android:padding="12dp"/>
-                                </LinearLayout>
-                                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                              android:orientation="horizontal"
-                                              app:layout_constraintTop_toBottomOf="@+id/imageView"
-                                              app:layout_constraintEnd_toEndOf="parent"
-                                              app:layout_constraintStart_toStartOf="parent"
-                                              android:id="@+id/linearLayout2" android:layout_margin="32dp"
-                                              android:layout_gravity="center">
-                                        <ImageView
-                                                android:layout_width="100dp"
-                                                android:layout_height="30dp" app:srcCompat="@mipmap/cbn_logo"
-                                                android:id="@+id/imageView8"
-                                                tools:layout_editor_absoluteX="59dp"
-                                                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                                                android:layout_gravity="bottom" android:layout_marginLeft="16dp"/>
-                                        <ImageView
-                                                android:layout_width="110dp"
-                                                android:layout_height="50dp" app:srcCompat="@mipmap/boa_logo"
-                                                android:id="@+id/imageView7"
-                                                tools:layout_editor_absoluteX="223dp"
-                                                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                                                android:layout_marginTop="12dp"
-                                                android:layout_gravity="bottom" android:layout_marginRight="16dp"/>
-                                </LinearLayout>
-                                <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-                                        <com.google.android.material.button.MaterialButton
-                                                android:text="Tu arbol"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" android:id="@+id/button_home_your_tree"
-                                                android:layout_marginBottom="8dp"
-                                                app:backgroundTint="@null"
-                                                android:background="@drawable/button_1"/>
-                                        <com.google.android.material.button.MaterialButton
-                                                android:text="Orfanato"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" android:id="@+id/button_home_orphanage"
-                                                android:layout_marginBottom="8dp"
-                                                app:backgroundTint="@null"
-                                                android:background="@drawable/button_1"/>
-                                        <com.google.android.material.button.MaterialButton
-                                                android:text="Ranking"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" android:id="@+id/button_home_ranking"
-                                                android:layout_marginBottom="8dp"
-                                                app:backgroundTint="@null"
-                                                android:background="@drawable/button_1"/>
-                                        <com.google.android.material.button.MaterialButton
-                                                android:text="games"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" android:id="@+id/button_home_games"
-                                                android:layout_marginBottom="8dp"
-                                                app:backgroundTint="@null"
-                                                android:background="@drawable/button_1"/>
-                                        <com.google.android.material.button.MaterialButton
-                                                android:text="Perfil"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" android:id="@+id/button_home_profile"
-                                                android:layout_marginBottom="8dp"
-                                                app:backgroundTint="@null"
-                                                android:background="@drawable/button_1"/>
-                                        <com.google.android.material.button.MaterialButton
-                                                android:text="Registrar Arbol"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" android:id="@+id/button_home_register_tree"
-                                                android:layout_marginBottom="8dp"
-                                                app:backgroundTint="@null"
-                                                android:background="@drawable/button_1"/>
-                                        <com.google.android.material.button.MaterialButton
-                                                android:text="Registrar Arbol"
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" android:id="@+id/button_home_log_out"
-                                                android:layout_marginBottom="8dp"
-                                                app:backgroundTint="@null"
-                                                android:background="@drawable/button_1"/>
-
-                                </LinearLayout>
                         </LinearLayout>
-                </ScrollView>
+
+                        <TextView
+                                android:text="Gana más puntos"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView13"
+                                android:textColor="@color/green_tertiary" android:layout_gravity="center"
+                                android:layout_marginTop="32dp" android:fontFamily="@font/poppins_light"
+                                android:textSize="16dp"/>
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/textView12"
+                                android:text="jugando:" android:textColor="@color/blue_secondary"
+                                android:layout_gravity="center" android:fontFamily="@font/poppins_bold"
+                                android:textSize="16dp"/>
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="32dp" android:layout_marginRight="32dp"
+                                android:layout_marginTop="16dp">
+                                <Button
+                                        android:text="Button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" android:id="@+id/button"
+                                        android:layout_weight="1" android:background="@color/blue_primary"
+                                        app:backgroundTint="@null" android:padding="12dp"/>
+                                <ImageButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" app:srcCompat="@mipmap/arbolito_feliz"
+                                        android:id="@+id/imageButton3" android:layout_weight="1"
+                                        app:backgroundTint="@null" android:background="@color/blue_primary"
+                                        android:padding="12dp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="32dp" android:layout_marginRight="32dp"
+                                android:layout_marginTop="16dp">
+                                <Button
+                                        android:text="Button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="match_parent" android:id="@+id/button2"
+                                        android:layout_weight="1" android:backgroundTint="@null"
+                                        android:background="@color/green_primary" android:padding="12dp"/>
+                                <ImageButton
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" app:srcCompat="@mipmap/brote_feliz"
+                                        android:id="@+id/imageButton4" android:layout_weight="1"
+                                        android:backgroundTint="@null" android:background="@color/green_primary"
+                                        android:padding="12dp"/>
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                      android:orientation="horizontal"
+                                      app:layout_constraintTop_toBottomOf="@+id/imageView"
+                                      app:layout_constraintEnd_toEndOf="parent"
+                                      app:layout_constraintStart_toStartOf="parent"
+                                      android:id="@+id/linearLayout2" android:layout_margin="32dp"
+                                      android:layout_gravity="center">
+                                <ImageView
+                                        android:layout_width="100dp"
+                                        android:layout_height="30dp" app:srcCompat="@mipmap/cbn_logo"
+                                        android:id="@+id/imageView8"
+                                        tools:layout_editor_absoluteX="59dp"
+                                        app:layout_constraintTop_toBottomOf="@+id/imageView"
+                                        android:layout_gravity="bottom" android:layout_marginLeft="16dp"/>
+                                <ImageView
+                                        android:layout_width="110dp"
+                                        android:layout_height="50dp" app:srcCompat="@mipmap/boa_logo"
+                                        android:id="@+id/imageView7"
+                                        tools:layout_editor_absoluteX="223dp"
+                                        app:layout_constraintTop_toBottomOf="@+id/imageView"
+                                        android:layout_marginTop="12dp"
+                                        android:layout_gravity="bottom" android:layout_marginRight="16dp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <com.google.android.material.button.MaterialButton
+                                        android:text="Tu arbol"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/button_home_your_tree"
+                                        android:layout_marginBottom="8dp"
+                                        app:backgroundTint="@null"
+                                        android:background="@drawable/button_1"/>
+                                <com.google.android.material.button.MaterialButton
+                                        android:text="Orfanato"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/button_home_orphanage"
+                                        android:layout_marginBottom="8dp"
+                                        app:backgroundTint="@null"
+                                        android:background="@drawable/button_1"/>
+                                <com.google.android.material.button.MaterialButton
+                                        android:text="Ranking"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/button_home_ranking"
+                                        android:layout_marginBottom="8dp"
+                                        app:backgroundTint="@null"
+                                        android:background="@drawable/button_1"/>
+                                <com.google.android.material.button.MaterialButton
+                                        android:text="games"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/button_home_games"
+                                        android:layout_marginBottom="8dp"
+                                        app:backgroundTint="@null"
+                                        android:background="@drawable/button_1"/>
+                                <com.google.android.material.button.MaterialButton
+                                        android:text="Perfil"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/button_home_profile"
+                                        android:layout_marginBottom="8dp"
+                                        app:backgroundTint="@null"
+                                        android:background="@drawable/button_1"/>
+                                <com.google.android.material.button.MaterialButton
+                                        android:text="Registrar Arbol"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/button_home_register_tree"
+                                        android:layout_marginBottom="8dp"
+                                        app:backgroundTint="@null"
+                                        android:background="@drawable/button_1"/>
+                                <com.google.android.material.button.MaterialButton
+                                        android:text="Registrar Arbol"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/button_home_log_out"
+                                        android:layout_marginBottom="8dp"
+                                        app:backgroundTint="@null"
+                                        android:background="@drawable/button_1"/>
+
+                        </LinearLayout>
+                </LinearLayout>
+        </ScrollView>
                 <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -345,6 +341,4 @@
 
                         </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>-->
-        </LinearLayout>
-
 </LinearLayout>

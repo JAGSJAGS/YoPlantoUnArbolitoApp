@@ -84,6 +84,7 @@ public class RegisterUserActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse networkResponse = error.networkResponse;
+                int code  = error.networkResponse.statusCode;
                 String jsonError = new String(networkResponse.data);
                 validations.validateDatas(jsonError,RegisterUserActivity.this);
             }

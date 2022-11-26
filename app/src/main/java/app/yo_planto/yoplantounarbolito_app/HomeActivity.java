@@ -72,14 +72,16 @@ public class HomeActivity extends AppCompatActivity {
         button_your_tree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if( ifHaveTree() ){
+                /*if( ifHaveTree() ){
                     Intent seeTree = new Intent(getApplicationContext(), SeeTreeActivity.class);
                     startActivity(seeTree);
                 }
                 else{
                     Intent registerTree = new Intent(getApplicationContext(), RegisterTreeActivity.class);
                     startActivity(registerTree);
-                }
+                }*/
+                Intent careTree = new Intent(getApplicationContext(), TreeCareActivity.class);
+                startActivity(careTree);
             }
         });
         button_orphanage.setOnClickListener(new View.OnClickListener() {
