@@ -27,6 +27,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yoplantounarbolito_app.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -66,6 +67,8 @@ public class HomeActivity extends AppCompatActivity {
     //validaciones
     Validations validations;
 
+    LinearProgressIndicator linear_progress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +78,8 @@ public class HomeActivity extends AppCompatActivity {
         tree = new Tree();
         tree_database = new TreeDatabase();
         validations = new Validations();
+        linear_progress = findViewById(R.id.linear_progres_4);
+        linear_progress.setVisibility(View.GONE);
 
         //preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         preferences = new Preferences(HomeActivity.this);
@@ -111,30 +116,38 @@ public class HomeActivity extends AppCompatActivity {
                     Intent registerTree = new Intent(getApplicationContext(), RegisterTreeActivity.class);
                     startActivity(registerTree);
                 }*/
+                linear_progress.setVisibility(View.VISIBLE);
                 Intent careTree = new Intent(getApplicationContext(), TreeCareActivity.class);
                 startActivity(careTree);
+                linear_progress.setVisibility(View.GONE);
             }
         });
         button_orphanage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                linear_progress.setVisibility(View.VISIBLE);
                 Intent orphanageTree = new Intent(getApplicationContext(), OrphanageActivity.class);
                 startActivity(orphanageTree);
+                linear_progress.setVisibility(View.GONE);
             }
         });
 
         button_ranking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                linear_progress.setVisibility(View.VISIBLE);
                 Intent rankingUser = new Intent(getApplicationContext(), RankingActivity.class);
                 startActivity(rankingUser);
+                linear_progress.setVisibility(View.GONE);
             }
         });
         button_games.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                linear_progress.setVisibility(View.VISIBLE);
                 Intent gamesTree = new Intent(getApplicationContext(), GamesActivity.class);
                 startActivity(gamesTree);
+                linear_progress.setVisibility(View.GONE);
             }
         });
         button_profile.setOnClickListener(new View.OnClickListener() {
@@ -142,21 +155,25 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 /*Intent profileUser = new Intent(getApplicationContext(), UserProfileActivity.class);
                 startActivity(profileUser);*/
-
+                linear_progress.setVisibility(View.VISIBLE);
                 showUser();
+                linear_progress.setVisibility(View.GONE);
             }
         });
         button_register_tree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                linear_progress.setVisibility(View.VISIBLE);
                 Intent registerTree = new Intent(getApplicationContext(), RegisterTreeActivity.class);
                 startActivity(registerTree);
+                linear_progress.setVisibility(View.GONE);
             }
         });
 
         button_log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                linear_progress.setVisibility(View.VISIBLE);
                 logOut();
             }
         });
@@ -192,6 +209,7 @@ public class HomeActivity extends AppCompatActivity {
                     validations.errors(error, HomeActivity.this);
                     Log.i("ErrorVolley",jsonError);
                 }
+                linear_progress.setVisibility(View.GONE);
             }
         }) {
             @Override
@@ -210,7 +228,7 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
-   //cargar usuario
+   //metodos para obtener usuario
     private void showUser() {
         String message = "\n" + user.getName() + "\n" + "\n" + user.getEmail() + "\n" + "\n" + user.getPhone() + "\n";
         new MaterialAlertDialogBuilder(this)
@@ -241,7 +259,6 @@ public class HomeActivity extends AppCompatActivity {
                     user.setName(response.getString(user_database.getName()));
                     user.setEmail(response.getString(user_database.getEmail()));
                     user.setPhone(response.getString(user_database.getPhone()));
-
                     textView_home_name_user.setText("Hola " + user.getName());
                     getUsersTrees();
                 } catch (JSONException e) {
@@ -251,10 +268,8 @@ public class HomeActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                String jsonError = new String(networkResponse.data);
-                Toast.makeText(HomeActivity.this, "Error en la consulta", Toast.LENGTH_SHORT).show();
-                Log.e("ErrorVolley", jsonError);
+                validations.errors(error, HomeActivity.this);
+                linear_progress.setVisibility(View.GONE);
             }
         }) {
             @Override
@@ -285,8 +300,7 @@ public class HomeActivity extends AppCompatActivity {
                     tree.setLng(Double.parseDouble(response.getString(tree_database.getLng())));
                     tree.setPath_photo(response.getString(tree_database.getPath_photo()));
                     tree.setState(response.getString(tree_database.getState()));
-
-
+                    linear_progress.setVisibility(View.GONE);
 
                 } catch (JSONException e) {
                     Log.e("error", e + "");
@@ -298,13 +312,10 @@ public class HomeActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                NetworkResponse networkResponse = error.networkResponse;
-                String jsonError = new String(networkResponse.data);
+                validations.errors(error, HomeActivity.this);
+                linear_progress.setVisibility(View.GONE);
                 linear_layout_care_tree.setVisibility(View.GONE);
                 linear_layout_create_tree.setVisibility(View.VISIBLE);
-                Toast.makeText(HomeActivity.this, "Error en la consulta", Toast.LENGTH_SHORT).show();
-                Log.e("ErrorVolley", jsonError);
             }
         }) {
             @Override

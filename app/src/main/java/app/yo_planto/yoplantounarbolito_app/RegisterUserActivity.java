@@ -16,6 +16,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yoplantounarbolito_app.R;
 import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,7 +26,6 @@ import java.util.Map;
 public class RegisterUserActivity extends AppCompatActivity {
 
     EditText name, email, phone, password, password_confirmation;
-    TextView errors;
 
     //request
     RequestQueue request;
@@ -43,6 +43,8 @@ public class RegisterUserActivity extends AppCompatActivity {
     //preferencias
     Preferences preferences;
 
+    LinearProgressIndicator linear_progres;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,14 +53,14 @@ public class RegisterUserActivity extends AppCompatActivity {
         user = new User();
         user_database = new UserDatabase();
         preferences = new Preferences(RegisterUserActivity.this);
+        linear_progres = findViewById(R.id.linear_progres_3);
+        linear_progres.setVisibility(View.GONE);
 
         name = findViewById(com.example.yoplantounarbolito_app.R.id.editTextNameRegisterUser);
         email = findViewById(com.example.yoplantounarbolito_app.R.id.editTextEmailRegisterUser);
         phone = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPhoneRegisterUser);
         password = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPasswordRegisterUser);
         password_confirmation = findViewById(com.example.yoplantounarbolito_app.R.id.editTextConfirmationPasswordRegisterUser);
-        errors = findViewById(R.id.textError);
-        errors.setVisibility(View.GONE);
     }
 
     private void registerUser(){
@@ -74,19 +76,30 @@ public class RegisterUserActivity extends AppCompatActivity {
         params.put(user_database.getPassword_confirmation(), password_confirmation.getText().toString());
         JSONObject parameters = new JSONObject(params);
 
-        JOR = new JsonObjectRequest(Request.Method.POST, url + "/users", parameters,new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.POST, url + "/auth/register", parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(RegisterUserActivity.this,"Usuario registrado correctamente",Toast.LENGTH_LONG).show();
-                loginUser();
+                try {
+                    String token = response.getString("accessToken");
+                    JSONObject user = response.getJSONObject("user");
+                    String user_id = user.getString("id");
+                    preferences.savePreferencesUser(token, user_id);
+                    Toast.makeText(RegisterUserActivity.this,"id:" + user_id,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterUserActivity.this,"token:" + token,Toast.LENGTH_SHORT).show();
+                    Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(mainActivity);
+                    finishAffinity();
+
+                } catch (JSONException e) {
+                    Toast.makeText(RegisterUserActivity.this,"Se produjo un error",Toast.LENGTH_SHORT).show();
+                }
+                linear_progres.setVisibility(View.GONE);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                int code  = error.networkResponse.statusCode;
-                String jsonError = new String(networkResponse.data);
                 validations.errors(error,RegisterUserActivity.this);
+                linear_progres.setVisibility(View.GONE);
             }
         }){
             @Override
@@ -101,49 +114,7 @@ public class RegisterUserActivity extends AppCompatActivity {
     }
 
     public void OnclickRegister(View view) {
-        errors.setVisibility(View.GONE);
+        linear_progres.setVisibility(View.VISIBLE);
         registerUser();
-    }
-
-    //Login
-    private void loginUser(){
-        request = Volley.newRequestQueue(this);
-        Map<String, String> params = new HashMap<>();
-        params.put("email", email.getText().toString());
-        params.put("password", password.getText().toString());
-        JSONObject parameters = new JSONObject(params);
-
-        JOR = new JsonObjectRequest(Request.Method.POST, url+"/login", parameters,new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String token = response.getString("access_token");
-                    String user_id = response.getString("user_id");
-                    preferences.savePreferencesUser(token, user_id);
-                    finishAffinity ();
-                    Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(mainActivity);
-                } catch (JSONException e) {
-                    Toast.makeText(RegisterUserActivity.this,"Se produjo un error",Toast.LENGTH_LONG).show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                String jsonError = new String(networkResponse.data);
-                validations.errors(error, RegisterUserActivity.this);
-                //Toast.makeText(RegisterUserActivity.this,"son errores"+jsonError,Toast.LENGTH_LONG).show();
-            }
-        }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/vnd.api+json");
-                headers.put("Content-Type", "application/vnd.api+json");
-                return headers;
-            }
-        };
-        request.add(JOR);
     }
 }

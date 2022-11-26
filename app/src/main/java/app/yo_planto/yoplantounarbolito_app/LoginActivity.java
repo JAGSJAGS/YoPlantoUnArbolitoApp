@@ -1,15 +1,12 @@
 package app.yo_planto.yoplantounarbolito_app;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import app.yo_planto.yoplantounarbolito_app.classes.User;
 import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.UserDatabase;
 import app.yo_planto.yoplantounarbolito_app.java_class.Preferences;
 import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
@@ -18,6 +15,7 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yoplantounarbolito_app.R;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -44,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
 
     Variables variables = new Variables();
 
+    LinearProgressIndicator linear_progres;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +53,12 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
         password = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPasswordLogin);
         user_database = new UserDatabase();
         preferences = new Preferences(LoginActivity.this);
+        linear_progres = findViewById(R.id.linear_progres_2);
+        linear_progres.setVisibility(View.GONE);
     }
 
     public void OnclickLogin(View view) {
+        linear_progres.setVisibility(View.VISIBLE);
         loginUser();
     }
 
@@ -74,20 +77,20 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
                     JSONObject user = response.getJSONObject("user");
                     String user_id = user.getString("id");
                     preferences.savePreferencesUser(token, user_id);
-                    Toast.makeText(LoginActivity.this,"id:" + user_id,Toast.LENGTH_SHORT).show();
-                    Toast.makeText(LoginActivity.this,"token:" + token,Toast.LENGTH_SHORT).show();
                     Intent homeTreeActivity = new Intent(getApplicationContext(),HomeActivity.class);
                     startActivity(homeTreeActivity);
                     finishAffinity();
 
                 } catch (JSONException e) {
-                    Toast.makeText(LoginActivity.this,"Se produjo un errorsss",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Se produjo un error",Toast.LENGTH_SHORT).show();
                 }
+                linear_progres.setVisibility(View.GONE);
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                linear_progres.setVisibility(View.GONE);
                 validations.errors(error, LoginActivity.this);
             }
         }){
@@ -103,8 +106,10 @@ public class LoginActivity extends AppCompatActivity {//implements Response.List
     }
 
     public void OnclickGoToRegisterActivity(View view) {
+        linear_progres.setVisibility(View.VISIBLE);
         Intent registerUser = new Intent(getApplicationContext(),RegisterUserActivity.class);
         startActivity(registerUser);
+        linear_progres.setVisibility(View.GONE);
         //finish();
     }
 }

@@ -21,6 +21,12 @@
                                 android:layout_gravity="center"
                                 android:id="@+id/imageView9" android:layout_marginBottom="16dp"
                                 android:layout_marginTop="16dp"/>
+                        <com.google.android.material.progressindicator.LinearProgressIndicator
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:indeterminate="true"
+                                android:backgroundTint="@null"
+                                android:background="@color/blue_secondary" android:id="@+id/linear_progres_4"/>
                         <TextView
                                 android:text="hola lilian"
                                 android:layout_width="wrap_content"
