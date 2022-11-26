@@ -9,11 +9,15 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import app.yo_planto.yoplantounarbolito_app.classes.Tree;
 import app.yo_planto.yoplantounarbolito_app.classes.User;
+import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.TreeDatabase;
 import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.UserDatabase;
 import app.yo_planto.yoplantounarbolito_app.java_class.Preferences;
 import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
@@ -41,11 +45,23 @@ public class HomeActivity extends AppCompatActivity {
     Preferences preferences;
 
     //buttons
-    Button button_log_out, button_your_tree, button_orphanage, button_ranking, button_games, button_profile, button_register_tree ;
+    Button button_log_out, button_your_tree, button_orphanage,
+            button_ranking, button_games, button_profile, button_register_tree;
 
     //datos de Usuario
     User user;
     UserDatabase user_database;
+
+    //datos arbol
+    Tree tree;
+    TreeDatabase tree_database;
+
+    //textview
+    TextView textView_home_name_user;
+
+    //layout
+    LinearLayout linear_layout_create_tree;
+    LinearLayout linear_layout_care_tree;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +69,13 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         user = new User();
         user_database = new UserDatabase();
+        tree = new Tree();
+        tree_database = new TreeDatabase();
+
         //preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         preferences = new Preferences(HomeActivity.this);
         url  = variables.getUrl();
+        textView_home_name_user = findViewById(R.id.textview_home_name_user);
 
         //metodos
         getUser();
@@ -68,6 +88,13 @@ public class HomeActivity extends AppCompatActivity {
         button_profile = findViewById(R.id.button_home_profile);
         button_register_tree = findViewById(R.id.button_home_register_tree);
         button_log_out = findViewById(R.id.button_home_log_out);
+
+        //avatar o boton
+        linear_layout_care_tree = findViewById(R.id.linear_layout_cuida_tu_arbol);
+        linear_layout_create_tree = findViewById(R.id.linear_layout_crea_tu_arbol);
+        linear_layout_care_tree.setVisibility(View.GONE);
+        linear_layout_create_tree.setVisibility(View.VISIBLE);
+
 
         button_your_tree.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,6 +230,9 @@ public class HomeActivity extends AppCompatActivity {
                     user.setName(response.getString(user_database.getName()));
                     user.setEmail(response.getString(user_database.getEmail()));
                     user.setPhone(response.getString(user_database.getPhone()));
+
+                    textView_home_name_user.setText("Hola " + user.getName());
+                    getUsersTrees();
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
@@ -212,6 +242,54 @@ public class HomeActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse networkResponse = error.networkResponse;
                 String jsonError = new String(networkResponse.data);
+                Toast.makeText(HomeActivity.this, "Error en la consulta", Toast.LENGTH_SHORT).show();
+                Log.e("ErrorVolley", jsonError);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Accept", "application/vnd.api+json");
+                headers.put("Authorization", "Bearer " + preferences.getToken());
+                return headers;
+            }
+        };
+        request.add(JOR);
+    }
+
+
+    //obtener arboles del usuario, por el momento a solicidtud del cliente solo uno
+    private void getUsersTrees() {
+
+        request = Volley.newRequestQueue(this);
+
+        JOR = new JsonObjectRequest(Request.Method.GET, url +"/tree_users/" + preferences.getUserId(), null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+                    tree.setAvatar(response.getString(tree_database.getAvatar()));
+                    tree.setName(response.getString(tree_database.getAvatar()));
+                    tree.setLat(Double.parseDouble(response.getString(tree_database.getLat())));
+                    tree.setLng(Double.parseDouble(response.getString(tree_database.getLng())));
+                    tree.setPath_photo(response.getString(tree_database.getPath_photo()));
+                    tree.setState(response.getString(tree_database.getState()));
+
+                    linear_layout_care_tree.setVisibility(View.VISIBLE);
+                    linear_layout_care_tree.setVisibility(View.GONE);
+
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                NetworkResponse networkResponse = error.networkResponse;
+                String jsonError = new String(networkResponse.data);
+                linear_layout_care_tree.setVisibility(View.GONE);
+                linear_layout_create_tree.setVisibility(View.VISIBLE);
                 Toast.makeText(HomeActivity.this, "Error en la consulta", Toast.LENGTH_SHORT).show();
                 Log.e("ErrorVolley", jsonError);
             }
