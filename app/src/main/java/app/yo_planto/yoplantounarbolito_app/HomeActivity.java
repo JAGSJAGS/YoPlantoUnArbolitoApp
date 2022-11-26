@@ -292,22 +292,24 @@ public class HomeActivity extends AppCompatActivity {
         JOR = new JsonObjectRequest(Request.Method.GET, url +"/tree_users/" + preferences.getUserId(), null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
 
+                try {
+                    tree.setId(response.getString(tree_database.getId()));/*
                     tree.setAvatar(response.getString(tree_database.getAvatar()));
                     tree.setName(response.getString(tree_database.getAvatar()));
                     tree.setLat(Double.parseDouble(response.getString(tree_database.getLat())));
                     tree.setLng(Double.parseDouble(response.getString(tree_database.getLng())));
                     tree.setPath_photo(response.getString(tree_database.getPath_photo()));
-                    tree.setState(response.getString(tree_database.getState()));
+                    tree.setState(response.getString(tree_database.getState()));*/
                     linear_progress.setVisibility(View.GONE);
+                    preferences.savePreferencesTree(tree.getId());
+                    linear_layout_care_tree.setVisibility(View.VISIBLE);
+                    linear_layout_create_tree.setVisibility(View.GONE);
 
                 } catch (JSONException e) {
                     Log.e("error", e + "");
                 }
-                linear_layout_care_tree.setVisibility(View.VISIBLE);
-                linear_layout_create_tree.setVisibility(View.GONE);
-                Toast.makeText(HomeActivity.this, "entro:"+preferences.getUserId(), Toast.LENGTH_SHORT).show();
+
             }
         }, new Response.ErrorListener() {
             @Override

@@ -115,7 +115,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
             .setPositiveButton("Tomar una foto", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    tomarFotografia();;
+                    tomarFotografia();
                 }
             }).show();
     }
@@ -232,8 +232,8 @@ public class RegisterPhotoActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/vnd.api+json");
-                headers.put("Content-Type", "application/vnd.api+json");
+                headers.put("Accept", "application/json");
+                headers.put("Content-Type", "application/json");
                 return headers;
             }
         };
