@@ -12,8 +12,8 @@ public class ActionDatabase {
         name = "name";
         user_id = "userId";
         tree_id= "treeId";
-        lng = "lng";
-        lat = "lt";
+        lng = "longitude";
+        lat = "latitude";
     }
 
     public String getName() {

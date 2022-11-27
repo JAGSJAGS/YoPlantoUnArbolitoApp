@@ -34,7 +34,7 @@ public class Preferences {
 
         SharedPreferences preferencesTree= context.getSharedPreferences("preferenceTree", context.MODE_PRIVATE);
         SharedPreferences.Editor editorTree = preferencesTree.edit();
-        editor.putString("tree_id","");
+        editor.putString("tree_id","ninguna");
         editorTree.commit();
     }
 

@@ -57,6 +57,7 @@
         <entry key="app/src/main/res/layout/fragment_option.xml" value="0.128739800543971" />
         <entry key="app/src/main/res/layout/fragment_see_tree.xml" value="0.12441214194100043" />
         <entry key="app/src/main/res/layout/fragment_tree.xml" value="0.128739800543971" />
+        <entry key="app/src/main/res/layout/item_list.xml" value="0.25" />
         <entry key="app/src/main/res/menu/top_app_bar.xml" value="0.33" />
       </map>
     </option>
