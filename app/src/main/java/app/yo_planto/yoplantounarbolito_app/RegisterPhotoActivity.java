@@ -1,10 +1,7 @@
 package app.yo_planto.yoplantounarbolito_app;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Base64;
 import android.widget.*;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.DialogInterface;
@@ -23,6 +20,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import androidx.core.content.FileProvider;
+import app.yo_planto.yoplantounarbolito_app.java_class.Preferences;
 import app.yo_planto.yoplantounarbolito_app.java_class.Validations;
 import app.yo_planto.yoplantounarbolito_app.java_class.Variables;
 import com.android.volley.*;
@@ -49,7 +47,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     Variables variables = new Variables();
     String url;
 
-    Button botonCargar;
+    Button buttonLoad;
     Button buttonSavePhoto;
     ImageView imagen;
     Validations validations;
@@ -58,6 +56,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     Bitmap bitmap;
     ProgressBar loadPhoto;
     TextView textViewLoadPhoto;
+    Preferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +67,14 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         url = variables.getUrl();
         imagen= findViewById(com.example.yoplantounarbolito_app.R.id.photo_tree);
         validations = new Validations();
-        botonCargar= findViewById(com.example.yoplantounarbolito_app.R.id.btnCargarImg);
-        buttonSavePhoto = findViewById(com.example.yoplantounarbolito_app.R.id.buttonSavePhoto);
+        buttonLoad= findViewById(com.example.yoplantounarbolito_app.R.id.button_load_photo);
+        buttonSavePhoto = findViewById(com.example.yoplantounarbolito_app.R.id.button_save_photo);
         buttonSavePhoto.setVisibility(View.GONE);
         loadPhoto = findViewById(com.example.yoplantounarbolito_app.R.id.loadPhoto);
         loadPhoto.setVisibility(View.GONE);
         textViewLoadPhoto = findViewById(R.id.textViewLoadPhoto);
         textViewLoadPhoto.setVisibility(View.GONE);
+        preferences = new Preferences(RegisterPhotoActivity.this);
 
     }
 
@@ -202,8 +202,6 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     }
 
     private void savePhoto(){
-        SharedPreferences preference = getSharedPreferences("preferenceTree", Context.MODE_PRIVATE);
-        String id = preference.getString("tree_id","");
         RequestQueue request;
         JsonObjectRequest JOR;
         request = Volley.newRequestQueue(this);
@@ -211,7 +209,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
         Map<String, String> params = new HashMap<>();
         params.put("photo",img);
         JSONObject parameters = new JSONObject(params);
-        JOR = new JsonObjectRequest(Request.Method.PUT, url + "/savephoto/" +id, parameters,new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.PUT, url + "/savephoto/" + preferences.getTreeId(), parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 loadPhoto.setVisibility(View.GONE);
@@ -225,6 +223,8 @@ public class RegisterPhotoActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 loadPhoto.setVisibility(View.GONE);
                 textViewLoadPhoto.setVisibility(View.GONE);
+                buttonSavePhoto.setEnabled(true);
+                buttonLoad.setEnabled(true);
                 validations.showDialog("No se pudo registrar la fotografía, tome otra fotografía o intente despues.",
                                             RegisterPhotoActivity.this);
             }
@@ -234,6 +234,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Accept", "application/json");
                 headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "Bearer " + preferences.getToken());
                 return headers;
             }
         };
@@ -251,6 +252,8 @@ public class RegisterPhotoActivity extends AppCompatActivity {
     public void OnclickSavePhoto(View view) {
         loadPhoto.setVisibility(View.VISIBLE);
         textViewLoadPhoto.setVisibility(View.VISIBLE);
+        buttonSavePhoto.setEnabled(false);
+        buttonLoad.setEnabled(false);
         savePhoto();
     }
 }
