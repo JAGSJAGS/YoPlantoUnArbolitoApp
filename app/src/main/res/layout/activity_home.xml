@@ -60,15 +60,10 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:id="@+id/linear_layout_crea_tu_arbol">
-                                        <com.google.android.material.floatingactionbutton.FloatingActionButton
-                                                android:id="@+id/button_floating_home_register_tree"
-                                                android:layout_width="132dp"
-                                                android:layout_height="132dp"
-                                                android:layout_gravity="center"
-                                                android:layout_margin="16dp"
-                                                app:srcCompat="@mipmap/plus"
-                                                app:backgroundTint="@color/green_primary"
-                                                app:tint="@color/white"/>
+                                        <ImageButton
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content" app:srcCompat="@mipmap/boton"
+                                                android:id="@+id/imageButton" android:layout_gravity="center"/>
                                         <TextView
                                                 android:text="Crea tu árbol"
                                                 android:layout_width="wrap_content"

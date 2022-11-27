@@ -28,6 +28,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.yoplantounarbolito_app.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -108,14 +109,6 @@ public class HomeActivity extends AppCompatActivity {
         button_your_tree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*if( ifHaveTree() ){
-                    Intent seeTree = new Intent(getApplicationContext(), SeeTreeActivity.class);
-                    startActivity(seeTree);
-                }
-                else{
-                    Intent registerTree = new Intent(getApplicationContext(), RegisterTreeActivity.class);
-                    startActivity(registerTree);
-                }*/
                 linear_progress.setVisibility(View.VISIBLE);
                 Intent careTree = new Intent(getApplicationContext(), TreeCareActivity.class);
                 startActivity(careTree);
@@ -229,6 +222,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
    //metodos para obtener usuario
+
+    //mostar dialog de informacion de usuario
     private void showUser() {
         String message = "\n" + user.getName() + "\n" + "\n" + user.getEmail() + "\n" + "\n" + user.getPhone() + "\n";
         new MaterialAlertDialogBuilder(this)
@@ -247,22 +242,35 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }).show();
     }
-
+    // request para obtener usuario y sus arboles, en este primer caso solo recupera 1
     private void getUser() {
 
         request = Volley.newRequestQueue(this);
 
-        JOR = new JsonObjectRequest(Request.Method.GET, url +"/users/" + preferences.getUserId(), null, new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.GET, url +"/users/" + preferences.getUserId() + "?include=trees", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                linear_progress.setVisibility(View.GONE);
                 try {
                     user.setName(response.getString(user_database.getName()));
                     user.setEmail(response.getString(user_database.getEmail()));
                     user.setPhone(response.getString(user_database.getPhone()));
+                    user.setPoints(response.getString(user_database.getPoints()));
                     textView_home_name_user.setText("Hola " + user.getName());
-                    getUsersTrees();
+
+                    JSONArray trees_array = response.getJSONArray("trees");
+                    Toast.makeText(HomeActivity.this, "array: " + trees_array, Toast.LENGTH_SHORT).show();
+                    if (trees_array.isNull(0)) {
+                        linear_layout_care_tree.setVisibility(View.GONE);
+                        linear_layout_create_tree.setVisibility(View.VISIBLE);
+                    } else{
+                        JSONObject tree_object = trees_array.getJSONObject(0);
+                        preferences.savePreferencesTree(tree_object.getString(tree_database.getId()));
+                        linear_layout_care_tree.setVisibility(View.VISIBLE);
+                        linear_layout_create_tree.setVisibility(View.GONE);
+                    }
                 } catch (JSONException e) {
-                    throw new RuntimeException(e);
+                    Toast.makeText(HomeActivity.this, "Se produjo un error:", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -270,54 +278,6 @@ public class HomeActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 validations.errors(error, HomeActivity.this);
                 linear_progress.setVisibility(View.GONE);
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/vnd.api+json");
-                headers.put("Authorization", "Bearer " + preferences.getToken());
-                return headers;
-            }
-        };
-        request.add(JOR);
-    }
-
-
-    //obtener arboles del usuario, por el momento a solicidtud del cliente solo uno
-    private void getUsersTrees() {
-
-        request = Volley.newRequestQueue(this);
-
-        JOR = new JsonObjectRequest(Request.Method.GET, url +"/tree_users/" + preferences.getUserId(), null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                try {
-                    tree.setId(response.getString(tree_database.getId()));/*
-                    tree.setAvatar(response.getString(tree_database.getAvatar()));
-                    tree.setName(response.getString(tree_database.getAvatar()));
-                    tree.setLat(Double.parseDouble(response.getString(tree_database.getLat())));
-                    tree.setLng(Double.parseDouble(response.getString(tree_database.getLng())));
-                    tree.setPath_photo(response.getString(tree_database.getPath_photo()));
-                    tree.setState(response.getString(tree_database.getState()));*/
-                    linear_progress.setVisibility(View.GONE);
-                    preferences.savePreferencesTree(tree.getId());
-                    linear_layout_care_tree.setVisibility(View.VISIBLE);
-                    linear_layout_create_tree.setVisibility(View.GONE);
-
-                } catch (JSONException e) {
-                    Log.e("error", e + "");
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                validations.errors(error, HomeActivity.this);
-                linear_progress.setVisibility(View.GONE);
-                linear_layout_care_tree.setVisibility(View.GONE);
-                linear_layout_create_tree.setVisibility(View.VISIBLE);
             }
         }) {
             @Override

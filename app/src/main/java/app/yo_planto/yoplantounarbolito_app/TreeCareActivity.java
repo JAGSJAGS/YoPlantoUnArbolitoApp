@@ -97,21 +97,21 @@ public class TreeCareActivity extends AppCompatActivity {
     }
 
     private void waterTree(){
-        action.setName("Regar");
+        action.setName(variables.getREGAR());
         action();
 
     }
     private void cleanTree(){
-        action.setName("Limpieza");
+        action.setName(variables.getLIMPIEZA());
         action();
 
     }
     private void fertiliceTree(){
-        action.setName("Abono");
+        action.setName(variables.getABONO());
         action();
     }
     private void greepTree(){
-        action.setName("Agarre");
+        action.setName(variables.getAGARRE());
         action();
     }
 
