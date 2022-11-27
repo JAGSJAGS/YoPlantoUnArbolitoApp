@@ -3,6 +3,7 @@ package app.yo_planto.yoplantounarbolito_app.java_class;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,7 +34,7 @@ public class AdapterDates extends RecyclerView.Adapter<AdapterDates.ViewHolderDa
         holder.indice.setText(list_item_ranking.get(position).getIndice()+"");
         holder.name_user.setText(list_item_ranking.get(position).getName_user());
         holder.name_tree.setText(list_item_ranking.get(position).getName_tree());
-        holder.avatar.setText(list_item_ranking.get(position).getAvatar());
+        holder.avatar.setImageResource(list_item_ranking.get(position).getAvatar());
         holder.points.setText(list_item_ranking.get(position).getPoints());
     }
 
@@ -43,14 +44,15 @@ public class AdapterDates extends RecyclerView.Adapter<AdapterDates.ViewHolderDa
     }
 
     public class ViewHolderDates extends RecyclerView.ViewHolder {
-        TextView indice, name_user, name_tree, avatar, points;
+        TextView indice, name_user, name_tree, points;
+        ImageView avatar;
 
         public ViewHolderDates(@NonNull @NotNull View itemView) {
             super(itemView);
             indice = itemView.findViewById(R.id.id_item_indice);
-            name_user = itemView.findViewById(R.id.id_item_indice);
+            name_user = itemView.findViewById(R.id.id_item_name_user);
             name_tree = itemView.findViewById(R.id.id_item_name_tree);
-            avatar = itemView.findViewById(R.id.id_item_avatar);
+            avatar= itemView.findViewById(R.id.avatar_ranking);
             points = itemView.findViewById(R.id.id_item_points);
         }
     }

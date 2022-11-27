@@ -6,7 +6,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="app.yo_planto.yoplantounarbolito_app.RankingActivity"
-        android:orientation="vertical">
+        android:orientation="vertical" android:layout_margin="16dp">
+    <ImageView
+            android:layout_width="130dp"
+            android:layout_height="130dp" app:srcCompat="@mipmap/logo" android:id="@+id/imageView13"
+            android:layout_gravity="center" android:layout_marginBottom="16dp"/>
+    <TextView
+            android:text="Los más entusiastas!!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView18" android:textSize="20dp"
+            android:textColor="@color/green_tertiary" android:fontFamily="@font/poppins_bold"/>
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:id="@+id/recicler_ranking">

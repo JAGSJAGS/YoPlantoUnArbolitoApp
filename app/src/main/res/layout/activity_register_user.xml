@@ -26,14 +26,22 @@
                     android:id="@+id/imageView12" android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp" app:autoSizeTextType="uniform"/>
             <TextView
-                    android:text="Empecemos registrandonos!!"
+                    android:text="Empecemos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="#009688"
+                    android:id="@+id/textView19"/>
+            <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20dp" app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_gravity="center" android:textColor="#009688" android:layout_marginBottom="32dp"
-                    android:layout_marginTop="16dp"/>
+                    android:textColor="#009688" android:layout_marginBottom="32dp"
+                    android:text="registrandonos!!"/>
             <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

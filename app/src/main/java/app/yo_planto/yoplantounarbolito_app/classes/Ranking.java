@@ -5,10 +5,10 @@ public class Ranking {
     private String name_user;
     private String name_tree;
     private String points;
-    private String avatar;
+    private int avatar;
     private int indice;
 
-    public Ranking(int indice, String name_user, String name_tree, String points, String avatar) {
+    public Ranking(int indice, String name_user, String name_tree, String points, int avatar) {
         this.name_user = name_user;
         this.name_tree = name_tree;
         this.points = points;
@@ -48,11 +48,11 @@ public class Ranking {
         this.points = points;
     }
 
-    public String getAvatar() {
+    public int getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(int avatar) {
         this.avatar = avatar;
     }
 

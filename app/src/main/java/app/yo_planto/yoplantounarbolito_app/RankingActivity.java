@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import app.yo_planto.yoplantounarbolito_app.classes.Ranking;
@@ -49,7 +50,8 @@ public class RankingActivity extends AppCompatActivity {
         url = variables.getUrl();
         preference = new Preferences(RankingActivity.this);
         recyclerView = findViewById(R.id.recicler_ranking);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this,1));
         list_item_ranking = new ArrayList<>();
         getRanking();
 
@@ -78,7 +80,7 @@ public class RankingActivity extends AppCompatActivity {
                                         name_tree = tree.getString("name");
                                         avatar = tree.getString("avatar");
                                         j += 1;
-                                        list_item_ranking.add(new Ranking(j,name, name_tree, points, avatar));
+                                        list_item_ranking.add(new Ranking(j,name, name_tree, points, showAvatar(avatar)));
                                         AdapterDates adapter_dates = new AdapterDates(list_item_ranking);
                                         recyclerView.setAdapter(adapter_dates);
                                     }
@@ -105,5 +107,22 @@ public class RankingActivity extends AppCompatActivity {
             }
         };
         request.add(JOR);
+    }
+
+    public int showAvatar(String avatar){
+    int res = 0;
+        switch (avatar){
+
+            case "avatar2":
+                res = R.mipmap.brote_feliz;
+                break;
+            case "avatar3":
+                res = R.mipmap.arbolito_feliz;
+                break;
+            default:
+                res = R.mipmap.hoja;
+                break;
+        }
+        return res;
     }
 }
