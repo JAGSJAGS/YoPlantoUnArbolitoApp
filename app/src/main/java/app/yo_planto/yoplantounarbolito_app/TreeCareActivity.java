@@ -1,11 +1,19 @@
 package app.yo_planto.yoplantounarbolito_app;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.core.app.ActivityCompat;
 import app.yo_planto.yoplantounarbolito_app.classes.Action;
 import app.yo_planto.yoplantounarbolito_app.classes.User;
 import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.ActionDatabase;
@@ -17,6 +25,13 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yoplantounarbolito_app.R;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,6 +63,10 @@ public class TreeCareActivity extends AppCompatActivity {
     //validaciones
     Validations validations;
 
+    //Map
+    private GoogleMap mMap;
+    private Marker marcador;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +84,7 @@ public class TreeCareActivity extends AppCompatActivity {
         button_limpiar = findViewById(R.id.button_limpiar);
         button_abonar = findViewById(R.id.button_abonar);
         button_establecido = findViewById(R.id.button_establecido);
-
+        miUbication();
         button_regar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,6 +116,8 @@ public class TreeCareActivity extends AppCompatActivity {
     }
 
     private void waterTree(){
+        Toast.makeText(TreeCareActivity.this, "Latitud: " + action.getLat(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(TreeCareActivity.this, "Longitud: " + action.getLng(), Toast.LENGTH_SHORT).show();
         action.setName(variables.getREGAR());
         action();
 
@@ -148,5 +169,27 @@ public class TreeCareActivity extends AppCompatActivity {
             }
         };
         request.add(JOR);
+    }
+
+    private void updateUbication(Location location) {
+        action.setLat(location.getLatitude());
+        action.setLng(location.getLongitude());
+    }
+
+    LocationListener locationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(@NonNull Location location) {
+            updateUbication(location);
+        }
+    };
+
+    private void miUbication() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        updateUbication(location);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 0 , locationListener);
     }
 }

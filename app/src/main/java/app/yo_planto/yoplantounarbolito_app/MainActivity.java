@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         url = variables.getUrl();
-        /*if(validaPermisos()){
+        if(validaPermisos()){
             authenticated();
-        }*/
+        }
     }
 
     private boolean validaPermisos() {
