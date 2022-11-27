@@ -80,7 +80,7 @@ public class Validations {
                 res = "No se encuentra la pagina";
                 break;
             default:
-                res= "Error en el servidor, vuelva a intentar despues";
+                res= "Error en el servidor, vuelva a intentar despues" + code_error;
                 break;
         }
         showDialog( res, context);

@@ -5,7 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="app.yo_planto.yoplantounarbolito_app.HomeActivity">
+        tools:context="app.yo_planto.yoplantounarbolito_app.HomeActivity"
+>
 
         <ScrollView
                 android:layout_width="match_parent"
@@ -57,20 +58,34 @@
                                 android:background="@drawable/backgroun_black_ligth">
                                 <LinearLayout
                                         android:orientation="vertical"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:id="@+id/linear_layout_crea_tu_arbol">
-                                        <ImageButton
-                                                android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content" app:srcCompat="@mipmap/boton"
-                                                android:id="@+id/imageButton" android:layout_gravity="center"/>
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:id="@+id/linear_layout_crea_tu_arbol" android:layout_gravity="center"
+                                        android:paddingTop="32dp" android:paddingBottom="32dp">
+                                        <RelativeLayout android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                        >
+
+                                                <ImageView
+                                                        android:layout_width="150dp"
+                                                        android:layout_height="150dp"
+                                                        app:srcCompat="@mipmap/boton" android:layout_gravity="center"/>
+                                                <Button
+                                                        android:layout_width="150dp"
+                                                        android:layout_height="150dp"
+                                                        android:id="@+id/button_home_register_tree"
+                                                        android:background="@drawable/button_4"
+                                                        android:backgroundTintMode="@null"
+                                                        android:backgroundTint="@null"
+                                                />
+                                        </RelativeLayout>
                                         <TextView
                                                 android:text="Crea tu árbol"
                                                 android:layout_width="wrap_content"
                                                 android:layout_height="wrap_content"
                                                 android:id="@+id/textView_crea_tu_arbolito"
-                                                android:textColor="@color/green_primary" android:layout_gravity="center"
-                                                android:layout_marginBottom="32dp"
+                                                android:textColor="@color/green_primary"
+                                                android:layout_gravity="center"
                                                 android:fontFamily="@font/poppins_bold"
                                                 android:textSize="16dp"/>
                                 </LinearLayout>
@@ -78,37 +93,32 @@
                                         android:orientation="vertical"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
-                                        android:id="@+id/linear_layout_cuida_tu_arbol">
-                                        <ImageView
-                                                android:layout_width="132dp"
-                                                android:layout_height="132dp" app:srcCompat="@mipmap/hoja"
-                                                android:id="@+id/button_image_home_avatar"
-                                                android:layout_gravity="center"/>
-                                        <TextView
-                                                android:text="A cuidar tu arbolito!!"
+                                        android:id="@+id/linear_layout_cuida_tu_arbol"
+                                        android:paddingBottom="16dp" android:paddingTop="16dp">
+
+                                        <LinearLayout
+                                                android:orientation="vertical"
                                                 android:layout_width="wrap_content"
-                                                android:layout_height="wrap_content"
-                                                android:id="@+id/textView_a_cuidar_tu_arbolito"
-                                                android:textColor="@color/green_primary" android:layout_gravity="center"
-                                                android:layout_marginBottom="32dp"
-                                                android:fontFamily="@font/poppins_bold"
-                                                android:textSize="16dp"/>
+                                                android:layout_height="wrap_content" android:layout_gravity="center">
+                                                <ImageView
+                                                        android:layout_width="132dp"
+                                                        android:layout_height="132dp"
+                                                        app:srcCompat="@mipmap/hoja"
+                                                        android:id="@+id/image_home_avatar"
+                                                        android:layout_gravity="center"
+                                                        android:layout_marginTop="8dp"/>
+                                                <com.google.android.material.button.MaterialButton
+                                                        android:text="Cuida tu arbolito"
+                                                        android:layout_width="wrap_content"
+                                                        android:layout_height="wrap_content"
+                                                        android:id="@+id/button_home_your_tree"
+                                                        android:layout_gravity="center"
+                                                        android:background="@drawable/button_1"
+                                                        app:backgroundTint="@null" android:layout_marginTop="8dp"/>
+                                        </LinearLayout>
                                 </LinearLayout>
                         </LinearLayout>
 
-                        <TextView
-                                android:text="Gana más puntos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/textView13"
-                                android:textColor="@color/green_tertiary" android:layout_gravity="center"
-                                android:layout_marginTop="32dp" android:fontFamily="@font/poppins_light"
-                                android:textSize="16dp"/>
-                        <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" android:id="@+id/textView12"
-                                android:text="jugando:" android:textColor="@color/blue_secondary"
-                                android:layout_gravity="center" android:fontFamily="@font/poppins_bold"
-                                android:textSize="16dp"/>
                         <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
                                       android:orientation="horizontal"
                                       app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -136,13 +146,6 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
-                                <com.google.android.material.button.MaterialButton
-                                        android:text="Tu arbol"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" android:id="@+id/button_home_your_tree"
-                                        android:layout_marginBottom="8dp"
-                                        app:backgroundTint="@null"
-                                        android:background="@drawable/button_1"/>
                                 <com.google.android.material.button.MaterialButton
                                         android:text="Orfanato"
                                         android:layout_width="wrap_content"
@@ -174,13 +177,6 @@
                                 <com.google.android.material.button.MaterialButton
                                         android:text="Registrar Arbol"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content" android:id="@+id/button_home_register_tree"
-                                        android:layout_marginBottom="8dp"
-                                        app:backgroundTint="@null"
-                                        android:background="@drawable/button_1"/>
-                                <com.google.android.material.button.MaterialButton
-                                        android:text="Registrar Arbol"
-                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content" android:id="@+id/button_home_log_out"
                                         android:layout_marginBottom="8dp"
                                         app:backgroundTint="@null"
@@ -189,7 +185,7 @@
                         </LinearLayout>
                 </LinearLayout>
         </ScrollView>
-                <!--<LinearLayout
+        <!--<LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">

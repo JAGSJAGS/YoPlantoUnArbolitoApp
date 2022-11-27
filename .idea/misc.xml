@@ -27,12 +27,15 @@
         <entry key="app/src/main/res/drawable/button_3.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/button_3_normal.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/button_3_press.xml" value="0.1745" />
+        <entry key="app/src/main/res/drawable/button_4.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/button_enfocado.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/button_enfocado1.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/button_normal1.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/button_normal_2.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/button_normal_4.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/button_press.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/button_press1.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/button_press_4.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/cursor.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/edit_text_1.xml" value="0.1745" />
         <entry key="app/src/main/res/drawable/edit_text_enfoque_1.xml" value="0.1745" />
@@ -42,7 +45,7 @@
         <entry key="app/src/main/res/drawable/login_edit_text_border.xml" value="0.1595" />
         <entry key="app/src/main/res/layout/activity_adopt_tree.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_edit_tree.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.22" />

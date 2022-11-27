@@ -8,10 +8,7 @@ import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
     //buttons
     Button button_log_out, button_your_tree, button_orphanage,
             button_ranking, button_games, button_profile, button_register_tree;
+    ImageView image_home_avatar;
 
     //datos de Usuario
     User user;
@@ -85,7 +83,9 @@ public class HomeActivity extends AppCompatActivity {
         //preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         preferences = new Preferences(HomeActivity.this);
         url  = variables.getUrl();
+
         textView_home_name_user = findViewById(R.id.textview_home_name_user);
+        image_home_avatar = findViewById(R.id.image_home_avatar);
 
         //metodos
         getUser();
@@ -263,6 +263,8 @@ public class HomeActivity extends AppCompatActivity {
                     if (!trees_array.isNull(0)) {
                         JSONObject tree_object = trees_array.getJSONObject(0);
                         preferences.savePreferencesTree(tree_object.getString(tree_database.getId()));
+
+                        image_home_avatar.setImageResource(showAvatar(tree_object.getString(tree_database.getAvatar())));
                         linear_layout_care_tree.setVisibility(View.VISIBLE);
                         linear_layout_create_tree.setVisibility(View.GONE);
                     } else{
@@ -289,5 +291,27 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
         request.add(JOR);
+    }
+    public int showAvatar(String avatar){
+        int res = 0;
+        switch (avatar){
+
+            case "avatar2":
+                res = R.mipmap.brote_feliz;
+                break;
+            case "avatar3":
+                res = R.mipmap.arbolito_feliz;
+                break;
+            case "avatar4":
+                res = R.mipmap.maceta_femenina;
+                break;
+            case "avatar5":
+                res = R.mipmap.maseta_masculino;
+                break;
+            default:
+                res = R.mipmap.hoja;
+                break;
+        }
+        return res;
     }
 }
