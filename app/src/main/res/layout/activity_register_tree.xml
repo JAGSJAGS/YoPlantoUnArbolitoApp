@@ -80,39 +80,76 @@
                                 android:orientation="horizontal"
                                 android:paddingTop="8dp" android:paddingBottom="8dp" android:paddingLeft="16dp"
                                 android:paddingRight="16dp">
-                            <ImageButton
-                                    android:onClick="OnclickSelectAvatar2"
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
-                                    map:srcCompat="@mipmap/avatar_one_happy"
-                                    android:id="@+id/imageButtonOne"/>
-                            <ImageButton
-                                    android:onClick="OnclickSelectAvatar1"
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
-                                    map:srcCompat="@mipmap/avatar_one_happy"
-                                    android:id="@+id/imageButtonOne2"/>
-                            <ImageButton
-                                    android:onClick="OnclickSelectAvatar1"
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
-                                    map:srcCompat="@mipmap/avatar_one_happy"
-                                    android:id="@+id/imageButtonOne3"/>
-                            <ImageButton
-                                    android:onClick="OnclickSelectAvatar1"
-                                    android:layout_width="75dp"
-                                    android:layout_height="75dp"
-                                    map:srcCompat="@mipmap/avatar_one_happy"
-                                    android:id="@+id/imageButtonOne4"/>
+                            <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                                <Button
+                                        android:onClick="OnclickSelectAvatar1"
+                                        map:srcCompat="@mipmap/hoja"
+                                        android:id="@+id/imageButtonOne"
+                                        android:layout_width="match_parent" android:layout_height="match_parent"
+                                        android:backgroundTint="@null" android:background="#00FFFFFF"/>
+                                <ImageView
+                                        android:layout_width="80dp"
+                                        android:layout_height="80dp"
+                                        map:srcCompat="@mipmap/hoja"/>
+                            </RelativeLayout>
+                            <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                                <Button
+                                        android:onClick="OnclickSelectAvatar2"
+                                        map:srcCompat="@mipmap/hoja"
+                                        android:id="@+id/imageButtonOne2"
+                                        android:layout_width="match_parent" android:layout_height="match_parent"
+                                        android:backgroundTint="@null" android:background="#00FFFFFF"/>
+                                <ImageView
+                                        android:layout_width="80dp"
+                                        android:layout_height="80dp"
+                                        map:srcCompat="@mipmap/brote_feliz"/>
+                            </RelativeLayout>
+                            <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                                <Button
+                                        android:onClick="OnclickSelectAvatar3"
+                                        map:srcCompat="@mipmap/hoja"
+                                        android:id="@+id/imageButtonOne3"
+                                        android:layout_width="match_parent" android:layout_height="match_parent"
+                                        android:backgroundTint="@null" android:background="#00FFFFFF"/>
+                                <ImageView
+                                        android:layout_width="80dp"
+                                        android:layout_height="80dp"
+                                        map:srcCompat="@mipmap/arbolito_feliz"/>
+                            </RelativeLayout>
+                            <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                                <Button
+                                        android:onClick="OnclickSelectAvatar4"
+                                        map:srcCompat="@mipmap/hoja"
+                                        android:id="@+id/imageButtonOne4"
+                                        android:layout_width="match_parent" android:layout_height="match_parent"
+                                        android:backgroundTint="@null" android:background="#00FFFFFF"/>
+                                <ImageView
+                                        android:layout_width="80dp"
+                                        android:layout_height="80dp"
+                                        map:srcCompat="@mipmap/maceta_femenina"/>
+                            </RelativeLayout>
+                            <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                                <Button
+                                        android:onClick="OnclickSelectAvatar5"
+                                        map:srcCompat="@mipmap/hoja"
+                                        android:id="@+id/imageButtonOne5"
+                                        android:layout_width="match_parent" android:layout_height="match_parent"
+                                        android:backgroundTint="@null" android:background="#00FFFFFF"/>
+                                <ImageView
+                                        android:layout_width="80dp"
+                                        android:layout_height="80dp"
+                                        map:srcCompat="@mipmap/maseta_masculino"/>
+                            </RelativeLayout>
                         </LinearLayout>
                     </HorizontalScrollView>
                 </LinearLayout>
 
                 <com.google.android.material.button.MaterialButton
+
                         android:text="Ingresar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/buttonRegisterUser"
+                        android:id="@+id/button_register_tree_resgister"
                         android:background="@drawable/button_1"
                         app:backgroundTint="@null"
                         android:layout_gravity="center" android:layout_marginTop="24dp"/>

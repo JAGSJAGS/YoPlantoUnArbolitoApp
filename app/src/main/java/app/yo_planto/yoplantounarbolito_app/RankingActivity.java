@@ -59,7 +59,7 @@ public class RankingActivity extends AppCompatActivity {
 
     private void getRanking() {
         request = Volley.newRequestQueue(this);
-        JOR = new JsonArrayRequestCustom(Request.Method.GET, url + "/users/?include=trees&-sort=points&limit=50", null, new Response.Listener<JSONArray>() {
+        JOR = new JsonArrayRequestCustom(Request.Method.GET, url + "/users?include=trees&sort=-points", null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 int j = 0;
@@ -80,6 +80,7 @@ public class RankingActivity extends AppCompatActivity {
                                         name_tree = tree.getString("name");
                                         avatar = tree.getString("avatar");
                                         j += 1;
+                                        if(j == 50) break;
                                         list_item_ranking.add(new Ranking(j,name, name_tree, points, showAvatar(avatar)));
                                         AdapterDates adapter_dates = new AdapterDates(list_item_ranking);
                                         recyclerView.setAdapter(adapter_dates);
@@ -118,6 +119,12 @@ public class RankingActivity extends AppCompatActivity {
                 break;
             case "avatar3":
                 res = R.mipmap.arbolito_feliz;
+                break;
+            case "avatar4":
+                res = R.mipmap.maceta_femenina;
+                break;
+            case "avatar5":
+                res = R.mipmap.maseta_masculino;
                 break;
             default:
                 res = R.mipmap.hoja;

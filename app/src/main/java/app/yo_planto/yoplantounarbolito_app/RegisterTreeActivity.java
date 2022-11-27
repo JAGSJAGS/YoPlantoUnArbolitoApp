@@ -10,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.preference.Preference;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +58,9 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     TreeUser tree_user;
     TreeUserDatabase tree_user_database;
 
+    //buttons
+    Button buton_register_tree;
+
     //Preferencias
     Preferences preferences;
 
@@ -73,6 +77,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         tree_user = new TreeUser();
         tree_user_database = new TreeUserDatabase();
         preferences = new Preferences(RegisterTreeActivity.this);
+        buton_register_tree = findViewById(R.id.button_register_tree_resgister);
 
         url = variables.getUrl();
 
@@ -80,6 +85,13 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         mapFragment.getMapAsync(this);
 
         name = findViewById(R.id.editTextNameRegisterTree);
+
+        buton_register_tree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerTree();
+            }
+        });
     }
 
     private void registerTree(){
@@ -180,6 +192,19 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
 
     public void OnclickSelectAvatar2(View view) {
         tree.setAvatar("avatar2");
+        Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
+    }
+
+    public void OnclickSelectAvatar3(View view) {
+        tree.setAvatar("avatar3");
+        Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
+    }
+    public void OnclickSelectAvatar4(View view) {
+        tree.setAvatar("avatar4");
+        Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
+    }
+    public void OnclickSelectAvatar5(View view) {
+        tree.setAvatar("avatar5");
         Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
     }
 }
