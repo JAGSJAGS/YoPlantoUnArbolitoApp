@@ -86,6 +86,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         request = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap<>();
+        params.put("user_id", preferences.getUserId());
         params.put(tree_database.getName(), name.getText().toString());
         params.put(tree_database.getLat(), tree.getLat() + "");
         params.put(tree_database.getLng(), tree.getLng() + "");
@@ -100,7 +101,9 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
                 try {
                     String id_tree = response.getString("id");
                     preferences.savePreferencesTree(id_tree);
-                    registerTreeUser();
+                    Intent photoActivity = new Intent(getApplicationContext(), RegisterPhotoActivity.class);
+                    startActivity(photoActivity);
+                    finish();
                 } catch (JSONException e) {
                     Toast.makeText(RegisterTreeActivity.this,"Se produjo un error",Toast.LENGTH_SHORT).show();
                 }
@@ -116,39 +119,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Accept", "application/vnd.api+json");
                 headers.put("Content-Type", "application/vnd.api+json");
-                return headers;
-            }
-        };
-        request.add(JOR);
-    }
-
-    private void registerTreeUser(){
-
-        request = Volley.newRequestQueue(this);
-
-        Map<String, String> params = new HashMap<>();
-        params.put(tree_user_database.getUser_id(), preferences.getUserId());
-        params.put(tree_user_database.getTree_id(), preferences.getTreeId());
-        JSONObject parameters = new JSONObject(params);
-
-        JOR = new JsonObjectRequest(Request.Method.POST, url + "/tree_users", parameters,new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Toast.makeText(RegisterTreeActivity.this,"pasa",Toast.LENGTH_LONG).show();
-                Intent photoActivity = new Intent(getApplicationContext(),RegisterPhotoActivity.class);
-                startActivity(photoActivity);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                validations.errors(error, RegisterTreeActivity.this);
-            }
-        }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Accept", "application/vnd.api+json");
-                headers.put("Content-Type", "application/vnd.api+json");
+                headers.put("Authorization", "Bearer " + preferences.getToken());
                 return headers;
             }
         };

@@ -27,15 +27,12 @@ public class Preferences {
 
     public void deletePreferences(){
         SharedPreferences preferences= context.getSharedPreferences("preferenceLogin", context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("token","");
-        editor.putString("user_id","");
-        editor.commit();
+        preferences.edit().remove("token").commit();
+        preferences.edit().remove("user_id").commit();
+
 
         SharedPreferences preferencesTree= context.getSharedPreferences("preferenceTree", context.MODE_PRIVATE);
-        SharedPreferences.Editor editorTree = preferencesTree.edit();
-        editor.putString("tree_id","ninguna");
-        editorTree.commit();
+        preferencesTree.edit().remove("tree_id").commit();
     }
 
     public String getToken(){

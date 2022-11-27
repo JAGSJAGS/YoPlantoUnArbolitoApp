@@ -260,14 +260,14 @@ public class HomeActivity extends AppCompatActivity {
 
                     JSONArray trees_array = response.getJSONArray("trees");
                     Toast.makeText(HomeActivity.this, "array: " + trees_array, Toast.LENGTH_SHORT).show();
-                    if (trees_array.isNull(0)) {
-                        linear_layout_care_tree.setVisibility(View.GONE);
-                        linear_layout_create_tree.setVisibility(View.VISIBLE);
-                    } else{
+                    if (!trees_array.isNull(0)) {
                         JSONObject tree_object = trees_array.getJSONObject(0);
                         preferences.savePreferencesTree(tree_object.getString(tree_database.getId()));
                         linear_layout_care_tree.setVisibility(View.VISIBLE);
                         linear_layout_create_tree.setVisibility(View.GONE);
+                    } else{
+                        linear_layout_care_tree.setVisibility(View.GONE);
+                        linear_layout_create_tree.setVisibility(View.VISIBLE);
                     }
                 } catch (JSONException e) {
                     Toast.makeText(HomeActivity.this, "Se produjo un error:", Toast.LENGTH_SHORT).show();
