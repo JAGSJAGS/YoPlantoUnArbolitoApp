@@ -90,8 +90,8 @@ public class RegisterUserActivity extends AppCompatActivity {
                     JSONObject user = response.getJSONObject("user");
                     String user_id = user.getString("id");
                     preferences.savePreferencesUser(token, user_id);
-                    Toast.makeText(RegisterUserActivity.this,"id:" + user_id,Toast.LENGTH_SHORT).show();
-                    Toast.makeText(RegisterUserActivity.this,"token:" + token,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(RegisterUserActivity.this,"id:" + user_id,Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(RegisterUserActivity.this,"token:" + token,Toast.LENGTH_SHORT).show();
                     Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
                     startActivity(mainActivity);
                     finishAffinity();

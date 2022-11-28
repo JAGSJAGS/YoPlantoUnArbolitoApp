@@ -2,11 +2,13 @@ package app.yo_planto.yoplantounarbolito_app;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -77,8 +80,8 @@ public class TreeCareActivity extends AppCompatActivity {
         variables = new Variables();
         url = variables.getUrl();
         preferences = new Preferences(TreeCareActivity.this);
-        Toast.makeText(TreeCareActivity.this, "Id de arbol en preferencia:"+preferences.getTreeId(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(TreeCareActivity.this, "Id de user en preferencia:"+preferences.getUserId(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(TreeCareActivity.this, "Id de arbol en preferencia:"+preferences.getTreeId(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(TreeCareActivity.this, "Id de user en preferencia:"+preferences.getUserId(), Toast.LENGTH_SHORT).show();
 
         button_regar = findViewById(R.id.button_regar);
         button_limpiar = findViewById(R.id.button_limpiar);
@@ -88,28 +91,28 @@ public class TreeCareActivity extends AppCompatActivity {
         button_regar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
+                //Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
                 waterTree();
             }
         });
         button_limpiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
+                //Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
                 cleanTree();
             }
         });
         button_abonar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
+               // Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
                 fertiliceTree();
             }
         });
         button_establecido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
+                //Toast.makeText(TreeCareActivity.this,"funciona el boton",Toast.LENGTH_LONG).show();
                 greepTree();
             }
         });
@@ -151,7 +154,16 @@ public class TreeCareActivity extends AppCompatActivity {
         JOR = new JsonObjectRequest(Request.Method.POST, url  + "/actions", parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(TreeCareActivity.this, "Correcto:"+preferences.getTreeId(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(TreeCareActivity.this, "Correcto:"+preferences.getTreeId(), Toast.LENGTH_SHORT).show();
+                new MaterialAlertDialogBuilder(TreeCareActivity.this)
+                        .setTitle("Excelente, bien hecho!!")
+                        .setMessage("Cuidado realizado, no te olvides volver la proxima vez!!")
+                        .setNegativeButton("Entendido", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.d("MainActivity", "Aborting mission...");
+                            }
+                        }).show();
             }
         }, new Response.ErrorListener() {
             @Override

@@ -209,7 +209,7 @@ public class HomeActivity extends AppCompatActivity {
                 NetworkResponse networkResponse = error.networkResponse;
                 if (networkResponse == null) {
                     preferences.deletePreferences();
-                    Toast.makeText(HomeActivity.this,"Gracias",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(HomeActivity.this,"Gracias",Toast.LENGTH_LONG).show();
                     Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(login);
                     finish();
@@ -276,7 +276,7 @@ public class HomeActivity extends AppCompatActivity {
                     textView_home_name_user.setText("Hola " + user.getFirstname());
 
                     JSONArray trees_array = response.getJSONArray("trees");
-                    Toast.makeText(HomeActivity.this, "array: " + trees_array, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(HomeActivity.this, "array: " + trees_array, Toast.LENGTH_SHORT).show();
                     if (!trees_array.isNull(0)) {
                         JSONObject tree_object = trees_array.getJSONObject(0);
                         preferences.savePreferencesTree(tree_object.getString(tree_database.getId()));

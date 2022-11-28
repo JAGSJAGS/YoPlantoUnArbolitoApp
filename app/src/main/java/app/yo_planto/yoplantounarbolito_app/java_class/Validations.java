@@ -52,6 +52,12 @@ public class Validations {
         String res = "";
         NetworkResponse networkResponse = error.networkResponse;
         String json_error = new String(networkResponse.data);
+        try {
+            JSONObject jsonError = new JSONObject(json_error);
+            json_error = jsonError.toString();
+        } catch (JSONException e) {
+            Log.d("MainActivity", "Aborting mission...");
+        }
         Log.e("Error;", json_error);
         int code_error = networkResponse.statusCode;
 

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import app.yo_planto.yoplantounarbolito_app.classes.Ranking;
+import app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz.ActionDatabase;
 import app.yo_planto.yoplantounarbolito_app.java_class.*;
 import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -41,12 +42,15 @@ public class RankingActivity extends AppCompatActivity {
 
     Validations validations;
 
+    ActionDatabase action_database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
         variables = new Variables();
         validations = new Validations();
+        action_database = new ActionDatabase();
         url = variables.getUrl();
         preference = new Preferences(RankingActivity.this);
         recyclerView = findViewById(R.id.recicler_ranking);
@@ -69,8 +73,8 @@ public class RankingActivity extends AppCompatActivity {
 
                         JSONObject user = response.getJSONObject(i);
 
-                        if (user.has("name") && user.has("points") ) {
-                            name = user.getString("name");
+                        if (user.has("firstname") && user.has("points") ) {
+                            name = user.getString("firstname");
                             points = user.getString("points");
                             if (user.has("trees")){
                                 JSONArray array_tree = user.getJSONArray("trees");
@@ -81,7 +85,7 @@ public class RankingActivity extends AppCompatActivity {
                                         avatar = tree.getString("avatar");
                                         j += 1;
                                         if(j == 50) break;
-                                        list_item_ranking.add(new Ranking(j,name, name_tree, points, showAvatar(avatar)));
+                                        list_item_ranking.add(new Ranking(j,name, name_tree, points + " puntos", showAvatar(avatar)));
                                         AdapterDates adapter_dates = new AdapterDates(list_item_ranking);
                                         recyclerView.setAdapter(adapter_dates);
                                     }

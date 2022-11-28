@@ -1,27 +1,38 @@
 package app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz;
 
 public class ActionDatabase {
-    private String name;
+    private String firstname;
     private String lat;
     private String lng;
     private String user_id;
     private String tree_id;
     private String path_photo;
 
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getPoints() {
+        return points;
+    }
+
+    private String points;
+
     public ActionDatabase(){
-        name = "name";
+        firstname = "name";
         user_id = "userId";
         tree_id= "treeId";
         lng = "longitude";
         lat = "latitude";
+        points= "";
     }
 
     public String getName() {
-        return name;
+        return firstname;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.firstname = name;
     }
 
     public String getLat() {
