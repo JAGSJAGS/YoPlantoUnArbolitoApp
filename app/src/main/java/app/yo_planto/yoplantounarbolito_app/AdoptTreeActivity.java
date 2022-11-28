@@ -13,10 +13,6 @@ import com.android.volley.*;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.yoplantounarbolito_app.R;
-import com.google.android.gms.maps.*;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -117,7 +113,7 @@ public class AdoptTreeActivity extends AppCompatActivity {
         button_edit_tree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent edit_Tree = new Intent( AdoptTreeActivity.this, Edit_Tree_Activity.class);
+                Intent edit_Tree = new Intent( AdoptTreeActivity.this, EditTreeActivity.class);
                 startActivity(edit_Tree);
             }
         });

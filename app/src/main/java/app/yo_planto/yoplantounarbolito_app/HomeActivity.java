@@ -1,15 +1,10 @@
 package app.yo_planto.yoplantounarbolito_app;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import app.yo_planto.yoplantounarbolito_app.classes.Tree;
@@ -45,7 +40,8 @@ public class HomeActivity extends AppCompatActivity {
 
     //buttons
     Button button_log_out, button_your_tree, button_orphanage,
-            button_ranking, button_games, button_profile, button_register_tree;
+            button_ranking, button_games, button_profile, button_register_tree,
+            button_edit_tree;
     ImageView image_home_avatar;
 
     //datos de Usuario
@@ -98,6 +94,7 @@ public class HomeActivity extends AppCompatActivity {
         button_profile = findViewById(R.id.button_home_profile);
         button_register_tree = findViewById(R.id.button_home_register_tree);
         button_log_out = findViewById(R.id.button_home_log_out);
+        button_edit_tree = findViewById(R.id.button_home_edit_tree);
 
         //avatar o boton
         linear_layout_care_tree = findViewById(R.id.linear_layout_cuida_tu_arbol);
@@ -168,6 +165,15 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 linear_progress.setVisibility(View.VISIBLE);
                 logOut();
+            }
+        });
+        button_edit_tree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                linear_progress.setVisibility(View.VISIBLE);
+                Intent editTree = new Intent(HomeActivity.this, EditTreeActivity.class);
+                startActivity(editTree);
+                linear_progress.setVisibility(View.GONE);
             }
         });
     }
