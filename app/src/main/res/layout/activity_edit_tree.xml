@@ -54,7 +54,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="8dp" android:paddingTop="8dp">
+                    android:layout_marginTop="8dp" android:paddingTop="8dp" android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp">
                 <TextView
                         android:text="Seleccione un personaje:"
                         android:layout_width="match_parent"
@@ -68,60 +69,60 @@
                         android:orientation="horizontal">
                     <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:orientation="horizontal"
                             android:paddingTop="8dp" android:paddingBottom="8dp" android:paddingLeft="16dp"
                             android:paddingRight="16dp">
-                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                        <RelativeLayout android:layout_width="80dp" android:layout_height="80dp">
                             <Button
                                     android:onClick="OnclickSelectAvatar1"
                                     android:id="@+id/imageButtonOneEdit"
                                     android:layout_width="match_parent" android:layout_height="match_parent"
-                                    android:backgroundTint="@null" android:background="#00FFFFFF"/>
+                                    android:backgroundTint="@null" android:background="@drawable/button_3"/>
                             <ImageView
                                     android:layout_width="80dp"
                                     android:layout_height="80dp" app:srcCompat="@mipmap/hoja"
                                     android:id="@+id/imageViewone"/>
                         </RelativeLayout>
-                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                        <RelativeLayout android:layout_width="80dp" android:layout_height="80dp">
                             <Button
                                     android:onClick="OnclickSelectAvatar2"
                                     android:id="@+id/imageButtonOne2"
                                     android:layout_width="match_parent" android:layout_height="match_parent"
-                                    android:backgroundTint="@null" android:background="#00FFFFFF"/>
+                                    android:backgroundTint="@null" android:background="@drawable/button_3"/>
                             <ImageView
                                     android:layout_width="80dp"
                                     android:layout_height="80dp" app:srcCompat="@mipmap/brote_feliz"
                                     android:id="@+id/imageViewtwo"/>
                         </RelativeLayout>
-                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                        <RelativeLayout android:layout_width="80dp" android:layout_height="80dp">
                             <Button
                                     android:onClick="OnclickSelectAvatar3"
                                     android:id="@+id/imageButtonOne3"
                                     android:layout_width="match_parent" android:layout_height="match_parent"
-                                    android:backgroundTint="@null" android:background="#00FFFFFF"/>
+                                    android:backgroundTint="@null" android:background="@drawable/button_3"/>
                             <ImageView
                                     android:layout_width="80dp"
                                     android:layout_height="80dp" app:srcCompat="@mipmap/arbolito_feliz"
                                     android:id="@+id/imageViewthree"/>
                         </RelativeLayout>
-                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                        <RelativeLayout android:layout_width="80dp" android:layout_height="80dp">
                             <Button
                                     android:onClick="OnclickSelectAvatar4"
                                     android:id="@+id/imageButtonOne4"
                                     android:layout_width="match_parent" android:layout_height="match_parent"
-                                    android:backgroundTint="@null" android:background="#00FFFFFF"/>
+                                    android:backgroundTint="@null" android:background="@drawable/button_3"/>
                             <ImageView
                                     android:layout_width="80dp"
                                     android:layout_height="80dp" app:srcCompat="@mipmap/maceta_femenina"
                                     android:id="@+id/imageViewfor"/>
                         </RelativeLayout>
-                        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+                        <RelativeLayout android:layout_width="80dp" android:layout_height="80dp">
                             <Button
                                     android:onClick="OnclickSelectAvatar5"
                                     android:id="@+id/imageButtonOne5"
                                     android:layout_width="match_parent" android:layout_height="match_parent"
-                                    android:backgroundTint="@null" android:background="#00FFFFFF"/>
+                                    android:backgroundTint="@null" android:background="@drawable/button_3"/>
                             <ImageView
                                     android:layout_width="80dp"
                                     android:layout_height="80dp" app:srcCompat="@mipmap/maseta_masculino"
@@ -132,36 +133,35 @@
             </LinearLayout>
             <com.google.android.material.button.MaterialButton
 
-                    android:text="Ingresar"
+                    android:text="Registrar arbolito"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/button_name_edit_tree"
                     android:background="@drawable/button_1"
                     app:backgroundTint="@null"
                     android:layout_gravity="center" android:layout_marginTop="24dp"/>
-
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingBottom="16dp" android:layout_marginTop="40dp">
-                <TextView
-                        android:text="La ubicación del arbolito se registrará como la que se ve en el mapa."
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView5"
-                        android:textAlignment="center"
-                        android:textSize="16sp"
-                        app:layout_constraintTop_toBottomOf="@+id/imageButtonOne"
-                        android:textColor="@color/green_secondary" android:fontFamily="@font/poppins_bold"/>
-                <fragment
-                        android:id="@+id/map_edit_tree"
-                        android:name="com.google.android.gms.maps.SupportMapFragment"
-                        android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        android:layout_marginBottom="44dp"/>
+                    android:orientation="horizontal"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp" android:layout_gravity="center" android:layout_marginTop="32dp">
+                <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <Button android:layout_width="match_parent" android:layout_height="match_parent"
+                            android:id="@+id/button_camera" android:backgroundTint="@null"
+                            android:backgroundTintMode="@null" android:background="@drawable/button_3"></Button>
+                    <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp" app:srcCompat="@mipmap/camara"
+                            android:id="@+id/imageView15"/>
+
+                </RelativeLayout>
+
             </LinearLayout>
+            <TextView
+                    android:text="Cambia de foto..."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/textView2" android:textSize="20dp"
+                    android:layout_gravity="center"/>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

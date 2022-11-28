@@ -216,6 +216,7 @@ public class RegisterPhotoActivity extends AppCompatActivity {
                 textViewLoadPhoto.setVisibility(View.GONE);
                 finishAffinity ();
                 Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+                Toast.makeText(RegisterPhotoActivity.this,"Cambio exitoso",Toast.LENGTH_SHORT).show();
                 startActivity(mainActivity);
             }
         }, new Response.ErrorListener() {

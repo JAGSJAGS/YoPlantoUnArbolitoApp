@@ -2,6 +2,7 @@ package app.yo_planto.yoplantounarbolito_app;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -9,6 +10,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.preference.Preference;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +35,7 @@ import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -89,7 +92,7 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
         buton_register_tree.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                registerTree();
+                showDialog();
             }
         });
     }
@@ -114,8 +117,11 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
                     String id_tree = response.getString("id");
                     preferences.savePreferencesTree(id_tree);
                     Intent photoActivity = new Intent(getApplicationContext(), RegisterPhotoActivity.class);
+                    Toast.makeText(RegisterTreeActivity.this,"Se le regalaron 15 puntos por plantar el arbolito",Toast.LENGTH_SHORT).show();
                     startActivity(photoActivity);
-                    finish();
+                    finishAffinity();
+
+
                 } catch (JSONException e) {
                     Toast.makeText(RegisterTreeActivity.this,"Se produjo un error",Toast.LENGTH_SHORT).show();
                 }
@@ -206,5 +212,25 @@ public class RegisterTreeActivity extends AppCompatActivity implements OnMapRead
     public void OnclickSelectAvatar5(View view) {
         tree.setAvatar("avatar5");
         Toast.makeText(RegisterTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
+    }
+
+    public void showDialog(){
+        new MaterialAlertDialogBuilder(RegisterTreeActivity.this)
+                .setTitle("Atento:")
+                .setMessage("Tome en cuenta que tiene que estar en la localizacion de su arbolito, despues no po" +
+                        "dra cambiar la localización")
+                .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("MainActivity", "Aborting mission...");
+                    }
+                })
+                .setPositiveButton("Registrar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    Log.d("MainActivity", "Aborting mission...");
+                    registerTree();
+                    }
+                 }).show();
     }
 }

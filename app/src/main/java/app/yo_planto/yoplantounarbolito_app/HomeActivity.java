@@ -80,7 +80,7 @@ public class HomeActivity extends AppCompatActivity {
         preferences = new Preferences(HomeActivity.this);
         url  = variables.getUrl();
 
-        textView_home_name_user = findViewById(R.id.textview_home_name_user);
+        textView_home_name_user = findViewById(R.id.text_hello);
         image_home_avatar = findViewById(R.id.image_home_avatar);
 
         //metodos
@@ -274,12 +274,14 @@ public class HomeActivity extends AppCompatActivity {
                     user.setPhone(response.getString(user_database.getPhone()));
                     user.setPoints(response.getString(user_database.getPoints()));
                     textView_home_name_user.setText("Hola " + user.getFirstname());
-
+                    preferences.savePreferencesUserNamePoints(user.getFirstname(), user.getPoints() );
+                    //Toast.makeText(HomeActivity.this, preferences.getPoints()+""+preferences.getName(), Toast.LENGTH_SHORT).show();
                     JSONArray trees_array = response.getJSONArray("trees");
                     //Toast.makeText(HomeActivity.this, "array: " + trees_array, Toast.LENGTH_SHORT).show();
                     if (!trees_array.isNull(0)) {
                         JSONObject tree_object = trees_array.getJSONObject(0);
                         preferences.savePreferencesTree(tree_object.getString(tree_database.getId()));
+
 
                         image_home_avatar.setImageResource(showAvatar(tree_object.getString(tree_database.getAvatar())));
                         linear_layout_care_tree.setVisibility(View.VISIBLE);

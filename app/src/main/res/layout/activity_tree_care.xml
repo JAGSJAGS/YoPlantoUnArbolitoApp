@@ -22,7 +22,7 @@
             <TextView
                     android:text="hola lilian"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:id="@+id/textview_home_name_user"
+                    android:layout_height="wrap_content" android:id="@+id/text_hola"
                     android:layout_marginLeft="44dp"
                     android:fontFamily="@font/poppins_light"
                     app:autoSizeTextType="uniform" android:layout_marginRight="44dp"/>
@@ -40,7 +40,7 @@
                 <TextView
                         android:text="25 puntos"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView10"
+                        android:layout_height="wrap_content" android:id="@+id/text_points"
                         android:fontFamily="@font/poppins_bold"
                         android:textSize="20dp"
                         android:includeFontPadding="false"
@@ -142,7 +142,7 @@
                                         android:layout_height="50dp" app:srcCompat="@mipmap/limpieza"
                                         android:id="@+id/imageView11" android:layout_gravity="center"/>
                                 <TextView
-                                        android:text="TextView"
+                                        android:text="Limpieza"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content" android:id="@+id/textView17"
                                         android:layout_gravity="center"
@@ -175,7 +175,7 @@
                                         android:layout_height="50dp" app:srcCompat="@mipmap/abono"
                                         android:id="@+id/imageView160" android:layout_gravity="center"/>
                                 <TextView
-                                        android:text="Regar"
+                                        android:text="Abono"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content" android:id="@+id/textVhiew14"
                                         android:layout_gravity="center" android:fontFamily="@font/poppins_bold"/>
@@ -204,7 +204,7 @@
                                         android:layout_height="50dp" app:srcCompat="@mipmap/agarre"
                                         android:id="@+id/imageVihjew11" android:layout_gravity="center"/>
                                 <TextView
-                                        android:text="TextView"
+                                        android:text="Agarre"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content" android:id="@+id/textVighew17"
                                         android:layout_gravity="center"

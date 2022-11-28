@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,6 +53,9 @@ public class TreeCareActivity extends AppCompatActivity {
     //botones
     Button button_regar, button_limpiar, button_abonar, button_establecido;
 
+    //textView
+    TextView text_hola, text_points;
+
     //preferencias
     Preferences preferences;
 
@@ -66,6 +70,8 @@ public class TreeCareActivity extends AppCompatActivity {
     //validaciones
     Validations validations;
 
+    int puntos = 0;
+
     //Map
     private GoogleMap mMap;
     private Marker marcador;
@@ -79,7 +85,13 @@ public class TreeCareActivity extends AppCompatActivity {
         validations = new Validations();
         variables = new Variables();
         url = variables.getUrl();
+        text_hola = findViewById(R.id.text_hola);
+        text_points = findViewById(R.id.text_points);
         preferences = new Preferences(TreeCareActivity.this);
+        text_hola.setText("hola "+preferences.getName());
+        text_points.setText(preferences.getPoints() + " Puntos");
+        puntos = Integer.parseInt(preferences.getPoints());
+
         //Toast.makeText(TreeCareActivity.this, "Id de arbol en preferencia:"+preferences.getTreeId(), Toast.LENGTH_SHORT).show();
         //Toast.makeText(TreeCareActivity.this, "Id de user en preferencia:"+preferences.getUserId(), Toast.LENGTH_SHORT).show();
 
@@ -164,6 +176,16 @@ public class TreeCareActivity extends AppCompatActivity {
                                 Log.d("MainActivity", "Aborting mission...");
                             }
                         }).show();
+                try {
+                    String points = response.getString("points");
+                    puntos = Integer.parseInt( points) + puntos;
+                    text_points.setText(puntos + " Puntos");
+
+                    Toast.makeText(TreeCareActivity.this,"puntos: " + points, Toast.LENGTH_SHORT).show();
+
+                } catch (JSONException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }, new Response.ErrorListener() {
             @Override

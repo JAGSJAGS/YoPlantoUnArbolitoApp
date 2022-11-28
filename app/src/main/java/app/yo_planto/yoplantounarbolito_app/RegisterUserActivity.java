@@ -77,7 +77,7 @@ public class RegisterUserActivity extends AppCompatActivity {
         params.put(user_database.getAge(), age.getText().toString());
         params.put(user_database.getOrganization(), organization.getText().toString());
         params.put(user_database.getPhone(), phone.getText().toString());
-        params.put(user_database.getPoints(), "0");
+        params.put(user_database.getPoints(), "10");
         params.put(user_database.getPassword(), password.getText().toString());
         params.put(user_database.getPassword_confirmation(), password_confirmation.getText().toString());
         JSONObject parameters = new JSONObject(params);

@@ -36,7 +36,7 @@ public class EditTreeActivity extends AppCompatActivity {
 
     EditText edit_name_tree;
 
-    Button button_edit_name;
+    Button button_edit_name, button_camera;
 
     Validations validations = new Validations();
 
@@ -60,6 +60,7 @@ public class EditTreeActivity extends AppCompatActivity {
 
         edit_name_tree = findViewById(R.id.edit_name_tree);
         button_edit_name = findViewById(R.id.button_name_edit_tree);
+        button_camera = findViewById(R.id.button_camera);
 
         preference = getSharedPreferences("preferenceLogin", Context.MODE_PRIVATE);
         token = preference.getString("token","");
@@ -71,14 +72,22 @@ public class EditTreeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!edit_name_tree.getText().toString().equals("")) {
-                    Toast.makeText(EditTreeActivity.this, "Cambia", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(EditTreeActivity.this, "Cambia", Toast.LENGTH_SHORT).show();
                     params.put(tree_database.getName(), edit_name_tree.getText().toString());
                 }
                 if(avatar == true){
                     params.put(tree_database.getAvatar(), tree.getAvatar());
-                    Toast.makeText(EditTreeActivity.this, "Cambia avatar", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(EditTreeActivity.this, "Cambia avatar", Toast.LENGTH_SHORT).show();
                 }
                 editTree();
+            }
+        });
+        button_camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent photoActivity = new Intent(getApplicationContext(), RegisterPhotoActivity.class);
+                startActivity(photoActivity);
+                finish();
             }
         });
     }
@@ -119,28 +128,28 @@ public class EditTreeActivity extends AppCompatActivity {
     public void OnclickSelectAvatar1(View view) {
         tree.setAvatar("avatar1");
         avatar = true;
-        Toast.makeText(EditTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditTreeActivity.this,"Hoja feliz seleccionada",Toast.LENGTH_SHORT).show();
     }
 
     public void OnclickSelectAvatar2(View view) {
         tree.setAvatar("avatar2");
         avatar = true;
-        Toast.makeText(EditTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditTreeActivity.this,"Brote feliz seleccionado",Toast.LENGTH_SHORT).show();
     }
 
     public void OnclickSelectAvatar3(View view) {
         tree.setAvatar("avatar3");
         avatar = true;
-        Toast.makeText(EditTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditTreeActivity.this,"Árbol feliz Seleccionado",Toast.LENGTH_SHORT).show();
     }
     public void OnclickSelectAvatar4(View view) {
         tree.setAvatar("avatar4");
         avatar = true;
-        Toast.makeText(EditTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditTreeActivity.this,"Maceta femenina Seleccionada",Toast.LENGTH_SHORT).show();
     }
     public void OnclickSelectAvatar5(View view) {
         tree.setAvatar("avatar5");
         avatar = true;
-        Toast.makeText(EditTreeActivity.this,tree.getAvatar()+" Seleccionado",Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditTreeActivity.this,"Maceta masculina Seleccionado",Toast.LENGTH_SHORT).show();
     }
 }
