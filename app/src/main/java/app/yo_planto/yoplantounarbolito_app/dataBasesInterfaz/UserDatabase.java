@@ -1,41 +1,47 @@
 package app.yo_planto.yoplantounarbolito_app.dataBasesInterfaz;
 
 public class UserDatabase {
-    private String name;
-    private String last_name;
+
+
+    private String firstname;
+    private String lastname;
     private String nick;
     private String email;
     private String phone;
     private String password;
     private String password_confirmation;
     private String points;
+    private String age;
+    private String organization;
 
     public UserDatabase(){
-        name = "name";
-        last_name = "last_name";
+        firstname = "firstname";
+        lastname = "lastname";
         nick = "nick";
         email = "email";
         phone = "phone";
         password = "password";
         points = "points";
         password_confirmation = "password_confirmation";
+        age = "age";
+        organization = "organization";
     }
 
-    public String getName() {
-        return name;
+    /*public String getName() {
+        return firstname;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.firstname = name;
     }
 
     public String getLast_name() {
-        return last_name;
+        return lastname;
     }
 
     public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
+        this.lastname = last_name;
+    }*/
 
     public String getNick() {
         return nick;
@@ -83,6 +89,22 @@ public class UserDatabase {
 
     public void setPoints(String points) {
         this.points = points;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getOrganization() {
+        return organization;
     }
 }
 

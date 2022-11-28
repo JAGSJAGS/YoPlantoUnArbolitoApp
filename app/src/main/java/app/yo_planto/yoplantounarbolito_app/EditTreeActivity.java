@@ -1,6 +1,7 @@
 package app.yo_planto.yoplantounarbolito_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.Button;
@@ -89,10 +90,13 @@ public class EditTreeActivity extends AppCompatActivity {
 
         JSONObject parameters = new JSONObject(params);
 
-        JOR = new JsonObjectRequest(Request.Method.PATCH, url + "/trees/" + preferences.getUserId(), parameters,new Response.Listener<JSONObject>() {
+        JOR = new JsonObjectRequest(Request.Method.PATCH, url + "/trees/" + preferences.getTreeId(), parameters,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                Toast.makeText(EditTreeActivity.this, "Exitoso"+response, Toast.LENGTH_SHORT).show();
+                Intent mainTree = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainTree);
+                Toast.makeText(EditTreeActivity.this,"Cambio exitoso",Toast.LENGTH_SHORT).show();
+                finishAffinity();
             }
         }, new Response.ErrorListener() {
             @Override

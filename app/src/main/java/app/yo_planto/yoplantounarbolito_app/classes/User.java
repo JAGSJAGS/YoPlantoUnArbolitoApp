@@ -2,23 +2,57 @@ package app.yo_planto.yoplantounarbolito_app.classes;
 
 public class User {
     private String id;
-    private String name;
-    private String last_name;
     private String nick;
     private String email;
     private String phone;
     private String password;
     private String points;
+    private String age;
+    private String organization;
+    private String firstname;
+    private String lastname;
 
     public User(){
         id = "id";
-        name = "name";
-        last_name = "last_name";
+        firstname = "name";
+        lastname = "last_name";
         nick = "nick";
         email = "email";
         phone = "phone";
         password = "password";
         points = "points";
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getId() {
@@ -29,7 +63,7 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
+    /*public String getName() {
         return name;
     }
 
@@ -43,7 +77,7 @@ public class User {
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
-    }
+    }*/
 
     public String getNick() {
         return nick;

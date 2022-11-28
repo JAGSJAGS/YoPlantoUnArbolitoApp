@@ -5,10 +5,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="app.yo_planto.yoplantounarbolito_app.RegisterUserActivity"
-        android:orientation="vertical"><![CDATA[
->
-    ]]>
+        tools:context="app.yo_planto.yoplantounarbolito_app.EditUserActivity"
+        android:orientation="vertical">
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,7 +24,7 @@
                     android:id="@+id/imageView12" android:layout_marginBottom="16dp"
                     android:layout_marginTop="16dp" app:autoSizeTextType="uniform"/>
             <TextView
-                    android:text="Empecemos"
+                    android:text="Actualice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16dp" app:layout_constraintTop_toTopOf="parent"
@@ -41,13 +39,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textColor="#009688" android:layout_marginBottom="32dp"
-                    android:text="registrandonos!!"/>
+                    android:text="sus datos personales"/>
             <com.google.android.material.progressindicator.LinearProgressIndicator
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:indeterminate="true"
                     android:backgroundTint="@null"
-                    android:background="@color/blue_secondary" android:id="@+id/linear_progres_3"/>
+                    android:background="@color/blue_secondary" android:id="@+id/linear_progres_13"/>
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textField"
                     android:layout_width="match_parent"
@@ -59,7 +57,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editTextFirstNameRegisterUser"/>
+                        android:id="@+id/editTextfirstnameEditUser"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textField3"
@@ -72,7 +70,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editTextLastNameRegisterUser"/>
+                        android:id="@+id/editTextLastNameEditUser"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -85,7 +83,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:id="@+id/editTextEmailRegisterUser"/>
+                        android:id="@+id/editTextEmailEditUser"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textField33"
@@ -98,7 +96,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editTextOrganizationRegisterUser"/>
+                        android:id="@+id/editTextOrganizationEditUser"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textFieldd33"
@@ -112,7 +110,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:id="@+id/editTextAgeRegisterUser"/>
+                        android:id="@+id/editTextAgeEditUser"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -125,9 +123,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:id="@+id/editTextPhoneRegisterUser"/>
+                        android:id="@+id/editTextPhoneEditUser"/>
             </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
+            <!--<com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Ingrese contraseña"
@@ -138,7 +136,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:id="@+id/editTextPasswordRegisterUser"/>
+                        android:id="@+id/editTextPasswordEditUser"/>
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -151,13 +149,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
-                        android:id="@+id/editTextConfirmationPasswordRegisterUser"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                        android:id="@+id/editTextConfirmationPasswordEditUser"/>
+            </com.google.android.material.textfield.TextInputLayout>-->
             <com.google.android.material.button.MaterialButton
                     android:text="Registrar"
-                    android:onClick="OnclickRegister"
+                    android:onClick="OnclickEdiUser"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/buttonRegisterUser"
+                    android:layout_height="wrap_content" android:id="@+id/buttonEditerUser"
                     app:layout_constraintTop_toBottomOf="@+id/editTextConfirmationPasswordRegisterUser"
                     android:background="@drawable/button_1"
                     android:elevation="10dp"
@@ -165,4 +163,5 @@
                     app:backgroundTint="@null"/>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

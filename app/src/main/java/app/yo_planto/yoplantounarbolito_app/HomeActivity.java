@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
     //buttons
     Button button_log_out, button_your_tree, button_orphanage,
             button_ranking, button_games, button_profile, button_register_tree,
-            button_edit_tree;
+            button_edit_tree, button_edit_user;
     ImageView image_home_avatar;
 
     //datos de Usuario
@@ -95,6 +95,7 @@ public class HomeActivity extends AppCompatActivity {
         button_register_tree = findViewById(R.id.button_home_register_tree);
         button_log_out = findViewById(R.id.button_home_log_out);
         button_edit_tree = findViewById(R.id.button_home_edit_tree);
+        button_edit_user = findViewById(R.id.button_home_edit_user);
 
         //avatar o boton
         linear_layout_care_tree = findViewById(R.id.linear_layout_cuida_tu_arbol);
@@ -176,6 +177,16 @@ public class HomeActivity extends AppCompatActivity {
                 linear_progress.setVisibility(View.GONE);
             }
         });
+
+        button_edit_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                linear_progress.setVisibility(View.VISIBLE);
+                Intent editUser = new Intent(HomeActivity.this, EditUserActivity.class);
+                startActivity(editUser);
+                linear_progress.setVisibility(View.GONE);
+            }
+        });
     }
 
 
@@ -231,7 +242,7 @@ public class HomeActivity extends AppCompatActivity {
 
     //mostar dialog de informacion de usuario
     private void showUser() {
-        String message = "\n" + user.getName() + "\n" + "\n" + user.getEmail() + "\n" + "\n" + user.getPhone() + "\n";
+        String message = "\n" + user.getFirstname() + "\n" + "\n" + user.getEmail() + "\n" + "\n" + user.getPhone() + "\n";
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Mis Datos")
                 .setMessage(message)
@@ -258,11 +269,11 @@ public class HomeActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 linear_progress.setVisibility(View.GONE);
                 try {
-                    user.setName(response.getString(user_database.getName()));
+                    user.setFirstname(response.getString(user_database.getFirstname()));
                     user.setEmail(response.getString(user_database.getEmail()));
                     user.setPhone(response.getString(user_database.getPhone()));
                     user.setPoints(response.getString(user_database.getPoints()));
-                    textView_home_name_user.setText("Hola " + user.getName());
+                    textView_home_name_user.setText("Hola " + user.getFirstname());
 
                     JSONArray trees_array = response.getJSONArray("trees");
                     Toast.makeText(HomeActivity.this, "array: " + trees_array, Toast.LENGTH_SHORT).show();

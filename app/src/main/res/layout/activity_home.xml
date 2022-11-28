@@ -189,6 +189,13 @@
                                         android:layout_marginBottom="8dp"
                                         app:backgroundTint="@null"
                                         android:background="@drawable/button_1"/>
+                                <com.google.android.material.button.MaterialButton
+                                        android:text="Editar Árbol"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" android:id="@+id/button_home_edit_user"
+                                        android:layout_marginBottom="8dp"
+                                        app:backgroundTint="@null"
+                                        android:background="@drawable/button_1"/>
 
                         </LinearLayout>
                 </LinearLayout>

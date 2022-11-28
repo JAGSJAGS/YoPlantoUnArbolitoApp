@@ -25,7 +25,7 @@ import java.util.Map;
 
 public class RegisterUserActivity extends AppCompatActivity {
 
-    EditText name, email, phone, password, password_confirmation;
+    EditText email, phone, password, password_confirmation, age, organization, firstname, lastname;
 
     //request
     RequestQueue request;
@@ -56,11 +56,14 @@ public class RegisterUserActivity extends AppCompatActivity {
         linear_progres = findViewById(R.id.linear_progres_3);
         linear_progres.setVisibility(View.GONE);
 
-        name = findViewById(com.example.yoplantounarbolito_app.R.id.editTextNameRegisterUser);
-        email = findViewById(com.example.yoplantounarbolito_app.R.id.editTextEmailRegisterUser);
-        phone = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPhoneRegisterUser);
-        password = findViewById(com.example.yoplantounarbolito_app.R.id.editTextPasswordRegisterUser);
-        password_confirmation = findViewById(com.example.yoplantounarbolito_app.R.id.editTextConfirmationPasswordRegisterUser);
+        firstname = findViewById(R.id.editTextFirstNameRegisterUser);
+        lastname = findViewById(R.id.editTextLastNameRegisterUser);
+        email = findViewById(R.id.editTextEmailRegisterUser);
+        age = findViewById(R.id.editTextAgeRegisterUser);
+        organization = findViewById(R.id.editTextOrganizationRegisterUser);
+        phone = findViewById(R.id.editTextPhoneRegisterUser);
+        password = findViewById(R.id.editTextPasswordRegisterUser);
+        password_confirmation = findViewById(R.id.editTextConfirmationPasswordRegisterUser);
     }
 
     private void registerUser(){
@@ -68,8 +71,11 @@ public class RegisterUserActivity extends AppCompatActivity {
         request = Volley.newRequestQueue(this);
 
         Map<String, String> params = new HashMap<>();
-        params.put(user_database.getName(), name.getText().toString());
+        params.put(user_database.getFirstname(), firstname.getText().toString());
+        params.put(user_database.getLastname(), lastname.getText().toString());
         params.put(user_database.getEmail(), email.getText().toString());
+        params.put(user_database.getAge(), age.getText().toString());
+        params.put(user_database.getOrganization(), organization.getText().toString());
         params.put(user_database.getPhone(), phone.getText().toString());
         params.put(user_database.getPoints(), "0");
         params.put(user_database.getPassword(), password.getText().toString());
