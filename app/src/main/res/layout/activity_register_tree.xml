@@ -152,7 +152,7 @@
                         android:id="@+id/button_register_tree_resgister"
                         android:background="@drawable/button_1"
                         app:backgroundTint="@null"
-                        android:layout_gravity="center" android:layout_marginTop="24dp"/>
+                        android:layout_gravity="center" android:layout_marginTop="24dp" android:textAllCaps="false"/>
 
             </LinearLayout>
             <LinearLayout

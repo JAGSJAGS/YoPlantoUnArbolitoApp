@@ -78,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/buttonLogin"
                         android:background="@drawable/button_1"
-                        app:backgroundTint="@null" android:padding="16dp"/>
+                        app:backgroundTint="@null" android:padding="16dp" android:textAllCaps="false"/>
 
             </LinearLayout>
             <androidx.constraintlayout.widget.ConstraintLayout

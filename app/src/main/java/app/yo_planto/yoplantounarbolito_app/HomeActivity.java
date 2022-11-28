@@ -88,9 +88,7 @@ public class HomeActivity extends AppCompatActivity {
 
         //buttons
         button_your_tree = findViewById(R.id.button_home_your_tree);
-        button_orphanage = findViewById(R.id.button_home_orphanage);
         button_ranking = findViewById(R.id.button_home_ranking);
-        button_games = findViewById(R.id.button_home_games);
         button_profile = findViewById(R.id.button_home_profile);
         button_register_tree = findViewById(R.id.button_home_register_tree);
         button_log_out = findViewById(R.id.button_home_log_out);
@@ -113,15 +111,6 @@ public class HomeActivity extends AppCompatActivity {
                 linear_progress.setVisibility(View.GONE);
             }
         });
-        button_orphanage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                linear_progress.setVisibility(View.VISIBLE);
-                Intent orphanageTree = new Intent(getApplicationContext(), OrphanageActivity.class);
-                startActivity(orphanageTree);
-                linear_progress.setVisibility(View.GONE);
-            }
-        });
 
         button_ranking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,15 +118,6 @@ public class HomeActivity extends AppCompatActivity {
                 linear_progress.setVisibility(View.VISIBLE);
                 Intent rankingUser = new Intent(getApplicationContext(), RankingActivity.class);
                 startActivity(rankingUser);
-                linear_progress.setVisibility(View.GONE);
-            }
-        });
-        button_games.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                linear_progress.setVisibility(View.VISIBLE);
-                Intent gamesTree = new Intent(getApplicationContext(), GamesActivity.class);
-                startActivity(gamesTree);
                 linear_progress.setVisibility(View.GONE);
             }
         });
@@ -242,16 +222,14 @@ public class HomeActivity extends AppCompatActivity {
 
     //mostar dialog de informacion de usuario
     private void showUser() {
-        String message = "\n" + user.getFirstname() + "\n" + "\n" + user.getEmail() + "\n" + "\n" + user.getPhone() + "\n";
+        String message = "\n" + "Nombre: "+ user.getFirstname() + "\n" + "\n"
+                + "Correo: " + user.getEmail() + "\n" + "\n"
+                + "Telefono: " + user.getPhone() + "\n" + "\n"
+                + "Edad: " + user.getAge() +" años." + "\n" + "\n"
+                + "Nombre de Arbol: " + tree.getName();
         new MaterialAlertDialogBuilder(this)
                 .setTitle("Mis Datos")
                 .setMessage(message)
-                .setPositiveButton("Editar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.d("MainActivity", "Sending atomic bombs to Jupiter");
-                    }
-                })
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -273,6 +251,7 @@ public class HomeActivity extends AppCompatActivity {
                     user.setEmail(response.getString(user_database.getEmail()));
                     user.setPhone(response.getString(user_database.getPhone()));
                     user.setPoints(response.getString(user_database.getPoints()));
+                    user.setAge(response.getString(user_database.getAge()));
                     textView_home_name_user.setText("Hola " + user.getFirstname());
                     preferences.savePreferencesUserNamePoints(user.getFirstname(), user.getPoints() );
                     //Toast.makeText(HomeActivity.this, preferences.getPoints()+""+preferences.getName(), Toast.LENGTH_SHORT).show();
@@ -282,7 +261,7 @@ public class HomeActivity extends AppCompatActivity {
                         JSONObject tree_object = trees_array.getJSONObject(0);
                         preferences.savePreferencesTree(tree_object.getString(tree_database.getId()));
 
-
+                        tree.setName(tree_object.getString(tree_database.getName()));
                         image_home_avatar.setImageResource(showAvatar(tree_object.getString(tree_database.getAvatar())));
                         linear_layout_care_tree.setVisibility(View.VISIBLE);
                         linear_layout_create_tree.setVisibility(View.GONE);
